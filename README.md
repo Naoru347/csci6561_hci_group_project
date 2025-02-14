@@ -6,7 +6,8 @@ For project management, we utilized a highly collaborative team approach with me
 To aid in this, we made regular use of GitHub projects to assign tasks, manage project deliverables, and maintain open, clear communication (see Figure, below, for an early example)
 
 ### Figure: GitHub Project Dashboard Sample
-! [Sample GitHub Project Dashboard Screen Grab](/Users/jpaiz/Desktop/CSCI6561_HCI/Project Work/csci6561_hci_group_project/Documentation_Images/project_dashboard_stage0.png "Dashboard Screengrab")
+### Figure: GitHub Project Dashboard Sample
+![Sample GitHub Project Dashboard Screen Grab](./Documentation_Images/project_dashboard_stage0.png "Dashboard Screengrab")
 
 ## Documentation Notes
 This section outlines early thoughts on what to include in final documentation to be submitted upon project submission.
