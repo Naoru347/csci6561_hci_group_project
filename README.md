@@ -1,10 +1,21 @@
 # Design Read-me & Documentation Notes
 
-## Outline of What User's Can Do
+## Outline of What Users (Students) Can Do
 
 ### Section Ownership
 - Primary Owner: Dmitri Stanchevici
 - Contributor: J. M. Paiz
+
+This app allows students to complete the following tasks:
+- view a list of assignments to be completed and their deadlines
+- select an assignment and read its description
+- compose a response to the assignment in one the following two modes specified for this assignment by the teacher
+      - *No Access* resources outside the app. The copy/paste functionality is disabled.
+      - Limited Access to resources outside the app. This mode allows access to such teacher-approved resources as the student’s past assignments with the feedback from the teacher, files uploaded by the student or the teacher, and some websites. Copying from the allowed resources is enabled.
+- submit the written assignment
+- view and add comments to a report that is submitted with the assignment and that details system failures that occurred during the completion of the assignment and the student’s attempts to performed restricted actions during the completion of the assignment
+- upload files that, after the teacher’s approval, can be accessed in the Limited Access mode
+
 
 ## Concepts Needed to How to Interact
 - Protected Composition Space
