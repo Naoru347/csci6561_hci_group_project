@@ -1,0 +1,1 @@
+This folder contains the css files for the static and responsive design elements of the project. 

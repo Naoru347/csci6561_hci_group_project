@@ -1,0 +1,1 @@
+This folder contains the js files for the functional elements of the project. 
