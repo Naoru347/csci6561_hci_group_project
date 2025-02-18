@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EaseLearn Demo: LMS for Non-Traditional Learners</title>
+  <style>
+    /* Basic Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      position: relative; /* For overlay positioning */
+    }
+
+    header, main, footer {
+      padding: 1rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    /* LANDING PAGE */
+    .landing {
+      display: block;
+      text-align: center;
+      margin-top: 5rem;
+    }
+    .landing h1 {
+      margin-bottom: 1rem;
+    }
+    .landing button {
+      margin: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    /* ONBOARDING WIZARD */
+    .onboarding, .dashboard {
+      display: none; /* hidden by default; toggled via JS */
+    }
+    .onboarding h2 {
+      margin-bottom: 1rem;
+    }
+    .onboarding label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .onboarding select {
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+    }
+    .onboarding button {
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+    }
+
+    /* DASHBOARD LAYOUT */
+    .dashboard-wrapper {
+      display: flex;
+    }
+    /* Simulated side navigation */
+    .dashboard-nav {
+      width: 220px;
+      background: #fff;
+      padding: 1rem;
+      border-right: 1px solid #ccc;
+    }
+    .dashboard-nav h3 {
+      margin-bottom: 0.75rem;
+    }
+    .nav-item {
+      margin: 0.5rem 0;
+      cursor: pointer;
+    }
+    /* Add unique classes so we can highlight them in the tour */
+    .nav-item.courses { }
+    .nav-item.assignments { }
+    .nav-item.messages { }
+    .nav-item.profile { }
+
+    /* Main content area */
+    .dashboard-main {
+      flex: 1;
+      padding: 1rem;
+    }
+    .dashboard-main h2 {
+      margin-bottom: 1rem;
+    }
+
+    /* ACCESSIBILITY TOGGLES */
+    .accessibility-controls {
+      margin-bottom: 1rem;
+    }
+    .accessibility-controls button {
+      margin-right: 1rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+
+    /* TOUR OVERLAY (Multi-Step) */
+    .tour-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: none; /* toggled via JS */
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 2rem;
+      text-align: center;
+      color: #fff;
+    }
+    .tour-content {
+      background: #333;
+      border-radius: 8px;
+      padding: 1.5rem;
+      max-width: 600px;
+      width: 100%;
+    }
+    .tour-text {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    .tour-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .tour-buttons button {
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      background-color: #34c759;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .tour-buttons button.skip {
+      background-color: #fa3e3e; /* a red tone for "skip" */
+    }
+
+    /* Highlighted element in the tour */
+    .tour-highlight {
+      outline: 3px solid #34c759;
+      outline-offset: -3px; /* tighten the outline around the element */
+      position: relative;
+      z-index: 99999; /* ensure it’s above other content */
+    }
+
+    /* HIGH CONTRAST MODE */
+    body.high-contrast {
+      background-color: #000 !important;
+      color: #fff !important;
+    }
+    body.high-contrast .dashboard-nav {
+      background-color: #111 !important;
+      border-right: 1px solid #666 !important;
+    }
+    body.high-contrast .dashboard-main {
+      background-color: #222 !important;
+    }
+
+    /* LARGER TEXT MODE */
+    body.larger-font {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LANDING PAGE -->
+  <div class="landing container" id="landing-screen">
+    <h1>EaseLearn Demo</h1>
+    <p>Welcome! This quick demo shows how we adapt to different tech comfort levels.</p>
+    <button onclick="startOnboarding()">Sign Up</button>
+  </div>
+
+  <!-- ONBOARDING WIZARD -->
+  <div class="onboarding container" id="onboarding-screen">
+    <h2>Onboarding: Your Learning Management System (LMS) Comfort Level</h2>
+    <label for="techLevel">How comfortable are you with online learning platforms?</label>
+    <select id="techLevel">
+      <option value="novice">Novice - I'm new to LMSes like this one</option>
+      <option value="intermediate">Intermediate - I've used some LMSes but found it frustrating</option>
+      <option value="advanced">Advanced - I grew up using LMSes and am a total whiz</option>
+    </select>
+    <br />
+    <button onclick="finishOnboarding()">Continue</button>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard container" id="dashboard-screen">
+    <div class="dashboard-wrapper">
+      <!-- Simulated side navigation -->
+      <nav class="dashboard-nav">
+        <h3>My EaseLearn</h3>
+        <div class="nav-item courses">Courses</div>
+        <div class="nav-item assignments">Assignments</div>
+        <div class="nav-item messages">Messages</div>
+        <div class="nav-item profile">Profile</div>
+      </nav>
+
+      <!-- Main content area -->
+      <main class="dashboard-main">
+        <!-- Accessibility Controls -->
+        <div class="accessibility-controls">
+          <button onclick="toggleLargerFont()">Toggle Larger Font</button>
+          <button onclick="toggleHighContrast()">Toggle High Contrast</button>
+        </div>
+        <h2>Welcome to Your Dashboard</h2>
+        <p>
+          This is where you’ll see upcoming deadlines, announcements, and more.
+        </p>
+        <p>
+          If you're a beginner, a multi-step help overlay can guide you step by step.
+        </p>
+        <button id="toggleHelpBtn" onclick="startTour()">Show Help</button>
+      </main>
+    </div>
+  </div>
+
+  <!-- MULTI-STEP TOUR OVERLAY -->
+  <div class="tour-overlay" id="tour-overlay">
+    <div class="tour-content">
+      <div class="tour-text" id="tourText">
+        <!-- Dynamic text inserted via JS -->
+      </div>
+      <div class="tour-buttons">
+        <button class="skip" onclick="endTour()">Skip Tour</button>
+        <button onclick="nextTourStep()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let userTechLevel = 'novice';
+    let currentStep = 0;
+    let highlightedElement = null;
+
+    // Define the steps of our guided tour
+    const tourSteps = [
+      {
+        element: '.nav-item.courses',
+        text: 'Click here to view or manage your enrolled courses.'
+      },
+      {
+        element: '.nav-item.assignments',
+        text: 'Access and submit all your coursework here.'
+      },
+      {
+        element: '.nav-item.messages',
+        text: 'Check messages from instructors or classmates.'
+      },
+      {
+        element: '.nav-item.profile',
+        text: 'Update your personal information or settings here.'
+      }
+    ];
+
+    // ---------- ONBOARDING FLOW ----------
+    function startOnboarding() {
+      document.getElementById('landing-screen').style.display = 'none';
+      document.getElementById('onboarding-screen').style.display = 'block';
+    }
+
+    function finishOnboarding() {
+      userTechLevel = document.getElementById('techLevel').value;
+
+      // Hide onboarding, show dashboard
+      document.getElementById('onboarding-screen').style.display = 'none';
+      document.getElementById('dashboard-screen').style.display = 'block';
+
+      // If user is novice, auto-start the guided tour
+      if (userTechLevel === 'novice') {
+        startTour();
+      }
+    }
+
+    // ---------- GUIDED TOUR FUNCTIONS ----------
+    function startTour() {
+      currentStep = 0;
+      document.getElementById('tour-overlay').style.display = 'flex';
+      showTourStep(currentStep);
+    }
+
+    function showTourStep(stepIndex) {
+      // Clean up any previously highlighted element
+      if (highlightedElement) {
+        highlightedElement.classList.remove('tour-highlight');
+      }
+
+      // Get the current step data
+      const stepData = tourSteps[stepIndex];
+      const targetEl = document.querySelector(stepData.element);
+      const tourText = document.getElementById('tourText');
+
+      // Highlight the target element
+      if (targetEl) {
+        targetEl.classList.add('tour-highlight');
+        highlightedElement = targetEl;
+      }
+
+      // Update the overlay text
+      tourText.innerText = stepData.text;
+    }
+
+    function nextTourStep() {
+      currentStep++;
+      if (currentStep < tourSteps.length) {
+        showTourStep(currentStep);
+      } else {
+        endTour();
+      }
+    }
+
+    function endTour() {
+      // Hide overlay
+      document.getElementById('tour-overlay').style.display = 'none';
+      // Remove highlight from element
+      if (highlightedElement) {
+        highlightedElement.classList.remove('tour-highlight');
+      }
+    }
+
+    // ---------- ACCESSIBILITY TOGGLES ----------
+    function toggleLargerFont() {
+      document.body.classList.toggle('larger-font');
+    }
+
+    function toggleHighContrast() {
+      document.body.classList.toggle('high-contrast');
+    }
+  </script>
+</body>
+</html>

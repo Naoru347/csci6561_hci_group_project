@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Composition Interface</title>
+    <style>
+        .lockdown-container {
+            border: 5px solid #ff0000;
+            border-radius: 10px;
+            padding: 4rem;
+            max-width: 800px;
+            margin: 0rem auto;
+            font-family: Arial, sans-serif;
+        }
+
+        .warning-banner {
+            color: #292929;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            background-color: #ffe6e6;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+        .course-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .editor-container {
+            margin: 1rem 0;
+        }
+
+        textarea {
+            width: 100%;
+            height: 400px;
+            padding: 1rem;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .wordcount {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .right-group {
+            display: flex;
+            gap: 1rem;
+            margin-left: auto;
+        }
+
+        button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .discard-btn {
+            background-color: #ff6666;
+            color: white;
+        }
+
+        .save-btn {
+            background-color: #3388ff;
+            color: white;
+        }
+
+        .submit-btn {
+            background-color: #66cc66;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="lockdown-container">
+        <div class="warning-banner">
+            UNDISTRACTED WRITING MODE - NO EXTERNAL TOOLS MAY BE USED
+        </div>
+        <div class="course-title">Current Assignment: CSCI 6561: Project Proposal</div>
+        
+        <div class="editor-container">
+            <textarea id="editor" placeholder="Compose your assignment here..."></textarea>
+            <div class="wordcount">Wordcount: <span id="wordCount">0</span></div>
+        </div>
+
+        <div class="button-group">
+            <button class="discard-btn">Discard and Exit</button>
+            <div class="right-group">
+                <button class="save-btn">Save and Exit</button>
+                <button class="submit-btn">Submit and Exit</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const editor = document.getElementById('editor');
+        const wordCount = document.getElementById('wordCount');
+
+        editor.addEventListener('input', updateWordCount);
+
+        function updateWordCount() {
+            const text = editor.value.trim();
+            const words = text ? text.split(/\s+/).length : 0;
+            wordCount.textContent = words;
+        }
+    </script>
+</body>
+</html>

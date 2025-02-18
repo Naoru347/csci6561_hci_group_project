@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partial Lockdown Composition Interface</title>
+    <style>
+        .lockdown-container {
+            border: 5px solid #ffd700;
+            border-radius: 10px;
+            padding: 4rem;
+            max-width: 1200px; /* Increased container width */
+            margin: 2rem auto;
+            font-family: Arial, sans-serif;
+            
+        }
+
+        .warning-banner {
+            color: #292929;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            background-color: #fffacd;
+            padding: 1rem;
+            border-radius: 5px;
+            border: 2px solid #ffd700;
+        }
+
+        .permitted-tools {
+            background-color: #f6f6f6;
+            padding: 0.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 2px dashed #ffd700;
+            display: flex;
+            gap: 2rem;
+            justify-content: space-around;
+        }
+
+        .content-container {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .editor-container {
+            flex: 1;
+            min-width: 0; /* Allows proper flexbox shrinking */
+        }
+
+        .tool-display {
+            flex: 1;
+            min-width: 0;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 1rem;
+            background-color: white;
+            height: 500px; /* Match editor height */
+            overflow-y: auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 500px; /* Increased height */
+            padding: 1rem;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            resize: vertical;
+        }
+
+        /* Keep existing tool-section styles */
+        .tool-section {
+            margin: 0;
+            padding: 0.5rem;
+            min-width: 200px;
+        }
+
+        .tool-section h3 {
+            color: #292929;
+            margin: 0 0 0.3rem 0;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .tool-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .tool-list li {
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .tool-list a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .tool-list a:hover {
+            background-color: #fffacd;
+            text-decoration: underline;
+        }
+
+        .course-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .wordcount {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .right-group {
+            display: flex;
+            gap: 1rem;
+            margin-left: auto;
+        }
+
+        button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .discard-btn {
+            background-color: #ff6666;
+            color: white;
+        }
+
+        .save-btn {
+            background-color: #3388ff;
+            color: white;
+        }
+
+        .submit-btn {
+            background-color: #66cc66;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="lockdown-container">
+        <div class="warning-banner">
+            SUPPORTED COMPOSITION MODE - PERMITTED TOOLS CAN BE FOUND BELOW
+        </div>
+        
+        <div class="permitted-tools">
+            <div class="tool-section">
+                <h3>AI Chatbot Access</h3>
+                <ul class="tool-list">
+                    <li><a href="#" class="tool-link" data-tool="ai-assistant">Course AI Assistant</a></li>
+                    <li><a href="#" class="tool-link" data-tool="grammar-bot">Grammar Checker Bot</a></li>
+                </ul>
+            </div>
+
+            <div class="tool-section">
+                <h3>Instructor Sources</h3>
+                <ul class="tool-list">
+                    <li><a href="#" class="tool-link" data-tool="style-guide">Style Guide</a></li>
+                    <li><a href="#" class="tool-link" data-tool="research-library">Research Library</a></li>
+                    <li><a href="#" class="tool-link" data-tool="code-examples">Code Examples</a></li>
+                </ul>
+            </div>
+
+            <div class="tool-section">
+                <h3>Student Resources</h3>
+                <ul class="tool-list">
+                    <li><a href="#" class="tool-link" data-tool="peer-materials">Peer Materials</a></li>
+                    <li><a href="#" class="tool-link" data-tool="tutorials">Approved Tutorials</a></li>
+                    <li><a href="#" class="tool-link" data-tool="cheatsheets">Cheatsheets</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="course-title">Current Assignment: CSCI 6561: Project Proposal</div>
+        
+        <div class="content-container">
+            <div class="tool-display" id="toolDisplay">
+                <!-- Tool content will be loaded here -->
+                <div class="tool-placeholder">
+                    <p>Select a tool from the permitted resources above to display it here</p>
+                </div>
+            </div>
+
+            <div class="editor-container">
+                <textarea id="editor" placeholder="Compose your assignment here..."></textarea>
+                <div class="wordcount">Wordcount: <span id="wordCount">0</span></div>
+            </div>
+
+        </div>
+
+        <div class="button-group">
+            <button class="discard-btn">Discard and Exit</button>
+            <div class="right-group">
+                <button class="save-btn">Save and Exit</button>
+                <button class="submit-btn">Submit and Exit</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const editor = document.getElementById('editor');
+        const wordCount = document.getElementById('wordCount');
+        const toolLinks = document.querySelectorAll('.tool-link');
+        const toolDisplay = document.getElementById('toolDisplay');
+
+        // Word count functionality
+        editor.addEventListener('input', updateWordCount);
+
+        function updateWordCount() {
+            const text = editor.value.trim();
+            const words = text ? text.split(/\s+/).length : 0;
+            wordCount.textContent = words;
+        }
+
+        // Tool display functionality
+        toolLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const tool = this.dataset.tool;
+                loadToolContent(tool);
+            });
+        });
+
+        function loadToolContent(tool) {
+            // Replace this with actual content loading logic
+            toolDisplay.innerHTML = `
+                <div class="tool-content">
+                    <h3>${tool.replace(/-/g, ' ').toUpperCase()}</h3>
+                    <p>This area would display the selected tool: ${tool}</p>
+                    <p>Tool content loading logic to be implemented/simulated here</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
