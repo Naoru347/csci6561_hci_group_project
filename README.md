@@ -1,5 +1,11 @@
 # Design Read-me & Documentation Notes
 
+## Outline of What User's Can Do
+
+### Section Ownership
+- Primary Owner: Dmitri Stanchevici
+- Contributor: J. M. Paiz
+
 ## Concepts Needed to How to Interact
 - Protected Composition Space
 - Overarching Metaphor - The Stoplight
@@ -8,6 +14,12 @@
 ### Section Ownership
 - Primary Owner: J. M. Paiz
 - Contributor: Dmitri Stanchevici
+
+## Description of Intended User Experience 
+
+### Section Ownership
+- Primary Ownder: Dmitri Stanchevici
+- Contributor: J. M. Paiz
 
 ## Project Management
 For project management, we utilized a highly collaborative team approach with members sharing roughly equally in the majority of tasks through a primary owner/contributor model. In this model, the primary owner would be responsible for between 51-75% of a given sub-task and contributors expected to contribute the remaining 25-49% of effort. The goal being that, on average, each group member contributed equally to project labor. 
@@ -30,9 +42,12 @@ This section outlines early thoughts on what to include in final documentation t
 - File Name: conceptual_model.pdf
 - Front matter: Each group members name on top of page (ABC, Ascending)
 - Outline of what users can do - 20%
+   - Assigned
 - Concepts needed to understand how to interact - 20%
+      - Assigned
 - Functionality - 20%
 - Description of intended user experience - 20%
+      - Assigned
 - Metaphor and interaction types - 20%
 
 Note for each section be prepared to:
@@ -49,3 +64,5 @@ Note for each section be prepared to:
 ### Documentation Ownership
 - Primary Owner: J. M. Paiz
 - Contributor: D. Stanchevici
+
+## Reference
