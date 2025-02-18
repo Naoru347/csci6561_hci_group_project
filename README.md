@@ -1,5 +1,14 @@
 # Design Read-me & Documentation Notes
 
+## Concepts Needed to How to Interact
+- Protected Composition Space
+- Overarching Metaphor - The Stoplight
+- Professor/Student Selected Resources
+
+### Section Ownership
+- Primary Owner: J. M. Paiz
+- Contributor: Dmitri Stanchevici
+
 ## Project Management
 For project management, we utilized a highly collaborative team approach with members sharing roughly equally in the majority of tasks through a primary owner/contributor model. In this model, the primary owner would be responsible for between 51-75% of a given sub-task and contributors expected to contribute the remaining 25-49% of effort. The goal being that, on average, each group member contributed equally to project labor. 
 
