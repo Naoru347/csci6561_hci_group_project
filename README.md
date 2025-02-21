@@ -38,6 +38,8 @@ We try to accommodate students with different abilities and disabilities by allo
 
 We want students to feel that our app is a timely and competent response to the problem of limited opportunity to develop and demonstrate one’s ability to write without generative AI. The function of our app--to restrict access to advanced tools--may evoke in students a feeling that they have to deal with something oppressive and outdated. To counteract this emotional response, we use a visual design that creates a modern look that may appeal to a younger user (we assume that most students using our app will be young). We also avoid words with a negative connotation in the interface, such as “lockdown.” Instead, we use such words as “independent writing” or “undistracted writing” to create for the student a sense of opportunity and achievement. 
 
+For a more detailed view of the general workflow when using this application, please see the user_journey_general.md file include in the root of this directory.
+
 ### Section Ownership
 - Primary Ownder: Dmitri Stanchevici
 - Contributor: J. M. Paiz
@@ -89,3 +91,4 @@ Note for each section be prepared to:
 ## References
 - Copenhagen Business School (2022). Scholarly composition. *Library of the Copenhagen Business School*. https://inframethodology.cbs.dk/?p=5065
 - Gessell, B. (2021).  Deliberate practice for academic writers: A three-step process to improve academic writing. *Writing is Thinking* https://writingisthinking.com/wp-content/uploads/2021/05/Deliberate-Practice-Part-3-Bryce-Gessell.pdf
+- Sharp, H., Rogers, Y., & Preece, J. (2019). *Interaction design: Beyond human-computer interaction* (6th edition). Wiley
