@@ -85,6 +85,11 @@ For the front-end framework of FOCUSWRITE, we chose Bootstrap over alternatives 
 
 - Reduced Development Overhead: Faster implementation allows the team to focus on core functionality rather than UI customization.
 
+### Section Ownership
+- Primary research owner: J. M. Paiz
+- Primary technical owner: Dmitri Stanchevici
+- Research and technical contributors: Dmitri Stanchevici, J. M. Paiz
+
 ## Documentation Notes
 This section outlines early thoughts on what to include in final documentation to be submitted upon project submission.
 ### Documentation Reqs per Assignment Prompt
