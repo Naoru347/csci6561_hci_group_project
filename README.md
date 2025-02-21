@@ -1,9 +1,7 @@
 # Design Read-me & Documentation Notes
-
-## Outline of What Users (Students) Can Do
-
 Our app [NAME OF APP] is a browser-based app that allows students to complete writing assignments with no or limited access to the Internet, local networks, or device-based resources. Teachers can use this app to assess students’ ability to write independently of generative AI tools. This app serves two groups of users, teachers and students. Our project focuses on only the students’ experience and interfaces.
 
+## Outline of What Users (Students) Can Do
 This app allows students to complete the following tasks:
 - view a list of assignments to be completed and their deadlines
 - select an assignment and read its description
@@ -11,7 +9,7 @@ This app allows students to complete the following tasks:
       - **Undistracted Writing** allows no acccess to resources outside the app. The copy/paste functionality is disabled.
       - **Writing With Resources** allows access to such teacher-approved resources as the student’s past assignments with the feedback from the teacher, files uploaded by the student or the teacher, and some websites. Copying from the allowed resources and pasting into the current work is enabled.
 - submit the written assignment
-- view and add comments to a report that is submitted with the assignment and that details system failures that occurred during the completion of the assignment and the student’s attempts to performed restricted actions during the completion of the assignment
+- view and add comments to a report that is submitted with the assignment and that details system failures occurring during the completion of the assignment and the student’s attempts to performed restricted actions during the completion of the assignment
 - upload files that, after the teacher’s approval, can be accessed in the Limited Access mode
 
 ### Section Ownership
@@ -32,10 +30,13 @@ This app allows students to complete the following tasks:
 - Contributor: Dmitri Stanchevici
 
 ## Description of Intended User Experience 
+Our app aims for a positive user experience in terms of usability, accessibility and inclusion, and emotional response (Sharpe et al., 2019).
 
-We strive to make our app usable for students. It is effective because students can use it to demonstrate their ability to compose and submit written assignments with no or limited access to external or device-based resources. It also is efficient because it enables students to get down to the composing and the submitting with the minimum necessary clicks. A simple and logical sequence of steps toward composing, consulting allowed resources, and submitting assignments together with an accompanying report should ensure learnability and memorability. Finally, and very importantly, we strive for safety. While the app is unlikely to cause any direct physical harm, it serves as a medium for a high-stakes activity--graded assignments. In case of a system failure, the app assures the student that their composition has been saved and that the student can retrieve it and continue working. If the student clicks submit, the app assures them that the composition has indeed been submitted. Finally, if the student performs a disallowed activity, alerts tell the student about an error and provide ways to rectify it.
+We strive to make our app usable for students. It is effective because students can use it to demonstrate their ability to compose and submit written assignments with no or limited access to external or device-based resources. It is also efficient because it enables students to get down to the composing and the submitting with the minimum necessary clicks. A simple and logical sequence of steps-- composing, consulting allowed resources, and submitting assignments together with an accompanying report--should ensure easy learnability and memorability. Finally, and very importantly, we strive for safety. While the app is unlikely to cause any direct physical harm, it serves as a medium for a high-stakes activity--graded assignments. In case of a system failure, the app assures the student that their composition has been saved and that the student can retrieve it and continue working. If the student clicks submit, the app assures them that the composition has indeed been submitted. If the student performs a disallowed activity, alerts tell the student about an error and provide ways to rectify it.
 
-We want students to feel that our app is a timely and competent response to the problem of limited opportunity to develop and demonstrate one’s ability to write without generative AI. The function of our app--to restrict access to advanced tools--may evoke in students a feeling that they are dealing with something oppressive and outdated. To counteract this emotional response, we use a visual design that creates a modern look that may appeal to a younger user (we assume that most students using our app will be young). We also avoid words with a negative connotation in the interface, such as “lockdown.” Instead, we use such words as “independent writing” or “undistracted writing” to create for the student a sense of opportunity and achievement. 
+We try to accommodate students with different abilities and disabilities by allowing to adjust the size of the text and by supporting color-coded messages with written instructions and feedback. Our app also caters to users from various cultural backgrounds by using words for months in dates, as in "February 12" rather than "2/12" or "12/2."
+
+We want students to feel that our app is a timely and competent response to the problem of limited opportunity to develop and demonstrate one’s ability to write without generative AI. The function of our app--to restrict access to advanced tools--may evoke in students a feeling that they have to deal with something oppressive and outdated. To counteract this emotional response, we use a visual design that creates a modern look that may appeal to a younger user (we assume that most students using our app will be young). We also avoid words with a negative connotation in the interface, such as “lockdown.” Instead, we use such words as “independent writing” or “undistracted writing” to create for the student a sense of opportunity and achievement. 
 
 ### Section Ownership
 - Primary Ownder: Dmitri Stanchevici
