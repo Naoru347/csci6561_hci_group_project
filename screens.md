@@ -1,0 +1,15 @@
+# Screens to 
+- How do you implment a tabbed interface in a web-design and what possible design frameworks would be best for this? [JMP]
+    - Bootstrap
+    - Vue.js
+    - AngularJS
+    - Tailwind
+- Log-in page [Dmitri]
+- Home/landing page (assignment/task selection) [JMP]
+    - Modal/Tab window that shows assignment prompt/details
+- Task pages - Single unified design and we'll programatically update minor elements of that design based on task-type - A tabbed interface [Dmitri]
+    - Protection Composition
+    - Composing with Resources
+    - [Stretch] Unrestricted Composition
+- Submission Page [Dmitri]
+- Report & Comment Page [JMP]
