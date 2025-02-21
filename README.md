@@ -59,6 +59,32 @@ To aid in this, we made regular use of GitHub projects to assign tasks, manage p
 - Primary Owner: J. M. Paiz
 - Contributor: D. Stanchevici
 
+## Rationale for Bootstrap Selection
+
+For the front-end framework of FOCUSWRITE, we chose Bootstrap over alternatives like Tailwind CSS based on several key factors related to usability, consistency, and ease of implementation.
+
+### Design Considerations & Implications
+
+- Ease of Learning and Implementation: Bootstrap provides a straightforward, well-documented framework with prebuilt components that significantly reduce development time. Unlike Tailwind CSS, which requires extensive customization and manual design decisions, Bootstrap allows us to implement features with minimal configuration, ensuring a shorter learning curve for our team (W3C, 2023).
+
+- Consistency in UI Design: Since our application relies on a structured tabbed navigation system, Bootstrap’s nav-tabs component ensures consistent visual design and interaction patterns across the interface (Nielsen, 1993). This guarantees a predictable and user-friendly experience, reducing cognitive load for users who need to navigate between different writing modes and assignment sections.
+
+- Built-in Accessibility & Responsiveness: Bootstrap adheres to accessibility standards (WCAG) and includes keyboard navigation, ARIA roles, and mobile-first responsiveness (Lidwell, Holden, & Butler, 2023). Given that our app will be used across different devices, Bootstrap’s responsive grid system ensures seamless adaptation to various screen sizes without additional configuration.
+
+- Prebuilt UI Components & Simplified Styling: Bootstrap offers a rich set of UI components, including buttons, modals, and form controls that align with our design needs. By leveraging these predefined styles, we ensure that our app maintains a professional and polished look without requiring extensive custom CSS (Sharp, Rogers, & Preece, 2019).
+
+- Tabbed Interface Implementation: One of the core features of our app is a tabbed workspace that allows users to toggle between different writing environments. Bootstrap’s nav-tabs component provides an out-of-the-box solution for managing tabbed content efficiently, reducing development complexity and ensuring a smooth user transition between writing modes (e.g., Undistracted Writing vs. Writing with Resources) (Bootstrap, n.d.).
+
+### Implications for User Experience
+
+- Improved Usability: Students can navigate tasks efficiently without excessive clicks or complex interactions.
+
+- Enhanced Learnability: Consistent UI patterns reduce the time needed to learn and adapt to the platform.
+
+- Visual Coherence: Predefined styles ensure a modern, professional look without requiring manual fine-tuning.
+
+- Reduced Development Overhead: Faster implementation allows the team to focus on core functionality rather than UI customization.
+
 ## Documentation Notes
 This section outlines early thoughts on what to include in final documentation to be submitted upon project submission.
 ### Documentation Reqs per Assignment Prompt
@@ -92,3 +118,7 @@ Note for each section be prepared to:
 - Copenhagen Business School (2022). Scholarly composition. *Library of the Copenhagen Business School*. https://inframethodology.cbs.dk/?p=5065
 - Gessell, B. (2021).  Deliberate practice for academic writers: A three-step process to improve academic writing. *Writing is Thinking* https://writingisthinking.com/wp-content/uploads/2021/05/Deliberate-Practice-Part-3-Bryce-Gessell.pdf
 - Sharp, H., Rogers, Y., & Preece, J. (2019). *Interaction design: Beyond human-computer interaction* (6th edition). Wiley
+- Bootstrap. (2024). Introduction to Bootstrap 5. Retrieved from https://getbootstrap.com/docs/5.3/getting-started/introduction/
+- Lidwell, W., Holden, K., & Butler, J. (2023). *Universal principles of design*. Rockport Publishers.
+- Nielsen, J. (1993). *Usability engineering*. Elsevier.
+- W3C. (2023). Web Content Accessibility Guidelines (WCAG) 2.2. Retrieved from https://www.w3.org/WAI/standards-guidelines/wcag/
