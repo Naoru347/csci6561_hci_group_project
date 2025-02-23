@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FocusWrite Protected Composition Environment</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <!-- Top Header (Jumbotron-style) -->
+    <header class="bg-primary text-white p-4">
+        <div class="container">
+          <div class="row align-items-center">
+            <!-- Column for heading -->
+            <div class="col-12 col-md-8 text-center text-md-start">
+              <h1 class="mb-0">FocusWrite: Submission/Grading Report</h1>
+            </div>
+            <!-- Column for actions, right-aligned on md+ screens -->
+            <div class="col-12 col-md-4 text-center text-md-end mt-3 mt-md-0">
+              <!-- Back to Assignments -->
+              <a
+                href="#"
+                class="btn btn-light btn-sm me-2"
+                role="button"
+                aria-label="Go back to Assignments"
+              >
+                &larr; Back to Assignments
+              </a>
+              
+              <!-- Logout -->
+              <a
+                href="#"
+                class="btn btn-danger btn-sm"
+                role="button"
+                aria-label="Logout"
+              >
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>      
+
+    <main class="container my-5">
+      <!-- Assignment & Grading Info Card -->
+      <article class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h2 class="mb-0">Assignment Report</h2>
+          <!-- Accessible, high-contrast status badge -->
+          <span class="badge text-bg-primary" aria-label="Current grading status">
+            In Review
+          </span>
+        </div>
+        <div class="card-body">
+          <h3 class="fs-5">
+            Assignment: Research Paper Draft
+          </h3>
+          <p>
+            <strong>Teacher Feedback (Overall):</strong>
+            <br />
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+          </p>
+
+          <!-- Nested card for current score -->
+          <div class="card mt-3">
+            <div class="card-header">
+              Current Score
+            </div>
+            <div class="card-body">
+              <p class="mb-0">
+                <strong>-- / 150</strong>  
+                <span class="text-muted d-block" style="font-size: 0.9rem;">
+                  Score not yet available – final grade will appear here
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Lockdown Violation Attempts Card -->
+      <article class="card">
+        <div class="card-header">
+          <h2 class="mb-0">Lockdown Violation Attempts</h2>
+        </div>
+        <div class="card-body">
+          <p class="text-muted">
+            Below are potential lockdown violations detected during your
+            writing session. Select each item to see details and provide
+            any comments or explanations for your instructor.
+          </p>
+
+          <!-- Accordion for violations -->
+          <div class="accordion" id="violationAccordion">
+
+            <!-- Example Violation #1 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="violationOneHeader">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#violationOneBody"
+                  aria-expanded="true"
+                  aria-controls="violationOneBody"
+                >
+                  Violation #1: Window focus lost 
+                  &mdash; <small class="text-muted">02/22/2025, 14:05:30</small>
+                </button>
+              </h3>
+              <div
+                id="violationOneBody"
+                class="accordion-collapse collapse show"
+                aria-labelledby="violationOneHeader"
+                data-bs-parent="#violationAccordion"
+              >
+                <div class="accordion-body">
+                  <!-- High-contrast badge for status -->
+                  <span class="badge text-bg-secondary mb-2" aria-label="Feedback status">
+                    Feedback Pending
+                  </span>
+                  <p>
+                    The system detected that you clicked outside of
+                    the locked browser window or switched to another
+                    application, which is considered out-of-focus for
+                    the exam environment.
+                  </p>
+                  <label for="violation1Comment" class="form-label">
+                    Your Comment (optional):
+                  </label>
+                  <textarea
+                    class="form-control mb-2"
+                    id="violation1Comment"
+                    rows="2"
+                    placeholder="Explain or clarify what happened..."
+                  ></textarea>
+                  <button class="btn btn-sm btn-primary">
+                    Submit Comment
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Example Violation #2 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="violationTwoHeader">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#violationTwoBody"
+                  aria-expanded="false"
+                  aria-controls="violationTwoBody"
+                >
+                  Violation #2: Attempted to open new tab 
+                  &mdash; <small class="text-muted">02/22/2025, 14:10:11</small>
+                </button>
+              </h3>
+              <div
+                id="violationTwoBody"
+                class="accordion-collapse collapse"
+                aria-labelledby="violationTwoHeader"
+                data-bs-parent="#violationAccordion"
+              >
+                <div class="accordion-body">
+                  <!-- Teacher commented -->
+                  <span class="badge text-bg-warning mb-2" aria-label="Teacher commented">
+                    Teacher Commented
+                  </span>
+                  <p>
+                    The system recorded an attempt to open a new browser
+                    tab during the locked session, which is prohibited
+                    to maintain exam security.
+                  </p>
+                  <!-- Specific teacher note for this violation -->
+                  <div class="alert alert-secondary p-2">
+                    <strong>Teacher’s note:</strong><br />
+                    Please remember that opening external tabs or windows is 
+                    not allowed during this exam. If you had a legitimate 
+                    reason, explain below.
+                  </div>
+
+                  <label for="violation2Comment" class="form-label">
+                    Your Comment (optional):
+                  </label>
+                  <textarea
+                    class="form-control mb-2"
+                    id="violation2Comment"
+                    rows="2"
+                    placeholder="Explain or clarify what happened..."
+                  ></textarea>
+                  <button class="btn btn-sm btn-primary">
+                    Submit Comment
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Bootstrap Bundle (includes Popper) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+  </body>
+</html>
