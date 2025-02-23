@@ -1,72 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>FocusWrite Protected Composition Environment</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    </head>
-    <body>
-        <div class="p-5 bg-primary text-white text-center">
-            <h1>FocusWrite</h1>
-            <p>A protected composition environment to help students master academic, professional, and technical writing</p> 
+  <head>
+    <title>FocusWrite Protected Composition Environment</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Top Header (Jumbotron-style) -->
+    <div class="p-5 bg-primary text-white text-center">
+      <h1>FocusWrite</h1>
+      <p>
+        A protected composition environment to help students master academic,
+        professional, and technical writing
+      </p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container my-5">
+
+      <!-- Card: General Instructions -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="card-title m-0">Instructions</h2>
+        </div>
+        <div class="card-body">
+          <!-- Box for instructions -->
+            <p class="mb-0">
+              Click on an assignment below to see a summary of the current 
+              assignment status. This status will open in a pop-up window.
+            </p>
+            <p class="mb-0">
+              From the assignment status pop-up window, you will be able to 
+              load an <u>in-progress attempt</u> or <u>start a new assignment</u>.
+            </p>
+        </div>
+      </div>
+
+      <!-- Card 1: Available Assignments -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="card-title m-0">Available Assignments</h2>
+        </div>
+        <div class="card-body">
+          <!-- Box for instructions -->
+          <div class="p-3 mb-3 border border-secondary rounded bg-light">
+            <p class="mb-0">
+              Below, you will find your <u>available assignments</u>. These 
+              tasks are currently open for you to complete. They <i>have not</i> 
+              been submitted for a grade and are either <u>unstarted</u> or 
+              <u>in-progress and incomplete</u>.
+            </p>
           </div>
-<!-- Main container -->
-<div class="container my-5">
-    <!-- Card 1: Available Assignments -->
-    <div class="card mb-4">
-      <div class="card-header">
-        <h2 class="card-title m-0">Available Assignments</h2>
-      </div>
-      <div class="card-body">
-        <p>
-          <!-- TEMPORARILY - OL - REPLACE WITH DYNAMIC CONTENT -->
-          <ol>
-            <li>Assignment 1: Affective Writing</li>
-            <li>In-class Writing 3: Weekly Reflection</li>
-            <li>Homework 7: APA Citation and Reference</li>
-          </ol>
-        </p>
-      </div>
-    </div>
 
-    <!-- Card 2: Submitted Assignments -->
-    <div class="card mb-4">
-      <div class="card-header">
-        <h2 class="card-title m-0">Submitted Assignments</h2>
+          <!-- Box for the list of assignments -->
+          <div class="p-3 border border-secondary rounded">
+            <!-- TEMPORARILY USING OL - TO POPULATE DYNAMICALLY LATER-->
+            <ol>
+              <li>Assignment 1: Affective Writing</li>
+              <li>In-class Writing 3: Weekly Reflection</li>
+              <li>Homework 7: APA Citation and Reference</li>
+            </ol>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <p>
-          <!-- TEMPORARILY - OL - REPLACE WITH DYNAMIC CONTENT -->
-          <ol>
-            <li>In-class Writing 2: Weekly Reflection</li>
-            <li>Homework 6: APA Citation Basics</li>
-          </ol>
-        </p>
-      </div>
-    </div>
 
-    <!-- Card 3: Graded Assignments -->
-    <div class="card mb-4">
-      <div class="card-header">
-        <h2 class="card-title m-0">Graded Assignments</h2>
+      <!-- Card 2: Submitted Assignments -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="card-title m-0">Submitted Assignments</h2>
+        </div>
+        <div class="card-body">
+          <!-- Box for instructions -->
+          <div class="p-3 mb-3 border border-secondary rounded bg-light">
+            <p class="mb-0">
+              Below, you will find your <u>submitted assignments</u>. These 
+              are assignments you have <u>completed</u> but that are 
+              <u>not yet graded</u>.
+            </p>
+          </div>
+
+          <!-- Box for the list of assignments -->
+          <div class="p-3 border border-secondary rounded">
+            <ol>
+              <li>In-class Writing 2: Weekly Reflection</li>
+              <li>Homework 6: APA Citation Basics</li>
+            </ol>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <p>
-          <!-- TEMPORARILY - OL - REPLACE WITH DYNAMIC CONTENT -->
-          <ol>
-            <li>Assignment 0: Welcome to EAP 0000</li>
-            <li>In-class Writing 1: Weekly Reflection</li>
-            <li>Homework 5: Sythesis Writing</li>
-            <li>Homework 4: Summary Writing</li>
-            <li>Homework 3: Paraphrase Writing</li>
-            <li>Homework 2: Analysis Paper Free Writing</li>
-            <li>Homework 1: Thesis Writing</li>
-          </ol>
-        </p>
+
+      <!-- Card 3: Graded Assignments -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="card-title m-0">Graded Assignments</h2>
+        </div>
+        <div class="card-body">
+          <!-- Box for instructions -->
+          <div class="p-3 mb-3 border border-secondary rounded bg-light">
+            <p class="mb-0">
+              Below, you will find your <u>graded assignments</u>. These 
+              have been <u>completed</u> and now have <u>grades available</u>.
+            </p>
+          </div>
+
+          <!-- Box for the list of assignments -->
+          <div class="p-3 border border-secondary rounded">
+            <ol>
+              <li>Assignment 0: Welcome to EAP 0000</li>
+              <li>In-class Writing 1: Weekly Reflection</li>
+              <li>Homework 5: Synthesis Writing</li>
+              <li>Homework 4: Summary Writing</li>
+              <li>Homework 3: Paraphrase Writing</li>
+              <li>Homework 2: Analysis Paper Free Writing</li>
+              <li>Homework 1: Thesis Writing</li>
+            </ol>
+          </div>
+        </div>
       </div>
+
     </div>
-  </div>
-    </body>
+    <!-- End Main Container -->
+
+    <!-- Bootstrap Bundle (includes Popper) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+  </body>
 </html>
