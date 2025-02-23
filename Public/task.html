@@ -16,7 +16,7 @@
       </div>
 
       <!-- Prompt to Confirm Beginning of Assignment -->
-      <div class="row">
+      <div id="divConfirmationBlock" class="row">
         <div class="col-12">
           <p>Are you ready to begin the assignment?</p>
         </div> 
@@ -24,19 +24,15 @@
           <button class="btn btn-secondary">Cancel</button>
         </div> 
         <div class="col-6">
-          <button class="btn btn-primary">Begin</button>
-        </div> 
-      </div>
-
-      <div class="row">
-        <div class="col">
-          <p>Compose your assignment below</p>
+          <button id="btnBegin" class="btn btn-primary">Begin</button>
         </div> 
       </div>
 
       <!-- Text area  and Links to Allowed Resources -->
-      <div class="row col-lg-8">
-        <div class="col">
+      <div id="divTextAndLinksBlock" class="row d-none">
+
+        <!-- Text area  col -->
+        <div class="col col-8">
 
           <div class="row">
             <div class="col">
@@ -45,7 +41,7 @@
           </div>
 
 
-          <div class="row row-cols-2 pt-2">
+          <div class="row pt-2">
             <div class="col text-start">
               <p>Word Count: </p>
             </div>
@@ -55,10 +51,43 @@
           </div>
 
         </div>
-      </div>
 
-      
+      <!-- Additional resources col -->
+      <div class="col col-4">
+        <h2>Prompt</h2>
+        <div class="list-group">
+          <button type="button" class="list-group-item list-group-item-action">Prompt</button>
+        </div>
+        <h2>Previous Assignments</h2>
+        <div class="list-group">
+          <button type="button" class="list-group-item list-group-item-action">Previous Assignment 1</button>
+          <button type="button" class="list-group-item list-group-item-action">Previous Assignment 2</button>
+          <button type="button" class="list-group-item list-group-item-action">Previous Assignment 3</button>
+          <button type="button" class="list-group-item list-group-item-action">Previous Assignment 4</button>
+          <button type="button" class="list-group-item list-group-item-action">Previous Assignment 5</button>
+        </div>
+        <h2>Allowed Files</h2>
+        <div class="list-group">
+          <button type="button" class="list-group-item list-group-item-action">File 1</button>
+          <button type="button" class="list-group-item list-group-item-action">File 2</button>
+          <button type="button" class="list-group-item list-group-item-action">File 3</button>
+          <button type="button" class="list-group-item list-group-item-action">File 4</button>
+          <button type="button" class="list-group-item list-group-item-action">File 5</button>
+        </div>
+        <h2>External Resources</h2>
+        <div class="list-group">
+          <button type="button" class="list-group-item list-group-item-action">External Resource 1</button>
+          <button type="button" class="list-group-item list-group-item-action">External Resource 2</button>
+          <button type="button" class="list-group-item list-group-item-action">External Resource 3</button>
+          <button type="button" class="list-group-item list-group-item-action">External Resource 4</button>
+          <button type="button" class="list-group-item list-group-item-action">External Resource 5</button>
+        </div>
+
+      </div>
+      </div>
+    
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../Scripts/task.js"></script>
   </body>
 </html>
