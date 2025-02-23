@@ -127,3 +127,4 @@ Note for each section be prepared to:
 - Lidwell, W., Holden, K., & Butler, J. (2023). *Universal principles of design*. Rockport Publishers.
 - Nielsen, J. (1993). *Usability engineering*. Elsevier.
 - W3C. (2023). Web Content Accessibility Guidelines (WCAG) 2.2. Retrieved from https://www.w3.org/WAI/standards-guidelines/wcag/
+- W3Schools. (n.d.). Bootstrap 5 Tutorial. Retrieved from https://www.w3schools.com/bootstrap5/index.php
