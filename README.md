@@ -128,3 +128,5 @@ Note for each section be prepared to:
 - Nielsen, J. (1993). *Usability engineering*. Elsevier.
 - W3C. (2023). Web Content Accessibility Guidelines (WCAG) 2.2. Retrieved from https://www.w3.org/WAI/standards-guidelines/wcag/
 - W3Schools. (n.d.). Bootstrap 5 Tutorial. Retrieved from https://www.w3schools.com/bootstrap5/index.php
+- GeeksforGeeks. (n.d.). Bootstrap. Retrieved from https://www.geeksforgeeks.org/bootstrap/
+- Bootstrap. (n.d.). Introduction. Retrieved from https://getbootstrap.com/docs/5.2/getting-started/introduction/   
