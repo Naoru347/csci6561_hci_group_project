@@ -17,6 +17,8 @@ document.getElementById("btnBegin").addEventListener("click", () => {
   } else if (elem.msRequestFullscreen) { // IE/Edge
       elem.msRequestFullscreen();
   }
+
+
 });
 
 // Listen for attempts to switch out of full screen.
@@ -34,16 +36,25 @@ function onFullscreenChange(event) {
     } else {
         console.log("Exited fullscreen mode");
     }
+
 }
 
+
+
 // Close fullscreen.
+// Note: Disable Submit if not in full screen. 
+// If not in full screen, offer to get back to full screen.
 document.getElementById("btnSubmit").addEventListener("click", () => {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) { /* Safari */
-    document.webkitExitFullscreen();
-  } else if (document.msExitFullscreen) { /* IE11 */
-    document.msExitFullscreen();
+  if (document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen) {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
+    }
+  } else {
+    console.log("Submit clicked outside fullscreen")
   }
 });
 
