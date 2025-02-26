@@ -74,10 +74,40 @@
               are assignments you have <b>completed</b> but that are 
               <b>not yet graded</b>.
             </p>
-            <ol>
-              <li>In-class Writing 2: Weekly Reflection</li>
-              <li>Homework 6: APA Citation Basics</li>
-            </ol>
+             <!-- List of assignments as radio inputs -->
+          <ol class="mb-3">
+            <li class="mb-2">
+              <input 
+                type="radio"
+                name="submittedAssignment"
+                id="submitted1"
+                value="In-class Writing 2: Weekly Reflection"
+              />
+              <label for="submitted1">In-class Writing 2: Weekly Reflection</label>
+            </li>
+            <li class="mb-2">
+              <input 
+                type="radio"
+                name="submittedAssignment"
+                id="submitted2"
+                value="Homework 6: APA Citation Basics"
+              />
+              <label for="submitted2">Homework 6: APA Citation Basics</label>
+            </li>
+          </ol>
+          <!-- Next button that triggers the modal, initially disabled -->
+          <div class="d-flex justify-content-center">
+            <button
+                id="viewSubmittedBtn"
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#submittedModal"
+                disabled
+            >
+                See Selected Submitted Assignment
+            </button>
+          </div>
         </div>
       </div>
 
@@ -106,9 +136,59 @@
     </div>
     <!-- End Main Container -->
 
+    <!-- Submitted Assignment Modal -->
+    <div
+    class="modal fade"
+    id="submittedModal"
+    tabindex="-1"
+    aria-labelledby="submittedModalLabel"
+    aria-hidden="true"
+    >
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h5 class="modal-title" id="submittedModalLabel">Submitted Assignment</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+        ></button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+        <p>
+            You selected: <strong><span id="modalAssignmentName"></span></strong>  
+        </p>
+        <p>
+            This assignment has been submitted but not yet graded. 
+            You can visit the reports page to see your submission details 
+            and any preliminary feedback from your instructor.
+        </p>
+        </div>
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+        <a href="submission_report.html" class="btn btn-primary">View Reports</a>
+        <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+        >
+            Close
+        </button>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
     <!-- Bootstrap Bundle (includes Popper) -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     ></script>
+    <!-- JS logic script for modals -->
+    <script src="../Scripts/modal_scipts.js"></script>
+
   </body>
 </html>
