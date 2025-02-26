@@ -112,27 +112,97 @@
       </div>
 
       <!-- Card 3: Graded Assignments -->
-      <div class="card mb-4">
-        <div class="card-header">
-          <h2 class="card-title m-0">Graded Assignments</h2>
-        </div>
-        <div class="card-body">
+        <div class="card mb-4">
+            <div class="card-header">
+            <h2 class="card-title m-0">Graded Assignments</h2>
+            </div>
+            <div class="card-body">
             <p class="mb-4">
-              Below, you will find your <b>graded assignments</b>. These 
-              have been <b>completed</b> and now have <b>grades available</b>.
+                Below, you will find your <b>graded assignments</b>. 
+                These have been <b>completed</b> and now have <b>grades available</b>.
             </p>
-            <ol>
-              <li>Assignment 0: Welcome to EAP 0000</li>
-              <li>In-class Writing 1: Weekly Reflection</li>
-              <li>Homework 5: Synthesis Writing</li>
-              <li>Homework 4: Summary Writing</li>
-              <li>Homework 3: Paraphrase Writing</li>
-              <li>Homework 2: Analysis Paper Free Writing</li>
-              <li>Homework 1: Thesis Writing</li>
+            <!-- Similar radio list -->
+            <ol class="mb-3">
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded1"
+                    value="Assignment 0: Welcome to EAP 0000"
+                />
+                <label for="graded1">Assignment 0: Welcome to EAP 0000</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded2"
+                    value="In-class Writing 1: Weekly Reflection"
+                />
+                <label for="graded2">In-class Writing 1: Weekly Reflection</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded3"
+                    value="Homework 5: Synthesis Writing"
+                />
+                <label for="graded3">Homework 5: Synthesis Writing</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded4"
+                    value="Homework 4: Summary Writing"
+                />
+                <label for="graded4">Homework 4: Summary Writing</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded5"
+                    value="Homework 3: Paraphrase Writing"
+                />
+                <label for="graded5">Homework 3: Paraphrase Writing</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded6"
+                    value="Homework 2: Analysis Paper Free Writing"
+                />
+                <label for="graded6">Homework 2: Analysis Paper Free Writing</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded7"
+                    value="Homework 1: Thesis Writing"
+                />
+                <label for="graded7">Homework 1: Thesis Writing</label>
+                </li>
             </ol>
+        
+            <!-- Button to trigger the Graded Assignment modal, disabled by default -->
+            <div class="d-flex justify-content-center">
+                <button
+                id="viewGradedBtn"
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#gradedModal"
+                disabled
+                >
+                See Selected Graded Assignment
+                </button>
+            </div>
+            </div>
         </div>
-      </div>
-
     </div>
     <!-- End Main Container -->
 
@@ -182,6 +252,53 @@
     </div>
     </div>
 
+    <!-- Graded Assignment Modal -->
+<div
+class="modal fade"
+id="gradedModal"
+tabindex="-1"
+aria-labelledby="gradedModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h5 class="modal-title" id="gradedModalLabel">Graded Assignment</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <!-- Modal Body -->
+    <div class="modal-body">
+      <p>
+        You selected: 
+        <strong><span id="modalGradedAssignmentName"></span></strong>
+      </p>
+      <p>
+        This assignment has been <b>graded</b>. You can view your final 
+        grade and any instructor feedback by visiting your detailed 
+        reports page.
+      </p>
+    </div>
+    <!-- Modal Footer -->
+    <div class="modal-footer">
+      <!-- Example link to a different page for "Graded" details -->
+      <a href="graded_report.html" class="btn btn-primary">View Reports</a>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-bs-dismiss="modal"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+</div>
 
     <!-- Bootstrap Bundle (includes Popper) -->
     <script
