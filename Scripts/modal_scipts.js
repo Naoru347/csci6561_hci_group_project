@@ -1,3 +1,43 @@
+// JS to handle available assignment button selection logic
+// and to handle data pass through
+document.addEventListener("DOMContentLoaded", () => {
+    const availableRadios = document.querySelectorAll('input[name="availableAssignment"]');
+    const viewAvailableBtn = document.getElementById("viewAvailableBtn");
+  
+    // Modal spans
+    const modalAvailableName = document.getElementById("modalAvailableName");
+    const modalAvailablePrompt = document.getElementById("modalAvailablePrompt");
+    const modalAvailablePoints = document.getElementById("modalAvailablePoints");
+    const modalAvailableMode = document.getElementById("modalAvailableMode");
+  
+    if (availableRadios && viewAvailableBtn && modalAvailableName) {
+      // 1) Enable button when a radio is checked
+      availableRadios.forEach((radio) => {
+        radio.addEventListener("change", () => {
+          viewAvailableBtn.disabled = false;
+        });
+      });
+  
+      // 2) On button click, find which radio is checked & set modal text
+      viewAvailableBtn.addEventListener("click", () => {
+        const selected = document.querySelector('input[name="availableAssignment"]:checked');
+        if (selected) {
+          // Grab assignment name from .value
+          modalAvailableName.textContent = selected.value;
+  
+          // Grab other data from data-* attributes
+          const prompt = selected.getAttribute("data-prompt");
+          const points = selected.getAttribute("data-points");
+          const mode = selected.getAttribute("data-mode");
+  
+          modalAvailablePrompt.textContent = prompt || "N/A";
+          modalAvailablePoints.textContent = points || "N/A";
+          modalAvailableMode.textContent = mode || "N/A";
+        }
+      });
+    }
+  });  
+
 // JS to handle graded assignment button selection logic
 // and to handle data pass through
 document.addEventListener("DOMContentLoaded", () => {

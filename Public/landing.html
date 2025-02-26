@@ -42,26 +42,75 @@
       </div>
 
       <!-- Card 1: Available Assignments -->
-      <div class="card mb-4">
-        <div class="card-header">
-          <h2 class="card-title m-0">Available Assignments</h2>
-        </div>
-        <div class="card-body">
+        <div class="card mb-4">
+            <div class="card-header">
+            <h2 class="card-title m-0">Available Assignments</h2>
+            </div>
+            <div class="card-body">
             <p class="mb-4">
-              Below, you will find your <b>available assignments</b>. These 
-              tasks are currently open for you to complete. They <i>have not</i> 
-              been submitted for a grade and are either <b>unstarted</b> or 
-              <b>in-progress and incomplete</b>.
+                Below, you will find your <b>available assignments</b>. These 
+                tasks are currently open for you to complete. They <i>have not</i> 
+                been submitted for a grade and are either <b>unstarted</b> or 
+                <b>in-progress and incomplete</b>.
             </p>
-
-            <!-- TEMPORARILY USING OL - TO POPULATE DYNAMICALLY LATER-->
-            <ol>
-              <li>Assignment 1: Affective Writing</li>
-              <li>In-class Writing 3: Weekly Reflection</li>
-              <li>Homework 7: APA Citation and Reference</li>
+        
+            <!-- Radio list for available assignments -->
+            <ol class="mb-3">
+                <li class="mb-2">
+                <!-- Temporarily uses data-* syntax. In production, this will work from a data source -->
+                <input 
+                    type="radio"
+                    name="availableAssignment"
+                    id="available1"
+                    value="Assignment 1: Affective Writing"
+                    data-prompt="Write a personal reflection on emotional experiences"
+                    data-points="25"
+                    data-mode="Protected Composition"
+                />
+                <label for="available1">Assignment 1: Affective Writing</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="availableAssignment"
+                    id="available2"
+                    value="In-class Writing 3: Weekly Reflection"
+                    data-prompt="Summarize your week's learning experiences"
+                    data-points="10"
+                    data-mode="Protected Composition"
+                />
+                <label for="available2">In-class Writing 3: Weekly Reflection</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="availableAssignment"
+                    id="available3"
+                    value="Homework 7: APA Citation and Reference"
+                    data-prompt="Demonstrate proper APA style references"
+                    data-points="15"
+                    data-mode="Unlocked Composition"
+                />
+                <label for="available3">Homework 7: APA Citation and Reference</label>
+                </li>
             </ol>
+        
+            <!-- Button to open the Available Assignment modal -->
+            <div class="d-flex justify-content-center">
+                <button
+                id="viewAvailableBtn"
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#availableModal"
+                disabled
+                >
+                See Selected Available Assignment
+                </button>
+            </div>
+            </div>
         </div>
-      </div>
+  
 
       <!-- Card 2: Submitted Assignments -->
       <div class="card mb-4">
@@ -206,6 +255,60 @@
     </div>
     <!-- End Main Container -->
 
+    <!-- Available Assignment Modal -->
+    <div
+    class="modal fade"
+    id="availableModal"
+    tabindex="-1"
+    aria-labelledby="availableModalLabel"
+    aria-hidden="true"
+    >
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h5 class="modal-title" id="availableModalLabel">Available Assignment</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+        ></button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+        <p>
+            <strong>Assignment Name:</strong> 
+            <span id="modalAvailableName"></span>
+        </p>
+        <p>
+            <strong>Prompt/Description:</strong>  
+            <span id="modalAvailablePrompt"></span>
+        </p>
+        <p>
+            <strong>Points Possible:</strong> 
+            <span id="modalAvailablePoints"></span>
+        </p>
+        <p>
+            <strong>Composition Mode:</strong> 
+            <span id="modalAvailableMode"></span>
+        </p>
+        </div>
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+        <a href="test.html" class="btn btn-primary">Continue</a>
+        <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+        >
+            Close
+        </button>
+        </div>
+    </div>
+    </div>
+    </div>
+
     <!-- Submitted Assignment Modal -->
     <div
     class="modal fade"
@@ -253,52 +356,52 @@
     </div>
 
     <!-- Graded Assignment Modal -->
-<div
-class="modal fade"
-id="gradedModal"
-tabindex="-1"
-aria-labelledby="gradedModalLabel"
-aria-hidden="true"
->
-<div class="modal-dialog">
-  <div class="modal-content">
-    <!-- Modal Header -->
-    <div class="modal-header">
-      <h5 class="modal-title" id="gradedModalLabel">Graded Assignment</h5>
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="modal"
-        aria-label="Close"
-      ></button>
+    <div
+    class="modal fade"
+    id="gradedModal"
+    tabindex="-1"
+    aria-labelledby="gradedModalLabel"
+    aria-hidden="true"
+    >
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h5 class="modal-title" id="gradedModalLabel">Graded Assignment</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+        ></button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+        <p>
+            You selected: 
+            <strong><span id="modalGradedAssignmentName"></span></strong>
+        </p>
+        <p>
+            This assignment has been <b>graded</b>. You can view your final 
+            grade and any instructor feedback by visiting your detailed 
+            reports page.
+        </p>
+        </div>
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+        <!-- Example link to a different page for "Graded" details -->
+        <a href="graded_report.html" class="btn btn-primary">View Reports</a>
+        <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+        >
+            Close
+        </button>
+        </div>
     </div>
-    <!-- Modal Body -->
-    <div class="modal-body">
-      <p>
-        You selected: 
-        <strong><span id="modalGradedAssignmentName"></span></strong>
-      </p>
-      <p>
-        This assignment has been <b>graded</b>. You can view your final 
-        grade and any instructor feedback by visiting your detailed 
-        reports page.
-      </p>
     </div>
-    <!-- Modal Footer -->
-    <div class="modal-footer">
-      <!-- Example link to a different page for "Graded" details -->
-      <a href="graded_report.html" class="btn btn-primary">View Reports</a>
-      <button
-        type="button"
-        class="btn btn-secondary"
-        data-bs-dismiss="modal"
-      >
-        Close
-      </button>
     </div>
-  </div>
-</div>
-</div>
 
     <!-- Bootstrap Bundle (includes Popper) -->
     <script
