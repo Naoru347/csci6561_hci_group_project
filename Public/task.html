@@ -29,7 +29,7 @@
         <div class="card-body">
           <!-- Box for instructions -->
             <p class="mb-0">
-              Once you click Begin, your window will go into a fullscreen mode, limiting your access to resources outside this window until you complete and submit the assignment.
+              Once you click Begin, your window will go into the fullscreen mode, limiting your access to resources outside this window until you complete and submit the assignment.
             </p>
             <div class="row pt-2">
               <div class="col text-start">
@@ -81,7 +81,7 @@
           <div class="card-body">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalPrompt">Modal</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
@@ -143,8 +143,31 @@
 
       </div>
       </div>
-    
     </div>
+
+    <!-- Modals -->
+    <div id="modalPrompt" class="modal fade">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+          </div>
+          <div class="modal-body">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis obcaecati deleniti dolores quo labore asperiores eos in magnam iusto totam officia, debitis exercitationem similique assumenda dolorum hic recusandae ut dicta voluptas omnis. Odio non amet reiciendis, corrupti ratione laborum voluptatibus voluptate, pariatur accusamus fugiat sed. Dolorem ab unde ad laboriosam, dignissimos distinctio vel, tempora commodi voluptates aut eum sint voluptatem fugiat voluptatum, inventore rem illum cum ut incidunt impedit itaque culpa reiciendis? Quo voluptas nesciunt et. Expedita, quis facilis delectus, necessitatibus eligendi eos tempora, magni similique fugit rerum inventore tempore at neque eum blanditiis vero veniam quae fuga modi dolor beatae nam. Aperiam ipsa ex nulla eaque, est voluptas ad tempora nobis culpa aut. Corrupti pariatur eos placeat inventore porro? Necessitatibus placeat error obcaecati dolore minima rerum soluta porro vero, hic impedit recusandae dignissimos veniam quibusdam voluptatum ratione, provident deleniti a quo nisi debitis. Ratione, dignissimos doloribus. Cupiditate deleniti nesciunt ratione sequi eos at delectus. Illum inventore unde nisi iusto quod eveniet et quisquam quos eius qui beatae eaque corrupti obcaecati magni dicta, praesentium magnam veniam nobis explicabo est dignissimos sed, suscipit incidunt. Asperiores, veritatis! Possimus odit voluptate animi deserunt assumenda! Iure aliquid vel qui amet culpa similique dignissimos nulla!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis obcaecati deleniti dolores quo labore asperiores eos in magnam iusto totam officia, debitis exercitationem similique assumenda dolorum hic recusandae ut dicta voluptas omnis. Odio non amet reiciendis, corrupti ratione laborum voluptatibus voluptate, pariatur accusamus fugiat sed. Dolorem ab unde ad laboriosam, dignissimos distinctio vel, tempora commodi voluptates aut eum sint voluptatem fugiat voluptatum, inventore rem illum cum ut incidunt impedit itaque culpa reiciendis? Quo voluptas nesciunt et. Expedita, quis facilis delectus, necessitatibus eligendi eos tempora, magni similique fugit rerum inventore tempore at neque eum blanditiis vero veniam quae fuga modi dolor beatae nam. Aperiam ipsa ex nulla eaque, est voluptas ad tempora nobis culpa aut. Corrupti pariatur eos placeat inventore porro? Necessitatibus placeat error obcaecati dolore minima rerum soluta porro vero, hic impedit recusandae dignissimos veniam quibusdam voluptatum ratione, provident deleniti a quo nisi debitis. Ratione, dignissimos doloribus. Cupiditate deleniti nesciunt ratione sequi eos at delectus. Illum inventore unde nisi iusto quod eveniet et quisquam quos eius qui beatae eaque corrupti obcaecati magni dicta, praesentium magnam veniam nobis explicabo est dignissimos sed, suscipit incidunt. Asperiores, veritatis! Possimus odit voluptate animi deserunt assumenda! Iure aliquid vel qui amet culpa similique dignissimos nulla!</p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="../Scripts/task.js"></script>
   </body>

@@ -53,9 +53,7 @@ document.getElementById("btnSubmit").addEventListener("click", () => {
     } else if (document.msExitFullscreen) { /* IE11 */
       document.msExitFullscreen();
     }
-  } else {
-    console.log("Submit clicked outside fullscreen")
-  }
+  } 
 });
 
 // List to whether the mouse is clicked inside or outside the window.
