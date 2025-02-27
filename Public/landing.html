@@ -36,38 +36,81 @@
             </p>
             <p class="mb-0">
               From the assignment status pop-up window, you will be able to 
-              load an <u>in-progress attempt</u> or <u>start a new assignment</u>.
+              load an <b>in-progress attempt</b> or <b>start a new assignment</b>.
             </p>
         </div>
       </div>
 
       <!-- Card 1: Available Assignments -->
-      <div class="card mb-4">
-        <div class="card-header">
-          <h2 class="card-title m-0">Available Assignments</h2>
-        </div>
-        <div class="card-body">
-          <!-- Box for instructions -->
-          <div class="p-3 mb-3 border border-secondary rounded bg-light">
-            <p class="mb-0">
-              Below, you will find your <u>available assignments</u>. These 
-              tasks are currently open for you to complete. They <i>have not</i> 
-              been submitted for a grade and are either <u>unstarted</u> or 
-              <u>in-progress and incomplete</u>.
+        <div class="card mb-4">
+            <div class="card-header">
+            <h2 class="card-title m-0">Available Assignments</h2>
+            </div>
+            <div class="card-body">
+            <p class="mb-4">
+                Below, you will find your <b>available assignments</b>. These 
+                tasks are currently open for you to complete. They <i>have not</i> 
+                been submitted for a grade and are either <b>unstarted</b> or 
+                <b>in-progress and incomplete</b>.
             </p>
-          </div>
-
-          <!-- Box for the list of assignments -->
-          <div class="p-3 border border-secondary rounded">
-            <!-- TEMPORARILY USING OL - TO POPULATE DYNAMICALLY LATER-->
-            <ol>
-              <li>Assignment 1: Affective Writing</li>
-              <li>In-class Writing 3: Weekly Reflection</li>
-              <li>Homework 7: APA Citation and Reference</li>
+        
+            <!-- Radio list for available assignments -->
+            <ol class="mb-3">
+                <li class="mb-2">
+                <!-- Temporarily uses data-* syntax. In production, this will work from a data source -->
+                <input 
+                    type="radio"
+                    name="availableAssignment"
+                    id="available1"
+                    value="Assignment 1: Affective Writing"
+                    data-prompt="Write a personal reflection on emotional experiences"
+                    data-points="25"
+                    data-mode="Protected Composition"
+                />
+                <label for="available1">Assignment 1: Affective Writing</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="availableAssignment"
+                    id="available2"
+                    value="In-class Writing 3: Weekly Reflection"
+                    data-prompt="Summarize your week's learning experiences"
+                    data-points="10"
+                    data-mode="Protected Composition"
+                />
+                <label for="available2">In-class Writing 3: Weekly Reflection</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="availableAssignment"
+                    id="available3"
+                    value="Homework 7: APA Citation and Reference"
+                    data-prompt="Demonstrate proper APA style references"
+                    data-points="15"
+                    data-mode="Unlocked Composition"
+                />
+                <label for="available3">Homework 7: APA Citation and Reference</label>
+                </li>
             </ol>
-          </div>
+        
+            <!-- Button to open the Available Assignment modal -->
+            <div class="d-flex justify-content-center">
+                <button
+                id="viewAvailableBtn"
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#availableModal"
+                disabled
+                >
+                See Selected Available Assignment
+                </button>
+            </div>
+            </div>
         </div>
-      </div>
+  
 
       <!-- Card 2: Submitted Assignments -->
       <div class="card mb-4">
@@ -75,60 +118,297 @@
           <h2 class="card-title m-0">Submitted Assignments</h2>
         </div>
         <div class="card-body">
-          <!-- Box for instructions -->
-          <div class="p-3 mb-3 border border-secondary rounded bg-light">
-            <p class="mb-0">
-              Below, you will find your <u>submitted assignments</u>. These 
-              are assignments you have <u>completed</u> but that are 
-              <u>not yet graded</u>.
+            <p class="mb-4">
+              Below, you will find your <b>submitted assignments</b>. These 
+              are assignments you have <b>completed</b> but that are 
+              <b>not yet graded</b>.
             </p>
-          </div>
-
-          <!-- Box for the list of assignments -->
-          <div class="p-3 border border-secondary rounded">
-            <ol>
-              <li>In-class Writing 2: Weekly Reflection</li>
-              <li>Homework 6: APA Citation Basics</li>
-            </ol>
+             <!-- List of assignments as radio inputs -->
+          <ol class="mb-3">
+            <li class="mb-2">
+              <input 
+                type="radio"
+                name="submittedAssignment"
+                id="submitted1"
+                value="In-class Writing 2: Weekly Reflection"
+              />
+              <label for="submitted1">In-class Writing 2: Weekly Reflection</label>
+            </li>
+            <li class="mb-2">
+              <input 
+                type="radio"
+                name="submittedAssignment"
+                id="submitted2"
+                value="Homework 6: APA Citation Basics"
+              />
+              <label for="submitted2">Homework 6: APA Citation Basics</label>
+            </li>
+          </ol>
+          <!-- Next button that triggers the modal, initially disabled -->
+          <div class="d-flex justify-content-center">
+            <button
+                id="viewSubmittedBtn"
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#submittedModal"
+                disabled
+            >
+                See Selected Submitted Assignment
+            </button>
           </div>
         </div>
       </div>
 
       <!-- Card 3: Graded Assignments -->
-      <div class="card mb-4">
-        <div class="card-header">
-          <h2 class="card-title m-0">Graded Assignments</h2>
-        </div>
-        <div class="card-body">
-          <!-- Box for instructions -->
-          <div class="p-3 mb-3 border border-secondary rounded bg-light">
-            <p class="mb-0">
-              Below, you will find your <u>graded assignments</u>. These 
-              have been <u>completed</u> and now have <u>grades available</u>.
+        <div class="card mb-4">
+            <div class="card-header">
+            <h2 class="card-title m-0">Graded Assignments</h2>
+            </div>
+            <div class="card-body">
+            <p class="mb-4">
+                Below, you will find your <b>graded assignments</b>. 
+                These have been <b>completed</b> and now have <b>grades available</b>.
             </p>
-          </div>
-
-          <!-- Box for the list of assignments -->
-          <div class="p-3 border border-secondary rounded">
-            <ol>
-              <li>Assignment 0: Welcome to EAP 0000</li>
-              <li>In-class Writing 1: Weekly Reflection</li>
-              <li>Homework 5: Synthesis Writing</li>
-              <li>Homework 4: Summary Writing</li>
-              <li>Homework 3: Paraphrase Writing</li>
-              <li>Homework 2: Analysis Paper Free Writing</li>
-              <li>Homework 1: Thesis Writing</li>
+            <!-- Similar radio list -->
+            <ol class="mb-3">
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded1"
+                    value="Assignment 0: Welcome to EAP 0000"
+                />
+                <label for="graded1">Assignment 0: Welcome to EAP 0000</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded2"
+                    value="In-class Writing 1: Weekly Reflection"
+                />
+                <label for="graded2">In-class Writing 1: Weekly Reflection</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded3"
+                    value="Homework 5: Synthesis Writing"
+                />
+                <label for="graded3">Homework 5: Synthesis Writing</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded4"
+                    value="Homework 4: Summary Writing"
+                />
+                <label for="graded4">Homework 4: Summary Writing</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded5"
+                    value="Homework 3: Paraphrase Writing"
+                />
+                <label for="graded5">Homework 3: Paraphrase Writing</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded6"
+                    value="Homework 2: Analysis Paper Free Writing"
+                />
+                <label for="graded6">Homework 2: Analysis Paper Free Writing</label>
+                </li>
+                <li class="mb-2">
+                <input 
+                    type="radio"
+                    name="gradedAssignment"
+                    id="graded7"
+                    value="Homework 1: Thesis Writing"
+                />
+                <label for="graded7">Homework 1: Thesis Writing</label>
+                </li>
             </ol>
-          </div>
+        
+            <!-- Button to trigger the Graded Assignment modal, disabled by default -->
+            <div class="d-flex justify-content-center">
+                <button
+                id="viewGradedBtn"
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#gradedModal"
+                disabled
+                >
+                See Selected Graded Assignment
+                </button>
+            </div>
+            </div>
         </div>
-      </div>
-
     </div>
     <!-- End Main Container -->
+
+    <!-- Available Assignment Modal -->
+    <div
+    class="modal fade"
+    id="availableModal"
+    tabindex="-1"
+    aria-labelledby="availableModalLabel"
+    aria-hidden="true"
+    >
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h5 class="modal-title" id="availableModalLabel">Available Assignment</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+        ></button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+        <p>
+            <strong>Assignment Name:</strong> 
+            <span id="modalAvailableName"></span>
+        </p>
+        <p>
+            <strong>Prompt/Description:</strong>  
+            <span id="modalAvailablePrompt"></span>
+        </p>
+        <p>
+            <strong>Points Possible:</strong> 
+            <span id="modalAvailablePoints"></span>
+        </p>
+        <p>
+            <strong>Composition Mode:</strong> 
+            <span id="modalAvailableMode"></span>
+        </p>
+        </div>
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+        <a href="test.html" class="btn btn-primary">Continue</a>
+        <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+        >
+            Close
+        </button>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Submitted Assignment Modal -->
+    <div
+    class="modal fade"
+    id="submittedModal"
+    tabindex="-1"
+    aria-labelledby="submittedModalLabel"
+    aria-hidden="true"
+    >
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h5 class="modal-title" id="submittedModalLabel">Submitted Assignment</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+        ></button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+        <p>
+            You selected: <strong><span id="modalAssignmentName"></span></strong>  
+        </p>
+        <p>
+            This assignment has been submitted but not yet graded. 
+            You can visit the reports page to see your submission details 
+            and any preliminary feedback from your instructor.
+        </p>
+        </div>
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+        <a href="submission_report.html" class="btn btn-primary">View Reports</a>
+        <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+        >
+            Close
+        </button>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Graded Assignment Modal -->
+    <div
+    class="modal fade"
+    id="gradedModal"
+    tabindex="-1"
+    aria-labelledby="gradedModalLabel"
+    aria-hidden="true"
+    >
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h5 class="modal-title" id="gradedModalLabel">Graded Assignment</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+        ></button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+        <p>
+            You selected: 
+            <strong><span id="modalGradedAssignmentName"></span></strong>
+        </p>
+        <p>
+            This assignment has been <b>graded</b>. You can view your final 
+            grade and any instructor feedback by visiting your detailed 
+            reports page.
+        </p>
+        </div>
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+        <!-- Example link to a different page for "Graded" details -->
+        <a href="graded_report.html" class="btn btn-primary">View Reports</a>
+        <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+        >
+            Close
+        </button>
+        </div>
+    </div>
+    </div>
+    </div>
 
     <!-- Bootstrap Bundle (includes Popper) -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     ></script>
+    <!-- JS logic script for modals -->
+    <script src="../Scripts/modal_scipts.js"></script>
+
   </body>
 </html>
