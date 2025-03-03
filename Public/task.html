@@ -19,6 +19,26 @@
         </p>
       </div>
     </header>
+
+    <!-- Slider for font size adjustment -->
+    <div class="row justify-content-center align-items-center">
+      <div class="col-auto w-25 text-end">
+          <label for="fontSizeSlider" class="form-label">Font Size:</label>
+      </div>
+      <div class="col-auto w-25">
+          <input 
+              type="range" 
+              id="fontSizeSlider" 
+              min="12" 
+              max="24" 
+              value="16" 
+              class="form-range"
+          />
+      </div>
+      <div class="col-auto w-25">
+          <span id="fontSizeValue" class="ms-2">16px</span>
+      </div>
+  </div>
     
     <!-- Prompt to Confirm Beginning of Assignment -->
      <div id="divConfirmationBlock" class="container mt-3" style="width: 50%;">
@@ -168,7 +188,41 @@
         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
       });
     </script>
-    <!-- My Script -->
+
+    <!-- Slider Script: Later Link to J's file font-slider.js -->
+     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          const fontSizeSlider = document.getElementById("fontSizeSlider");
+          const fontSizeValue = document.getElementById("fontSizeValue");
+          const body = document.body;
+
+          // Function to update font size
+          function updateFontSize(size) {
+              body.style.fontSize = size + "px";
+              fontSizeValue.textContent = size;
+              
+              // Save preference in localStorage
+              localStorage.setItem("preferredFontSize", size);
+          }
+
+          // Event listener for slider changes
+          fontSizeSlider.addEventListener("input", function () {
+              updateFontSize(this.value);
+          });
+
+          // Load saved font size from localStorage (if available)
+          const savedFontSize = localStorage.getItem("preferredFontSize");
+          if (savedFontSize) {
+              fontSizeSlider.value = savedFontSize;
+              updateFontSize(savedFontSize);
+          } else {
+              // Initialize with default value
+              updateFontSize(fontSizeSlider.value);
+          }
+      });
+     </script>
+
+    <!-- Task Script -->
     <script src="../Scripts/task.js"></script>
   </body>
 </html>
