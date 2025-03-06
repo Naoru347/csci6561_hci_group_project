@@ -19,28 +19,49 @@
         </p>
       </div>
     </header>
+
+    <!-- Slider for font size adjustment -->
+    <div class="row justify-content-center align-items-center mt-3">
+      <div class="col-auto w-25 text-end">
+          <label for="fontSizeSlider" class="form-label">Font Size:</label>
+      </div>
+      <div class="col-auto w-25">
+          <input 
+              type="range" 
+              id="fontSizeSlider" 
+              min="12" 
+              max="24" 
+              value="16" 
+              class="form-range"
+          />
+      </div>
+      <div class="col-auto w-25">
+          <span id="fontSizeValue" class="ms-2">16px</span>
+      </div>
+  </div>
     
     <!-- Prompt to Confirm Beginning of Assignment -->
-     <div id="divConfirmationBlock" class="container mt-3" style="width: 50%;">
-      <div class="card mb-4">
-        <div class="card-header">
-          <h2 class="card-title m-0">Ready to Begin the Assignment?</h2>
-        </div>
-        <div class="card-body">
-          <!-- Box for instructions -->
-            <p class="mb-0">
-              Once you click Begin, your window will go into the fullscreen mode, limiting your access to resources outside this window until you complete and submit the assignment.
-            </p>
-            <div class="row pt-2">
-              <div class="col text-start">
-                <button class="btn btn-secondary">Cancel</button>
-              </div>
-              <div class="col text-end">
-                <button id="btnBegin" class="btn btn-primary">Begin</button>
-              </div>
-            </div> 
+     <div id="divConfirmationBlock" class="container mt-3">
+      <div class="row">
+        <div class="col col-6 offset-3">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h2 class="card-title m-0">Ready to Begin the Assignment?</h2>
+            </div>
+            <div class="card-body">
+              <!-- Box for instructions -->
+                <p class="mb-0">
+                  Once you click Begin, your window will go into fullscreen mode, limiting your access to resources outside this window until you complete and submit the assignment.
+                </p>
+                <div class="container text-end mt-5">
+                  <button id="btnBackHome" class="btn btn-outline-primary">Back to Home Page</button>
+                  <button id="btnBegin" class="btn btn-primary">Begin</button>
+                </div> 
+            </div>
+          </div>
         </div>
       </div>
+
      </div>
     
      <!-- Text area  and Links to Allowed Resources -->
@@ -55,13 +76,18 @@
                   <h2 class="card-title m-0">Composition Area</h2>
                 </div>
                 <div class="card-body bg-light">
-                  <p>NOTE: Your text is saved as you type. Click Submit only when you are ready to finish the assignment and submit.</p>
                   <textarea>
                     Type and edit your text here.
                   </textarea>
-                  <div class="col text-end mt-3">
-                    <button id="btnSubmit" class="btn btn-primary">Submit</button>
+                  <div class="container mt-3">
+                    <p>NOTE: Your text is saved as you type.</p>
+                    <p>Click <strong>Submit</strong> only when you are ready to finish the assignment and submit.</p>
+                    <p>Click <strong>Leave Fullscreen</strong> if you'd like to leave the assignment without submitting it.</p>
                   </div>
+                  <div class="container text-end mt-5">
+                    <button id="btnLeaveFullscreen" class="btn btn-outline-primary">Leave Fullscreen</button>
+                    <button id="btnSubmit" class="btn btn-primary">Submit</button>
+                  </div> 
                 </div>
               </div>
             </div>
@@ -81,7 +107,7 @@
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#modalPrompt">Modal</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalPrompt">Prompt</a>
               </div>
             </div>
           </div>
@@ -89,12 +115,12 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Accordion Item #2
+                Uploaded Resources
               </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <p></p><a href="#" data-bs-toggle="modal">Link</a></p>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalUploadedResource1">Article by authors</a>
                 <p></p><a href="#" data-bs-toggle="modal">Link</a></p>
                 <p></p><a href="#" data-bs-toggle="modal">Link</a></p>
               </div>
@@ -104,12 +130,12 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Accordion Item #3
+                External Links
               </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <p></p><a href="#" data-bs-toggle="modal">Link</a></p>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalExternalLink1">Editorial</a>
                 <p></p><a href="#" data-bs-toggle="modal">Link</a></p>
                 <p></p><a href="#" data-bs-toggle="modal">Link</a></p>
               </div>
@@ -129,19 +155,59 @@
     </div>
 
     <!-- Modals -->
+
+    <!-- Modal: Prompt -->
     <div id="modalPrompt" class="modal fade">
       <div class="modal-dialog modal-lg modal-dialog-scrollable">
-
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Modal Header</h4>
+            <h5 class="modal-title" id="gradedModalLabel">Assignment Prompt</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis obcaecati deleniti dolores quo labore asperiores eos in magnam iusto totam officia, debitis exercitationem similique assumenda dolorum hic recusandae ut dicta voluptas omnis. Odio non amet reiciendis, corrupti ratione laborum voluptatibus voluptate, pariatur accusamus fugiat sed. Dolorem ab unde ad laboriosam, dignissimos distinctio vel, tempora commodi voluptates aut eum sint voluptatem fugiat voluptatum, inventore rem illum cum ut incidunt impedit itaque culpa reiciendis? Quo voluptas nesciunt et. Expedita, quis facilis delectus, necessitatibus eligendi eos tempora, magni similique fugit rerum inventore tempore at neque eum blanditiis vero veniam quae fuga modi dolor beatae nam. Aperiam ipsa ex nulla eaque, est voluptas ad tempora nobis culpa aut. Corrupti pariatur eos placeat inventore porro? Necessitatibus placeat error obcaecati dolore minima rerum soluta porro vero, hic impedit recusandae dignissimos veniam quibusdam voluptatum ratione, provident deleniti a quo nisi debitis. Ratione, dignissimos doloribus. Cupiditate deleniti nesciunt ratione sequi eos at delectus. Illum inventore unde nisi iusto quod eveniet et quisquam quos eius qui beatae eaque corrupti obcaecati magni dicta, praesentium magnam veniam nobis explicabo est dignissimos sed, suscipit incidunt. Asperiores, veritatis! Possimus odit voluptate animi deserunt assumenda! Iure aliquid vel qui amet culpa similique dignissimos nulla!</p>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis obcaecati deleniti dolores quo labore asperiores eos in magnam iusto totam officia, debitis exercitationem similique assumenda dolorum hic recusandae ut dicta voluptas omnis. Odio non amet reiciendis, corrupti ratione laborum voluptatibus voluptate, pariatur accusamus fugiat sed. Dolorem ab unde ad laboriosam, dignissimos distinctio vel, tempora commodi voluptates aut eum sint voluptatem fugiat voluptatum, inventore rem illum cum ut incidunt impedit itaque culpa reiciendis? Quo voluptas nesciunt et. Expedita, quis facilis delectus, necessitatibus eligendi eos tempora, magni similique fugit rerum inventore tempore at neque eum blanditiis vero veniam quae fuga modi dolor beatae nam. Aperiam ipsa ex nulla eaque, est voluptas ad tempora nobis culpa aut. Corrupti pariatur eos placeat inventore porro? Necessitatibus placeat error obcaecati dolore minima rerum soluta porro vero, hic impedit recusandae dignissimos veniam quibusdam voluptatum ratione, provident deleniti a quo nisi debitis. Ratione, dignissimos doloribus. Cupiditate deleniti nesciunt ratione sequi eos at delectus. Illum inventore unde nisi iusto quod eveniet et quisquam quos eius qui beatae eaque corrupti obcaecati magni dicta, praesentium magnam veniam nobis explicabo est dignissimos sed, suscipit incidunt. Asperiores, veritatis! Possimus odit voluptate animi deserunt assumenda! Iure aliquid vel qui amet culpa similique dignissimos nulla!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
 
+      </div>
+    </div>
+
+    <!-- Modal: Uploaded Files -->
+    <div id="modalUploadedResource1" class="modal fade">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="gradedModalLabel">Article by authors</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <iframe src="../SampleFiles/Gilson et_al_GAI_and_Medical_Exams.pdf" width="100%" height="800"></iframe>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Modal: External Links -->
+    <div id="modalExternalLink1" class="modal fade">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="gradedModalLabel">Editorial</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <iframe src="https://www.bbc.com/news/technology-65855333" width="100%" height="800"></iframe>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
@@ -168,7 +234,41 @@
         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
       });
     </script>
-    <!-- My Script -->
+
+    <!-- Slider Script: Later Link to J's file font_slider.js: <script src="../Scripts/font_slider.js"></script> -->
+     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          const fontSizeSlider = document.getElementById("fontSizeSlider");
+          const fontSizeValue = document.getElementById("fontSizeValue");
+          const body = document.body;
+
+          // Function to update font size
+          function updateFontSize(size) {
+              body.style.fontSize = size + "px";
+              fontSizeValue.textContent = size;
+              
+              // Save preference in localStorage
+              localStorage.setItem("preferredFontSize", size);
+          }
+
+          // Event listener for slider changes
+          fontSizeSlider.addEventListener("input", function () {
+              updateFontSize(this.value);
+          });
+
+          // Load saved font size from localStorage (if available)
+          const savedFontSize = localStorage.getItem("preferredFontSize");
+          if (savedFontSize) {
+              fontSizeSlider.value = savedFontSize;
+              updateFontSize(savedFontSize);
+          } else {
+              // Initialize with default value
+              updateFontSize(fontSizeSlider.value);
+          }
+      });
+     </script>
+
+    <!-- Task Script -->
     <script src="../Scripts/task.js"></script>
   </body>
 </html>
