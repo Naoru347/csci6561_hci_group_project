@@ -15,8 +15,8 @@
     <link href="../Styles/landing.css" rel="stylesheet" />
   </head>
   <body>
-    <!-- Top Header (Jumbotron-style) -->
-    <div class="p-5 bg-primary text-white text-center">
+     <!-- Top Header (Jumbotron-style) -->
+     <div class="p-5 bg-primary text-white text-center">
       <h1>FocusWrite</h1>
       <p>
         A protected composition environment to help students master academic,
@@ -26,433 +26,142 @@
 
     <!-- Main Container -->
     <div class="container my-5">
-      <!-- Font Size Controller Accordion -->
-      <div class="accordion mb-4" id="fontSizeAccordion">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFontSize">
-                <button 
-                    class="accordion-button collapsed" 
-                    type="button" 
-                    data-bs-toggle="collapse" 
-                    data-bs-target="#collapseFontSize" 
-                    aria-expanded="false" 
-                    aria-controls="collapseFontSize">
-                    <h4>Adjust Body Font Size</h4>
-                </button>
-            </h2>
-            <div 
-                id="collapseFontSize" 
-                class="accordion-collapse collapse" 
-                aria-labelledby="headingFontSize" 
-                data-bs-parent="#fontSizeAccordion">
-                <div class="accordion-body text-center">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-auto w-25 text-end">
-                            <label for="fontSizeSlider" class="form-label">Font Size:</label>
-                        </div>
-                        <div class="col-auto w-25">
-                            <input 
-                                type="range" 
-                                id="fontSizeSlider" 
-                                min="12" 
-                                max="24" 
-                                value="16" 
-                                class="form-range"
-                            />
-                        </div>
-                        <div class="col-auto w-25">
-                            <span id="fontSizeValue" class="ms-2">16px</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-
-
-      <!-- Card: General Instructions -->
+      <!-- Single Card for All Assignments -->
       <div class="card mb-4">
         <div class="card-header">
-          <h2 class="card-title m-0">Instructions</h2>
+          <h2 class="card-title m-0">Assignments</h2>
         </div>
         <div class="card-body">
-          <!-- Box for instructions -->
-            <p class="mb-0">
-              Click on an assignment below to see a summary of the current 
-              assignment status. This status will open in a pop-up window.
-            </p>
-            <p class="mb-0">
-              From the assignment status pop-up window, you will be able to 
-              load an <b>in-progress attempt</b> or <b>start a new assignment</b>.
-            </p>
-            <p class="mb-2">
-              If you would like to resize the fonts to be larger or smaller, you can use the font slider element at the top of the page. Note that this slider will appear on other pages of the as well for your convenience.
-            </p>
-        </div>
-      </div>
+          <p class="mb-4">
+            Select an assignment from the lists below and click <b>Next</b> to proceed.
+          </p>
 
-      <!-- Card 1: Available Assignments -->
-        <div class="card mb-4">
-            <div class="card-header">
-            <h2 class="card-title m-0">Available Assignments</h2>
-            </div>
-            <div class="card-body">
-            <p class="mb-4">
-                Below, you will find your <b>available assignments</b>. These 
-                tasks are currently open for you to complete. They <i>have not</i> 
-                been submitted for a grade and are either <b>unstarted</b> or 
-                <b>in-progress and incomplete</b>.
-            </p>
-        
-            <!-- Radio list for available assignments -->
-            <ol class="mb-3">
-                <li class="mb-2">
-                <!-- Temporarily uses data-* syntax. In production, this will work from a data source -->
-                <input 
-                    type="radio"
-                    name="availableAssignment"
-                    id="available1"
-                    value="Assignment 1: Affective Writing"
-                    data-prompt="Write a personal reflection on emotional experiences"
-                    data-points="25"
-                    data-mode="Protected Composition"
-                />
-                <label for="available1">Assignment 1: Affective Writing</label>
-                </li>
-                <li class="mb-2">
-                <input 
-                    type="radio"
-                    name="availableAssignment"
-                    id="available2"
-                    value="In-class Writing 3: Weekly Reflection"
-                    data-prompt="Summarize your week's learning experiences"
-                    data-points="10"
-                    data-mode="Protected Composition"
-                />
-                <label for="available2">In-class Writing 3: Weekly Reflection</label>
-                </li>
-                <li class="mb-2">
-                <input 
-                    type="radio"
-                    name="availableAssignment"
-                    id="available3"
-                    value="Homework 7: APA Citation and Reference"
-                    data-prompt="Demonstrate proper APA style references"
-                    data-points="15"
-                    data-mode="Unlocked Composition"
-                />
-                <label for="available3">Homework 7: APA Citation and Reference</label>
-                </li>
-            </ol>
-        
-            <!-- Button to open the Available Assignment modal -->
-            <div class="d-flex justify-content-center">
-                <button
-                id="viewAvailableBtn"
-                type="button"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#availableModal"
-                disabled
-                >
-                See Selected Available Assignment
-                </button>
-            </div>
-            </div>
-        </div>
-  
-
-      <!-- Card 2: Submitted Assignments -->
-      <div class="card mb-4">
-        <div class="card-header">
-          <h2 class="card-title m-0">Submitted Assignments</h2>
-        </div>
-        <div class="card-body">
-            <p class="mb-4">
-              Below, you will find your <b>submitted assignments</b>. These 
-              are assignments you have <b>completed</b> but that are 
-              <b>not yet graded</b>.
-            </p>
-             <!-- List of assignments as radio inputs -->
+          <!-- Available Assignments -->
+          <h4>Available Assignments</h4>
           <ol class="mb-3">
             <li class="mb-2">
               <input 
                 type="radio"
-                name="submittedAssignment"
+                name="assignment"
+                id="available1"
+                value="available"
+                data-name="Assignment 1: Affective Writing"
+                data-prompt="Write a personal reflection on emotional experiences"
+                data-points="25"
+                data-mode="Protected Composition"
+              />
+              <label for="available1">Assignment 1: Affective Writing</label>
+            </li>
+            <li class="mb-2">
+              <input 
+                type="radio"
+                name="assignment"
+                id="available2"
+                value="available"
+                data-name="In-class Writing 3: Weekly Reflection"
+                data-prompt="Summarize your week's learning experiences"
+                data-points="10"
+                data-mode="Protected Composition"
+              />
+              <label for="available2">In-class Writing 3: Weekly Reflection</label>
+            </li>
+            <li class="mb-2">
+              <input 
+                type="radio"
+                name="assignment"
+                id="available3"
+                value="available"
+                data-name="Homework 7: APA Citation and Reference"
+                data-prompt="Demonstrate proper APA style references"
+                data-points="15"
+                data-mode="Unlocked Composition"
+              />
+              <label for="available3">Homework 7: APA Citation and Reference</label>
+            </li>
+          </ol>
+
+          <!-- Submitted Assignments -->
+          <h4>Submitted Assignments</h4>
+          <ol class="mb-3">
+            <li class="mb-2">
+              <input 
+                type="radio"
+                name="assignment"
                 id="submitted1"
-                value="In-class Writing 2: Weekly Reflection"
+                value="submitted"
+                data-name="In-class Writing 2: Weekly Reflection"
               />
               <label for="submitted1">In-class Writing 2: Weekly Reflection</label>
             </li>
             <li class="mb-2">
               <input 
                 type="radio"
-                name="submittedAssignment"
+                name="assignment"
                 id="submitted2"
-                value="Homework 6: APA Citation Basics"
+                value="submitted"
+                data-name="Homework 6: APA Citation Basics"
               />
               <label for="submitted2">Homework 6: APA Citation Basics</label>
             </li>
           </ol>
-          <!-- Next button that triggers the modal, initially disabled -->
-          <div class="d-flex justify-content-center">
-            <button
-                id="viewSubmittedBtn"
-                type="button"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#submittedModal"
-                disabled
-            >
-                See Selected Submitted Assignment
-            </button>
-          </div>
+
+          <!-- Graded Assignments -->
+          <h4>Graded Assignments</h4>
+          <ol class="mb-3">
+            <li class="mb-2">
+              <input 
+                type="radio"
+                name="assignment"
+                id="graded1"
+                value="graded"
+                data-name="Assignment 0: Welcome to EAP 0000"
+              />
+              <label for="graded1">Assignment 0: Welcome to EAP 0000</label>
+            </li>
+            <li class="mb-2">
+              <input 
+                type="radio"
+                name="assignment"
+                id="graded2"
+                value="graded"
+                data-name="In-class Writing 1: Weekly Reflection"
+              />
+              <label for="graded2">In-class Writing 1: Weekly Reflection</label>
+            </li>
+          </ol>
         </div>
       </div>
 
-      <!-- Card 3: Graded Assignments -->
-        <div class="card mb-4">
-            <div class="card-header">
-            <h2 class="card-title m-0">Graded Assignments</h2>
-            </div>
-            <div class="card-body">
-            <p class="mb-4">
-                Below, you will find your <b>graded assignments</b>. 
-                These have been <b>completed</b> and now have <b>grades available</b>.
-            </p>
-            <!-- Similar radio list -->
-            <ol class="mb-3">
-                <li class="mb-2">
-                <input 
-                    type="radio"
-                    name="gradedAssignment"
-                    id="graded1"
-                    value="Assignment 0: Welcome to EAP 0000"
-                />
-                <label for="graded1">Assignment 0: Welcome to EAP 0000</label>
-                </li>
-                <li class="mb-2">
-                <input 
-                    type="radio"
-                    name="gradedAssignment"
-                    id="graded2"
-                    value="In-class Writing 1: Weekly Reflection"
-                />
-                <label for="graded2">In-class Writing 1: Weekly Reflection</label>
-                </li>
-                <li class="mb-2">
-                <input 
-                    type="radio"
-                    name="gradedAssignment"
-                    id="graded3"
-                    value="Homework 5: Synthesis Writing"
-                />
-                <label for="graded3">Homework 5: Synthesis Writing</label>
-                </li>
-                <li class="mb-2">
-                <input 
-                    type="radio"
-                    name="gradedAssignment"
-                    id="graded4"
-                    value="Homework 4: Summary Writing"
-                />
-                <label for="graded4">Homework 4: Summary Writing</label>
-                </li>
-                <li class="mb-2">
-                <input 
-                    type="radio"
-                    name="gradedAssignment"
-                    id="graded5"
-                    value="Homework 3: Paraphrase Writing"
-                />
-                <label for="graded5">Homework 3: Paraphrase Writing</label>
-                </li>
-                <li class="mb-2">
-                <input 
-                    type="radio"
-                    name="gradedAssignment"
-                    id="graded6"
-                    value="Homework 2: Analysis Paper Free Writing"
-                />
-                <label for="graded6">Homework 2: Analysis Paper Free Writing</label>
-                </li>
-                <li class="mb-2">
-                <input 
-                    type="radio"
-                    name="gradedAssignment"
-                    id="graded7"
-                    value="Homework 1: Thesis Writing"
-                />
-                <label for="graded7">Homework 1: Thesis Writing</label>
-                </li>
-            </ol>
-        
-            <!-- Button to trigger the Graded Assignment modal, disabled by default -->
-            <div class="d-flex justify-content-center">
-                <button
-                id="viewGradedBtn"
-                type="button"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#gradedModal"
-                disabled
-                >
-                See Selected Graded Assignment
-                </button>
-            </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Main Container -->
-
-    <!-- Available Assignment Modal -->
-    <div
-    class="modal fade"
-    id="availableModal"
-    tabindex="-1"
-    aria-labelledby="availableModalLabel"
-    aria-hidden="true"
-    >
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-        <h5 class="modal-title" id="availableModalLabel">Available Assignment</h5>
-        <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-        ></button>
-        </div>
-        <!-- Modal Body -->
-        <div class="modal-body">
-        <p>
-            <strong>Assignment Name:</strong> 
-            <span id="modalAvailableName"></span>
-        </p>
-        <p>
-            <strong>Prompt/Description:</strong>  
-            <span id="modalAvailablePrompt"></span>
-        </p>
-        <p>
-            <strong>Points Possible:</strong> 
-            <span id="modalAvailablePoints"></span>
-        </p>
-        <p>
-            <strong>Composition Mode:</strong> 
-            <span id="modalAvailableMode"></span>
-        </p>
-        </div>
-        <!-- Modal Footer -->
-        <div class="modal-footer">
-        <a href="test.html" class="btn btn-primary">Continue</a>
-        <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-        >
-            Close
-        </button>
-        </div>
-    </div>
-    </div>
+      <!-- "Next" Button -->
+      <div class="d-flex justify-content-end">
+        <button id="nextBtn" type="button" class="btn btn-primary" disabled>Next</button>
+      </div>
     </div>
 
-    <!-- Submitted Assignment Modal -->
-    <div
-    class="modal fade"
-    id="submittedModal"
-    tabindex="-1"
-    aria-labelledby="submittedModalLabel"
-    aria-hidden="true"
-    >
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-        <h5 class="modal-title" id="submittedModalLabel">Submitted Assignment</h5>
-        <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-        ></button>
+    <!-- Modals -->
+    <div class="modal fade" id="assignmentModal" tabindex="-1" aria-labelledby="assignmentModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h5 class="modal-title" id="assignmentModalLabel">Assignment Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <!-- Modal Body -->
+          <div class="modal-body">
+            <p><strong>Assignment Name:</strong> <span id="modalAssignmentName"></span></p>
+            <p id="modalPromptRow"><strong>Prompt/Description:</strong> <span id="modalAssignmentPrompt"></span></p>
+            <p id="modalPointsRow"><strong>Points Possible:</strong> <span id="modalAssignmentPoints"></span></p>
+            <p id="modalModeRow"><strong>Composition Mode:</strong> <span id="modalAssignmentMode"></span></p>
+          </div>
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <a href="#" id="continueLink" class="btn btn-primary">Continue</a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
         </div>
-        <!-- Modal Body -->
-        <div class="modal-body">
-        <p>
-            You selected: <strong><span id="modalAssignmentName"></span></strong>  
-        </p>
-        <p>
-            This assignment has been submitted but not yet graded. 
-            You can visit the reports page to see your submission details 
-            and any preliminary feedback from your instructor.
-        </p>
-        </div>
-        <!-- Modal Footer -->
-        <div class="modal-footer">
-        <a href="submission_report.html" class="btn btn-primary">View Reports</a>
-        <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-        >
-            Close
-        </button>
-        </div>
-    </div>
-    </div>
-    </div>
-
-    <!-- Graded Assignment Modal -->
-    <div
-    class="modal fade"
-    id="gradedModal"
-    tabindex="-1"
-    aria-labelledby="gradedModalLabel"
-    aria-hidden="true"
-    >
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-        <h5 class="modal-title" id="gradedModalLabel">Graded Assignment</h5>
-        <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-        ></button>
-        </div>
-        <!-- Modal Body -->
-        <div class="modal-body">
-        <p>
-            You selected: 
-            <strong><span id="modalGradedAssignmentName"></span></strong>
-        </p>
-        <p>
-            This assignment has been <b>graded</b>. You can view your final 
-            grade and any instructor feedback by visiting your detailed 
-            reports page.
-        </p>
-        </div>
-        <!-- Modal Footer -->
-        <div class="modal-footer">
-        <!-- Example link to a different page for "Graded" details -->
-        <a href="graded_report.html" class="btn btn-primary">View Reports</a>
-        <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-        >
-            Close
-        </button>
-        </div>
-    </div>
-    </div>
-    </div>
-
+      </div>
+    </div>  
     <!-- Bootstrap Bundle (includes Popper) -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
