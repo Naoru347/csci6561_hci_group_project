@@ -1,4 +1,3 @@
-<!-- Resize logout button and submit comment buttons. Move pill into according header and right align. -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,7 +18,7 @@
           <h1 class="mb-2 fw-bold">FocusWrite</h1>
           <p class="lead">Secure Writing & Assessment Environment</p>
           <!-- Logout Button (absolute top-right) -->
-          <a href="#" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-3">
+          <a href="#" class="btn btn-danger position-absolute top-0 end-0 m-3">
               Logout
           </a>
       </div>
@@ -74,7 +73,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
           <h2 class="mb-0">Assignment Report</h2>
           <!-- Accessible, high-contrast status badge -->
-          <span class="badge text-bg-primary" aria-label="Current grading status">
+          <span class="badge text-bg-warning" style="font-size:medium" aria-label="Current grading status">
             In Review
           </span>
         </div>
@@ -133,6 +132,9 @@
                 >
                   Violation #1: Window focus lost 
                   &mdash; <small class="text-muted">02/22/2025, 14:05:30</small>
+                  <!-- <span class="badge text-bg-secondary mb-2" aria-label="Feedback status">
+                    Feedback Pending
+                  </span> -->
                 </button>
               </h3>
               <div
@@ -143,9 +145,7 @@
               >
                 <div class="accordion-body">
                   <!-- High-contrast badge for status -->
-                  <span class="badge text-bg-secondary mb-2" aria-label="Feedback status">
-                    Feedback Pending
-                  </span>
+                  
                   <p>
                     The system detected that you clicked outside of
                     the locked browser window or switched to another
@@ -161,7 +161,7 @@
                     rows="2"
                     placeholder="Explain or clarify what happened..."
                   ></textarea>
-                  <button class="btn btn-sm btn-primary">
+                  <button class="btn  btn-primary">
                     Submit Comment
                   </button>
                 </div>
@@ -190,10 +190,10 @@
                 data-bs-parent="#violationAccordion"
               >
                 <div class="accordion-body">
-                  <!-- Teacher commented -->
+                  <!-- Teacher commented
                   <span class="badge text-bg-warning mb-2" aria-label="Teacher commented">
                     Teacher Commented
-                  </span>
+                  </span> -->
                   <p>
                     The system recorded an attempt to open a new browser
                     tab during the locked session, which is prohibited
@@ -216,7 +216,7 @@
                     rows="2"
                     placeholder="Explain or clarify what happened..."
                   ></textarea>
-                  <button class="btn btn-sm btn-primary">
+                  <button class="btn  btn-primary">
                     Submit Comment
                   </button>
                 </div>
@@ -226,7 +226,7 @@
         </div>
       </article>
       <div class="text-center my-5">
-        <a href="landing.html" class="btn btn-primary btn-lg">
+        <a href="landing.html" class="btn btn-primary ">
             &larr; Back to Assignments
         </a>
       </div>
