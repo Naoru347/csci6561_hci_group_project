@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Update modal title and continue link based on assignment type
       if (assignmentType === "available") {
           modalTitle.innerText = "Available Assignment";
-          continueLink.setAttribute("href", "test.html"); // Update with actual link
+          continueLink.setAttribute("href", "task.html"); // Update with actual link
       } else if (assignmentType === "submitted") {
           modalTitle.innerText = "Submitted Assignment";
           continueLink.setAttribute("href", "submission_report.html");
