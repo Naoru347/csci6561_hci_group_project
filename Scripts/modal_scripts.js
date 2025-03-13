@@ -51,6 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (assignmentType === "submitted") {
           modalTitle.innerText = "Submitted Assignment";
           continueLink.setAttribute("href", "submission_report.html");
+          modalReviewNotice.innerText = "This assignment is currently under review and will be graded and returned to you in accordance with syllabus policies.";
+          modalReviewNotice.style.display = "block";
       } else if (assignmentType === "graded") {
           modalTitle.innerText = "Graded Assignment";
           continueLink.setAttribute("href", "graded_report.html");

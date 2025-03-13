@@ -9,3 +9,8 @@
 #fontSizeSlider {
     width: 100% !important; /* Ensures the slider fills its container */
 }
+
+.w-33 {
+    width: 52%; /* Restricts the width to one-third of the screen */
+    min-width: 300px; /* Ensures a readable minimum width */
+}
