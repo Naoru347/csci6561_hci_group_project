@@ -1,0 +1,126 @@
+{
+    "users": {
+      "testuser@example.com": {
+        "email": "testuser@example.com",
+        "password": "hashedpassword123",
+        "role": "student",
+        "fullName": "Test User",
+        "createdAt": "2025-03-14T12:00:00Z",
+        "lastLogin": "2025-03-14T12:00:00Z",
+        "assignments": {
+          "assignment1": {
+            "status": "graded",
+            "submitted": true,
+            "submittedAt": "2025-03-12T10:45:00Z",
+            "finalText": "Final version of the submission...",
+            "grading": {
+              "status": "graded",
+              "score": 134.25,
+              "maxPoints": 150,
+              "finalGrade": "B+",
+              "teacherFeedback": "Great work on structuring your argument! Be careful with APA citations."
+            },
+            "violations": [
+              {
+                "id": "violation1",
+                "type": "Window focus lost",
+                "timestamp": "2025-03-12T14:05:30Z",
+                "description": "The system detected that you clicked outside of the locked browser window.",
+                "studentComment": "NONE"
+              },
+              {
+                "id": "violation2",
+                "type": "Attempted to open new tab",
+                "timestamp": "2025-03-12T14:10:11Z",
+                "description": "An attempt was made to open a new browser tab during the locked session.",
+                "teacherNote": "Please remember that opening external tabs or windows is not allowed during this exam.",
+                "studentComment": "I didn't do nothing, bro! No cap, on god. You're doing too much, fr fr."
+              }
+            ]
+          },
+          "assignment2": {
+            "status": "submitted",
+            "submitted": true,
+            "submittedAt": "2025-03-18T11:30:00Z",
+            "finalText": "A detailed response to the essay prompt with proper citations...",
+            "grading": {
+              "status": "in-review",
+              "score": null,
+              "maxPoints": 100,
+              "finalGrade": null,
+              "teacherFeedback": null
+            }
+          },
+          "assignment3": { "status": "available" },
+          "assignment4": { "status": "available" },
+          "assignment5": { "status": "available" }
+        }
+      }
+    },
+  
+    "assignments": {
+      "assignment1": {
+        "name": "Research Paper Draft",
+        "prompt": "Write a research paper draft following academic conventions.",
+        "points": 150,
+        "mode": "Protected Composition",
+        "resources": {
+          "uploadedFiles": [
+            "Research_Guidelines.pdf",
+            "APA_Citation_Examples.pdf"
+          ],
+          "externalLinks": [
+            { "title": "Academic Writing Guide", "url": "https://writingcenter.example.com" }
+          ]
+        }
+      },
+      "assignment2": {
+        "name": "Critical Response Essay",
+        "prompt": "Analyze and respond to the main argument of the assigned reading.",
+        "points": 100,
+        "mode": "Unlocked Composition",
+        "resources": {
+          "uploadedFiles": [
+            "Assigned_Reading.pdf",
+            "Response_Guidelines.pdf"
+          ],
+          "externalLinks": []
+        }
+      },
+      "assignment3": {
+        "name": "Literary Analysis",
+        "prompt": "Examine a literary work and discuss its themes and structure.",
+        "points": 75,
+        "mode": "Protected Composition",
+        "resources": {
+          "uploadedFiles": [],
+          "externalLinks": []
+        }
+      },
+      "assignment4": {
+        "name": "Annotated Bibliography",
+        "prompt": "Compile and summarize five sources relevant to your research topic.",
+        "points": 50,
+        "mode": "Unlocked Composition",
+        "resources": {
+          "uploadedFiles": [
+            "Bibliography_Guide.pdf"
+          ],
+          "externalLinks": [
+            { "title": "Citation Guide", "url": "https://citation.example.com" }
+          ]
+        }
+      },
+      "assignment5": {
+        "name": "Final Reflection",
+        "prompt": "Reflect on your progress throughout the course and key learnings.",
+        "points": 50,
+        "mode": "Protected Composition",
+        "resources": {
+          "uploadedFiles": [],
+          "externalLinks": []
+        }
+      }
+    }
+  }
+  
