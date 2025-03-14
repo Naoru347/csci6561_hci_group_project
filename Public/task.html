@@ -17,6 +17,10 @@
         <p>
           Complete your assignment here.
         </p>
+        <!-- Logout Button (absolute top-right) -->
+        <a href="#" id="btnLogout" class="btn btn-danger position-absolute top-0 end-0 m-3">
+          Logout
+      </a>
       </div>
     </header>
 
@@ -54,7 +58,7 @@
                   Once you click Begin, your window will go into fullscreen mode, limiting your access to resources outside this window until you complete and submit the assignment.
                 </p>
                 <div class="container text-end mt-5">
-                  <button id="btnBackHome" class="btn btn-outline-primary">Back to Home Page</button>
+                  <button id="btnBackHome" class="btn btn-outline-danger">Back to Home Page</button>
                   <button id="btnBegin" class="btn btn-primary">Begin</button>
                 </div> 
             </div>
@@ -85,7 +89,7 @@
                     <p>Click <strong>Leave Fullscreen</strong> if you'd like to leave the assignment without submitting it.</p>
                   </div>
                   <div class="container text-end mt-5">
-                    <button id="btnLeaveFullscreen" class="btn btn-outline-primary">Leave Fullscreen</button>
+                    <button id="btnLeaveFullscreen" class="btn btn-outline-danger">Leave Fullscreen</button>
                     <button id="btnSubmit" class="btn btn-primary">Submit</button>
                   </div> 
                 </div>
@@ -149,48 +153,6 @@
     <!-- Modals -->
 
     <div id="modalContainer"></div>
-
-
-
-    <!-- DEPRICATED Modal: Prompt -->
-    <div id="modalPrompt" class="modal fade" style="display: none;" aria-hidden="true">
-      <div class="modal-dialog modal-xl modal-dialog-scrollable">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="gradedModalLabel">Assignment Prompt</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <iframe src="../SampleFiles/LiteratureReviewPrompt.pdf" width="100%" height="800"></iframe>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Modal: Uploaded Files -->
-    <div id="modalUploadedResource1" class="modal fade">
-      <div class="modal-dialog modal-xl modal-dialog-scrollable">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="gradedModalLabel">Article by authors</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <iframe src="../SampleFiles/Gilson et_al_GAI_and_Medical_Exams.pdf" width="100%" height="800"></iframe>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
 
     <!-- Modal: External Links -->
     <div id="modalExternalLink1" class="modal fade">

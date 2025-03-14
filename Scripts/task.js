@@ -1,9 +1,11 @@
 const divConfirmationBlock = document.getElementById("divConfirmationBlock");
 const divTextAndLinksBlock = document.getElementById("divTextAndLinksBlock");
+const btnLogout = document.getElementById("btnLogout");
 
 document.getElementById("btnBegin").addEventListener("click", () => {
   // Change display (visibility) to hide confirmation and display textbox and links.
   divConfirmationBlock.classList.add("d-none");
+  btnLogout.classList.add("d-none");
   divTextAndLinksBlock.classList.remove("d-none");
 
   // Switch to full screen.
