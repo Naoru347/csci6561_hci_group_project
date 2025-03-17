@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="input" placeholder="Type a word">
+  <div style="margin-top:10pt;">
+    <button type="button" id="searchBtn">Search</button>
+  </div>
+  <div style="margin-top:10pt;"><hr></div>
+  <div id="outputDiv" style="margin-top:10pt;"></div>
+
+  <script>
+    const input = document.getElementById('input')
+    document.getElementById('searchBtn').addEventListener('click', ()=> {
+      const outputDiv = document.getElementById('outputDiv')
+      const apiCall = 'https://api.dictionaryapi.dev/api/v2/entries/en/'+ input.value.toLowerCase().trim();
+      console.log(apiCall)
+      fetch(apiCall)
+        .then(res => {
+          if (!res.ok) {
+            throw new Error("No Definition Found");
+          }
+          return res.json();
+        })
+        .then(data => displayDictionarydata(data))
+        .catch(error => {
+          if (error.message === "No Definition Found") {
+            outputDiv.innerHTML = "<p>No Definition Found</p>";
+          } else {
+            outputDiv.innerHTML = "<p>Connection Failure</p>";
+          }
+        });
+  
+        function displayDictionarydata(data) {
+          console.log(data)
+        }
+
+    })
+    
+  </script>
+
+</body>
+</html>

@@ -58,7 +58,7 @@
                   Once you click Begin, your window will go into fullscreen mode, limiting your access to resources outside this window until you complete and submit the assignment.
                 </p>
                 <div class="container text-end mt-5">
-                  <button id="btnBackHome" class="btn btn-outline-danger">Back to Home Page</button>
+                  <button id="btnBackHome" class="btn btn-outline-danger">Back to Landing Page</button>
                   <button id="btnBegin" class="btn btn-primary">Begin</button>
                 </div> 
             </div>
@@ -136,15 +136,14 @@
               </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#modalExternalLink1">Editorial</a>
-                <p></p><a href="#" data-bs-toggle="modal">Link</a></p>
-                <p></p><a href="#" data-bs-toggle="modal">Link</a></p>
+              <div id="externalLinks" class="accordion-body">
+                <!-- Build the list of links in task.js, depending on the number of uploaded resources -->
               </div>
             </div>
           </div>
 
         </div>
+        
       </div>
 
 
@@ -154,10 +153,11 @@
 
     <div id="modalContainer"></div>
 
-    <!-- Modal: External Links -->
+    <!-- Modal: External Links 
+    
     <div id="modalExternalLink1" class="modal fade">
       <div class="modal-dialog modal-lg modal-dialog-scrollable">
-        <!-- Modal content-->
+        
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="gradedModalLabel">Editorial</h5>
@@ -172,7 +172,7 @@
         </div>
 
       </div>
-    </div>
+    </div> -->
 
     
     <!-- Scripts -->

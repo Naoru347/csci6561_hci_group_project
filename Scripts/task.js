@@ -35,6 +35,10 @@ document.getElementById("btnBegin").addEventListener("click", () => {
   ];
   createLinks(uploadedFiles, "uploadedResourcesLinks");
 
+  // External Resources
+  const externalLinks = ["Dictionary"]
+  createLinks(externalLinks, "externalLinks");
+
   addListenersToLinks();
 });
 
@@ -44,9 +48,9 @@ function createLinks(resources, elementID) {
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.href = "#";
-    a.classList.add("resource-link");
+    a.classList.add('resource-link');
     a.id = resource;
-    a.textContent = resource.substring(0, 14) + "...";
+    a.textContent = (resource.length < 15) ? resource : resource.substring(0, 14) + "...";
     li.appendChild(a);
     resourcesUl.appendChild(li);
   });
@@ -58,8 +62,18 @@ function addListenersToLinks() {
   resourceLinks.forEach(link => {
     console.log(link.id);
     link.addEventListener('click', () => {
-      const linkSrc = "../SampleFiles/" + link.id;
-      const modalId = "modalPrompt" + link.id;
+      let modalBody;
+      let modalId = "modalPrompt" + link.id;
+      
+      // Not the best way to distinguish betw local and external resources,
+      // but it'll do for now.
+      if (link.id !== 'Dictionary') {
+        modalBody = `<iframe src="../SampleFiles/${link.id}" width="100%" height="800"></iframe>`
+      } else {
+        
+        modalBody = getDictionaryModalBody()
+      }
+
       const modalHTML = `
         <div class="modal fade" id=${modalId} tabindex="-1" aria-hidden="true">
           <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -70,7 +84,7 @@ function addListenersToLinks() {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <iframe src=${linkSrc} width="100%" height="800"></iframe>
+                ${modalBody}
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
@@ -81,6 +95,7 @@ function addListenersToLinks() {
         </div>
       `;
       document.getElementById('modalContainer').innerHTML = modalHTML;
+      addDictionaryScript();
 
       // Initialize and show the modal
       const myModal = new bootstrap.Modal(document.getElementById(modalId));
@@ -88,6 +103,35 @@ function addListenersToLinks() {
     });
   });
 }
+
+function getDictionaryModalBody() {
+  console.log("Entered getDcMdl")
+  const modalBody = 
+  `
+    <h2>Word:</h2>
+    <input type="text" id="input">
+    <div style="margin-top:10pt;">
+      <button type="button" id="searchBtn">Search</button>
+    </div>
+    <div style="margin-top:10pt;"><hr></div>
+    
+  `
+  return modalBody
+
+}
+
+// Script for Dictionary Modal
+function addDictionaryScript() {
+  document.getElementById('searchBtn').addEventListener('click', ()=> {
+    const input = document.getElementById('input');
+    const apiCall = 'https://api.dictionaryapi.dev/api/v2/entries/en/'+ input.value.trim()
+    console.log(apiCall)
+    fetch(apiCall)
+      .then(res => res.json())
+      .then(data => console.log(data))
+  })
+}
+
 
 // Listen for attempts to switch out of full screen.
 // In Chrome, this works with esc button, but not with Chrome's enter/exit full screen button.
