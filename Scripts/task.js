@@ -69,18 +69,28 @@ function addListenersToLinks() {
       // but it'll do for now.
       if (link.id !== 'Dictionary') {
         modalBody = `<iframe src="../SampleFiles/${link.id}" width="100%" height="800"></iframe>`
+        document.getElementById('modalContainer').innerHTML = getModalHTML(modalId, link.id, modalBody); 
       } else {
-        
-        modalBody = getDictionaryModalBody()
+        modalBody = getDictionaryModalBody();
+        document.getElementById('modalContainer').innerHTML = getModalHTML(modalId, link.id, modalBody);
+        addDictionaryScript();
       }
 
-      const modalHTML = `
+      // Initialize and show the modal
+      const myModal = new bootstrap.Modal(document.getElementById(modalId));
+      myModal.show();
+    });
+  });
+}
+
+function getModalHTML(modalId, linkId, modalBody) {
+  const modalHTML = `
         <div class="modal fade" id=${modalId} tabindex="-1" aria-hidden="true">
           <div class="modal-dialog modal-xl modal-dialog-scrollable">
 
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="gradedModalLabel">${link.id}</h5>
+                <h5 class="modal-title" id="gradedModalLabel">${linkId}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -94,26 +104,22 @@ function addListenersToLinks() {
           </div>
         </div>
       `;
-      document.getElementById('modalContainer').innerHTML = modalHTML;
-      addDictionaryScript();
-
-      // Initialize and show the modal
-      const myModal = new bootstrap.Modal(document.getElementById(modalId));
-      myModal.show();
-    });
-  });
+      return modalHTML;
 }
+
 
 function getDictionaryModalBody() {
   console.log("Entered getDcMdl")
   const modalBody = 
   `
-    <h2>Word:</h2>
-    <input type="text" id="input">
+    <input type="text" id="input" placeholder="Type a word">
     <div style="margin-top:10pt;">
       <button type="button" id="searchBtn">Search</button>
     </div>
     <div style="margin-top:10pt;"><hr></div>
+    <div id="outputDiv" style="margin-top:10pt;"></div>
+    <div style="margin-top:10pt;"><hr></div>
+    <p>Powered by Free Dictionary API</p>
     
   `
   return modalBody
@@ -122,14 +128,49 @@ function getDictionaryModalBody() {
 
 // Script for Dictionary Modal
 function addDictionaryScript() {
+  const input = document.getElementById('input')
+  const outputDiv = document.getElementById('outputDiv')
+  
   document.getElementById('searchBtn').addEventListener('click', ()=> {
-    const input = document.getElementById('input');
-    const apiCall = 'https://api.dictionaryapi.dev/api/v2/entries/en/'+ input.value.trim()
+    const apiCall = 'https://api.dictionaryapi.dev/api/v2/entries/en/'+ input.value.toLowerCase().trim();
     console.log(apiCall)
     fetch(apiCall)
-      .then(res => res.json())
-      .then(data => console.log(data))
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("No Definition Found");
+        }
+        return res.json();
+      })
+      .then(data => displayDictionarydata(data))
+      .catch(error => {
+        if (error.message === "No Definition Found") {
+          outputDiv.innerHTML = "<p>No Definition Found</p>";
+        } else {
+          outputDiv.innerHTML = "<p>Connection Failure</p>";
+        }
+      });
+
+      function displayDictionarydata(data) {
+        console.log(data)
+        let outputString = '';
+        data.forEach((element, index) => {
+          outputString = outputString + `<h2>${element.word}<sup>${index+1}</sup></h2>`;
+          if (element.meanings) {
+            element.meanings.forEach(meaning => {
+              outputString = outputString + `<p><i>${meaning.partOfSpeech}: </i></p>`;
+              if (meaning.definitions) {
+                  meaning.definitions.forEach(definition => {
+                  outputString = outputString + `<p> - ${definition.definition}</i></p>`;
+                })
+              }
+            })
+          }
+        })
+        outputDiv.innerHTML = outputString;
+      }
+
   })
+    
 }
 
 
