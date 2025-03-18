@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="input" placeholder="Type a word">
+  <div style="margin-top:10pt;">
+    <button type="button" id="searchBtn">Search</button>
+  </div>
+  <div style="margin-top:10pt;"><hr></div>
+  <div id="outputDiv" style="margin-top:10pt;"></div>
+
+  <script>
+    const input = document.getElementById('input')
+    const outputDiv = document.getElementById('outputDiv')
+    
+    document.getElementById('searchBtn').addEventListener('click', ()=> {
+      const apiCall = 'https://api.dictionaryapi.dev/api/v2/entries/en/'+ input.value.toLowerCase().trim();
+      console.log(apiCall)
+      fetch(apiCall)
+        .then(res => {
+          if (!res.ok) {
+            throw new Error("No Definition Found");
+          }
+          return res.json();
+        })
+        .then(data => displayDictionarydata(data))
+        .catch(error => {
+          if (error.message === "No Definition Found") {
+            outputDiv.innerHTML = "<p>No Definition Found</p>";
+          } else {
+            outputDiv.innerHTML = "<p>Connection Failure</p>";
+          }
+        });
+  
+        function displayDictionarydata(data) {
+          console.log(data)
+          let outputString = '';
+          data.forEach((element, index) => {
+            outputString = outputString + `<h2>${element.word}<sup>${index+1}</sup></h2>`;
+            if (element.meanings) {
+              element.meanings.forEach(meaning => {
+                outputString = outputString + `<p><i>${meaning.partOfSpeech}: </i></p>`;
+                if (meaning.definitions) {
+                    meaning.definitions.forEach(definition => {
+                    outputString = outputString + `<p> - ${definition.definition}</i></p>`;
+                  })
+                }
+              })
+            }
+          })
+          outputDiv.innerHTML = outputString;
+        }
+
+    })
+    
+  </script>
+
+</body>
+</html>
