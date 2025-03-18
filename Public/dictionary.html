@@ -15,8 +15,9 @@
 
   <script>
     const input = document.getElementById('input')
+    const outputDiv = document.getElementById('outputDiv')
+    
     document.getElementById('searchBtn').addEventListener('click', ()=> {
-      const outputDiv = document.getElementById('outputDiv')
       const apiCall = 'https://api.dictionaryapi.dev/api/v2/entries/en/'+ input.value.toLowerCase().trim();
       console.log(apiCall)
       fetch(apiCall)
@@ -37,6 +38,21 @@
   
         function displayDictionarydata(data) {
           console.log(data)
+          let outputString = '';
+          data.forEach((element, index) => {
+            outputString = outputString + `<h2>${element.word}<sup>${index+1}</sup></h2>`;
+            if (element.meanings) {
+              element.meanings.forEach(meaning => {
+                outputString = outputString + `<p><i>${meaning.partOfSpeech}: </i></p>`;
+                if (meaning.definitions) {
+                    meaning.definitions.forEach(definition => {
+                    outputString = outputString + `<p> - ${definition.definition}</i></p>`;
+                  })
+                }
+              })
+            }
+          })
+          outputDiv.innerHTML = outputString;
         }
 
     })
