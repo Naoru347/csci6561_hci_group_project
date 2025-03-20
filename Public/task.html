@@ -12,6 +12,7 @@
   </head>
   <body>
     <header>
+      <p id="fullscreenWarning" class="text-danger text-center mt-3 d-none">WARNING: If you leave fullscreen mode, your current draft will be submitted automatically and you won't be able to resume the assignment.</p>
       <div class="p-5 bg-primary text-white text-center">
         <h1>FocusWrite</h1>
         <p>
@@ -151,28 +152,31 @@
 
     <!-- Modals -->
 
+    <!-- This container is for displaying modals with additional resources -->
     <div id="modalContainer"></div>
 
-    <!-- Modal: External Links 
-    
-    <div id="modalExternalLink1" class="modal fade">
-      <div class="modal-dialog modal-lg modal-dialog-scrollable">
-        
+    <!-- This modal is for warning about leaving fullscreen without submitting -->
+    <div class="modal fade" id="fullscreenWarningModal" tabindex="-1" aria-labelledby="assignmentModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
+          <!-- Modal Header -->
           <div class="modal-header">
-            <h5 class="modal-title" id="gradedModalLabel">Editorial</h5>
+            <h5 class="modal-title">WARNING</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
+          <!-- Modal Body -->
           <div class="modal-body">
-            <iframe src="https://www.dictionary.com" width="100%" height="800"></iframe>
+            <p><strong>Are you sure you want to leave fullscreen mode?</strong> <span id="modalAssignmentName"></span></p>
+            <p>If you leave fullscreen mode without submitting the assignment, the current draft will be submitted automatically and you will not be able to resume the assignment.</p>
           </div>
+          <!-- Modal Footer -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Submit and Leave Fullscreen</button>
+            <a href="#" id="continueLink" class="btn btn-primary">Back to Assignment</a>
           </div>
         </div>
-
       </div>
-    </div> -->
+    </div>  
 
     
     <!-- Scripts -->
