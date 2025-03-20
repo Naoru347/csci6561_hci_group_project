@@ -1,5 +1,6 @@
 const divConfirmationBlock = document.getElementById("divConfirmationBlock");
 const divTextAndLinksBlock = document.getElementById("divTextAndLinksBlock");
+const pFullscreenWarning = document.getElementById("fullscreenWarning");
 const btnLogout = document.getElementById("btnLogout");
 
 document.getElementById("btnBegin").addEventListener("click", () => {
@@ -7,6 +8,8 @@ document.getElementById("btnBegin").addEventListener("click", () => {
   divConfirmationBlock.classList.add("d-none");
   btnLogout.classList.add("d-none");
   divTextAndLinksBlock.classList.remove("d-none");
+  pFullscreenWarning.classList.remove("d-none");
+
 
   // Switch to full screen.
   let elem = document.documentElement; // This selects the entire HTML document              
