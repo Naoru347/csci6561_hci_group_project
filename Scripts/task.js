@@ -1,7 +1,8 @@
 const divConfirmationBlock = document.getElementById("divConfirmationBlock");
 const divTextAndLinksBlock = document.getElementById("divTextAndLinksBlock");
 const pFullscreenWarning = document.getElementById("fullscreenWarning");
-const btnLogout = document.getElementById("btnLogout");
+const fullscreenWarningModal = new bootstrap.Modal(document.getElementById("fullscreenWarningModal"));
+
 
 document.getElementById("btnBegin").addEventListener("click", () => {
   // Change display (visibility) to hide confirmation and display textbox and links.
@@ -201,7 +202,7 @@ function onFullscreenChange(event) {
 // Note: Disable Submit if not in full screen. 
 // If not in full screen, offer to get back to full screen
 document.getElementById("btnLeaveFullscreen").addEventListener("click", () => {
-  exitFullscreen();
+  fullscreenWarningModal.show();
 });
 
 document.getElementById("btnSubmit").addEventListener("click", () => {
