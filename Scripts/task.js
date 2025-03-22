@@ -10,6 +10,7 @@ const textareaInput = document.getElementById("textareaInput");
 // On submit, uplod to the same file but in a submitted areaa.
 let textareaBuffer;
 
+// User confirms that they want to start assignment
 document.getElementById("btnBegin").addEventListener("click", () => {
   // Change display (visibility) to hide confirmation and display textbox and links.
   divConfirmationBlock.classList.add("d-none");
@@ -225,9 +226,16 @@ document.addEventListener('editorInitialized', function () {
   }
 });
 
+// Submit button gets confirmation modal
+document.getElementById("btnSubmit").addEventListener("click", () => {
+  confirmSubmitModal.show();
+});
+
 // Submit is confirmed inside the confirmation modal
 document.getElementById("confirmSubmitBtn").addEventListener("click", () => {
   console.log(textareaBuffer);
+  
+
   exitFullscreen();
 });
 
@@ -238,12 +246,6 @@ window.history.forward();
 function noBack() {
     window.history.forward();
 }
-
-
-// Submit button gets confirmation modal
-document.getElementById("btnSubmit").addEventListener("click", () => {
-  confirmSubmitModal.show();
-});
 
 
 function exitFullscreen() {
@@ -259,6 +261,7 @@ function exitFullscreen() {
 }
 
 // List to whether the mouse is clicked inside or outside the window.
+// Note: When inside the tinymce editor, the mouse is registered as being outside the window
 window.addEventListener('blur', function() {
   console.log('Window lost focus');
 });
