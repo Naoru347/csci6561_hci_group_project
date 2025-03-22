@@ -12,7 +12,9 @@
   </head>
   <body>
     <header>
-      <p id="fullscreenWarning" class="text-danger text-center mt-3 d-none">WARNING: If you leave fullscreen mode, your current draft will be submitted automatically and you won't be able to resume the assignment.</p>
+      <h4 id="fullscreenWarning" class="text-danger text-center mt-3 ms-3 d-none">
+        WARNING: If you click ESC or try to leave fullscreen mode in any other way without clicking Submit, your current draft will be submitted automatically and you won't be able to resume the assignment.
+      </h4>
       <div class="p-5 bg-primary text-white text-center">
         <h1>FocusWrite</h1>
         <p>
@@ -72,6 +74,7 @@
      <!-- Text area  and Links to Allowed Resources -->
     <div id="divTextAndLinksBlock" class="container d-none mt-3"> 
       <div class="row">
+        
         <!-- Text area  col -->
         <div class="col col-9">
           <div class="row">
@@ -81,17 +84,17 @@
                   <h2 class="card-title m-0">Assignment Title</h2>
                 </div>
                 <div class="card-body bg-light">
-                  <textarea>
-                    Type and edit your text here.
-                  </textarea>
+                  <form method="post">
+                    <textarea id="textareaInput">
+                      Type and edit your text here.
+                    </textarea>
+                  </form>
                   <div class="container mt-3">
                     <p>NOTE: Your text is saved as you type.</p>
-                    <p>Click <strong>Submit</strong> only when you are ready to finish the assignment and submit.</p>
-                    <p>Click <strong>Leave Fullscreen</strong> if you'd like to leave the assignment without submitting it.</p>
+                    <p>Click <strong>Submit and Leave</strong> when you are ready to submit the assignment for grading.</p>
                   </div>
                   <div class="container text-end mt-5">
-                    <button id="btnLeaveFullscreen" class="btn btn-outline-danger">Leave Fullscreen</button>
-                    <button id="btnSubmit" class="btn btn-primary">Submit</button>
+                    <button id="btnSubmit" class="btn btn-primary">Submit and Leave</button>
                   </div> 
                 </div>
               </div>
@@ -156,23 +159,23 @@
     <div id="modalContainer"></div>
 
     <!-- This modal is for warning about leaving fullscreen without submitting -->
-    <div class="modal fade" id="fullscreenWarningModal" tabindex="-1" aria-labelledby="assignmentModalLabel" aria-hidden="true">
+    <div class="modal fade modal-lg" id="confirmSubmitModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h5 class="modal-title">WARNING</h5>
+            <h5 class="modal-title">Ready to Submit?</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <!-- Modal Body -->
           <div class="modal-body">
-            <p><strong>Are you sure you want to leave fullscreen mode?</strong> <span id="modalAssignmentName"></span></p>
-            <p>If you leave fullscreen mode without submitting the assignment, the current draft will be submitted automatically and you will not be able to resume the assignment.</p>
+            <p><strong>Are you sure you want to submit the assignment?</strong> <span id="modalAssignmentName"></span></p>
+            <p>If you click yes, your assignment will be submitted for grading.</p>
           </div>
           <!-- Modal Footer -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Submit and Leave Fullscreen</button>
-            <a href="#" id="continueLink" class="btn btn-primary">Back to Assignment</a>
+            <a href="#" id="continueLink" class="btn btn-outline-danger">No, Go Back to Assignment</a>
+            <button id="confirmSubmitBtn" type="button" class="btn btn btn-primary" data-bs-dismiss="modal">Yes, Submit and Leave</button>
           </div>
         </div>
       </div>
@@ -186,16 +189,23 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
       crossorigin="anonymous">
     </script>
+
     <!-- TinyMCE Script -->
     <script src="https://cdn.tiny.cloud/1/63pwtpcqtm1lzqgywma7wa4xe21lr6c2i0rxoqs3j9x0n69a/tinymce/7/tinymce.min.js" 
       referrerpolicy="origin">
     </script>
     <script>
       tinymce.init({
-        selector: 'textarea',
+        selector: '#textareaInput',
+        setup: function (editor) {
+          // Store the editor instance globally
+          window.myEditor = editor;
+          // Dispatch a custom event when the editor is initialized
+          document.dispatchEvent(new Event('editorInitialized'));
+        },
         menubar: false,
         plugins: 'advlist autolink lists link charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
       });
     </script>
 

@@ -1,9 +1,16 @@
 const divConfirmationBlock = document.getElementById("divConfirmationBlock");
 const divTextAndLinksBlock = document.getElementById("divTextAndLinksBlock");
 const pFullscreenWarning = document.getElementById("fullscreenWarning");
-const fullscreenWarningModal = new bootstrap.Modal(document.getElementById("fullscreenWarningModal"));
+const confirmSubmitModal = new bootstrap.Modal(document.getElementById("confirmSubmitModal"));
+const textareaInput = document.getElementById("textareaInput");
 
+// Save the typed text in this buffer.
+// Upload it periodically to the json storage file; I guess there could be 
+// an unsubmitted field.
+// On submit, uplod to the same file but in a submitted areaa.
+let textareaBuffer;
 
+// User confirms that they want to start assignment
 document.getElementById("btnBegin").addEventListener("click", () => {
   // Change display (visibility) to hide confirmation and display textbox and links.
   divConfirmationBlock.classList.add("d-none");
@@ -179,7 +186,7 @@ function addDictionaryScript() {
 
 
 // Listen for attempts to switch out of full screen.
-// In Chrome, this works with esc button, but not with Chrome's enter/exit full screen button.
+// In Chrome on Mac, this works with esc button, but not with Chrome's enter/exit full screen button.
 // In Safari, it works fine.
 document.addEventListener("fullscreenchange", onFullscreenChange);
 document.addEventListener("webkitfullscreenchange", onFullscreenChange);
@@ -192,22 +199,54 @@ function onFullscreenChange(event) {
         console.log("Entered fullscreen mode");
     } else {
         console.log("Exited fullscreen mode");
-    }
 
+        // Commented out for development.
+        //window.open("./login.html", "_self");
+    }
 }
 
+// Save type text automatically via the global editor saved in tinymce.init (in the hmtl file)
+// The editorInitialized event is created in tiny.init and dispatched to document.
+document.addEventListener('editorInitialized', function () {
+  // Ensure the editor is initialized
+  if (window.myEditor) {
+      console.log('Editor initialized');
+      // Add an event listener for the 'change' event
+      window.myEditor.on('input', function () {
+          // Log the current content of the editor to the console
+          //console.log(window.myEditor.getContent());
 
-
-// Close fullscreen.
-// Note: Disable Submit if not in full screen. 
-// If not in full screen, offer to get back to full screen
-document.getElementById("btnLeaveFullscreen").addEventListener("click", () => {
-  fullscreenWarningModal.show();
+          // Save the current content of the editor to the textareaBuffer
+          // getContent() w/o parameters saves the text and the html tags
+          // To save text only, use getContent({format: "text"})
+          textareaBuffer = window.myEditor.getContent();
+      });
+  } else {
+      console.error('Editor not initialized');
+  }
 });
 
+// Submit button gets confirmation modal
 document.getElementById("btnSubmit").addEventListener("click", () => {
+  confirmSubmitModal.show();
+});
+
+// Submit is confirmed inside the confirmation modal
+document.getElementById("confirmSubmitBtn").addEventListener("click", () => {
+  console.log(textareaBuffer);
+  
+
   exitFullscreen();
 });
+
+// To prevent back button once this page is left.
+// If user leaves Full Screen w/o submitting, 
+// they are directed to Login where they can't use the back button to get back here.
+window.history.forward();
+function noBack() {
+    window.history.forward();
+}
+
 
 function exitFullscreen() {
   if (document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen) {
@@ -222,6 +261,7 @@ function exitFullscreen() {
 }
 
 // List to whether the mouse is clicked inside or outside the window.
+// Note: When inside the tinymce editor, the mouse is registered as being outside the window
 window.addEventListener('blur', function() {
   console.log('Window lost focus');
 });
@@ -229,3 +269,4 @@ window.addEventListener('blur', function() {
 window.addEventListener('focus', function() {
   console.log('Window gained focus');
 });
+
