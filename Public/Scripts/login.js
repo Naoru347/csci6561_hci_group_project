@@ -14,6 +14,11 @@ btnSubmit.addEventListener('click', async (e) => {
     const user = data.users[email];
 
     if (user && user.password === password) {
+      localStorage.setItem("loggedInUser", JSON.stringify({
+        email: user.email,
+        role: user.role,
+        fullName: user.fullName
+      }));    
       failedAuthMessage.classList.add("d-none");
       console.log(`Authenticated: ${user.fullName} (${user.role})`);
       window.location.href = "landing.html";

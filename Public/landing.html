@@ -88,96 +88,17 @@
 
           <!-- Available Assignments -->
           <h4>Available Assignments</h4>
-          <ul class="mb-3">
-            <li class="mb-2">
-              <input 
-                type="radio"
-                name="assignment"
-                id="available1"
-                value="available"
-                data-name="Assignment 1: Affective Writing"
-                data-prompt="Write a personal reflection on emotional experiences"
-                data-points="25"
-                data-mode="Protected Composition"
-              />
-              <label for="available1">Assignment 1: Affective Writing</label>
-            </li>
-            <li class="mb-2">
-              <input 
-                type="radio"
-                name="assignment"
-                id="available2"
-                value="available"
-                data-name="In-class Writing 3: Weekly Reflection"
-                data-prompt="Summarize your week's learning experiences"
-                data-points="10"
-                data-mode="Protected Composition"
-              />
-              <label for="available2">In-class Writing 3: Weekly Reflection</label>
-            </li>
-            <li class="mb-2">
-              <input 
-                type="radio"
-                name="assignment"
-                id="available3"
-                value="available"
-                data-name="Homework 7: APA Citation and Reference"
-                data-prompt="Demonstrate proper APA style references"
-                data-points="15"
-                data-mode="Unlocked Composition"
-              />
-              <label for="available3">Homework 7: APA Citation and Reference</label>
-            </li>
+          <ul class="mb-3" data-type="available"></ul>
           </ul>
 
           <!-- Submitted Assignments -->
           <h4>Submitted Assignments</h4>
-          <ul class="mb-3">
-            <li class="mb-2">
-              <input 
-                type="radio"
-                name="assignment"
-                id="submitted1"
-                value="submitted"
-                data-name="In-class Writing 2: Weekly Reflection"
-              />
-              <label for="submitted1">In-class Writing 2: Weekly Reflection</label>
-            </li>
-            <li class="mb-2">
-              <input 
-                type="radio"
-                name="assignment"
-                id="submitted2"
-                value="submitted"
-                data-name="Homework 6: APA Citation Basics"
-              />
-              <label for="submitted2">Homework 6: APA Citation Basics</label>
-            </li>
+          <ul class="mb-3" data-type="submitted"></ul>
           </ul>
 
           <!-- Graded Assignments -->
           <h4>Graded Assignments</h4>
-          <ul class="mb-3">
-            <li class="mb-2">
-              <input 
-                type="radio"
-                name="assignment"
-                id="graded1"
-                value="graded"
-                data-name="Assignment 0: Welcome to EAP 0000"
-              />
-              <label for="graded1">Assignment 0: Welcome to EAP 0000</label>
-            </li>
-            <li class="mb-2">
-              <input 
-                type="radio"
-                name="assignment"
-                id="graded2"
-                value="graded"
-                data-name="In-class Writing 1: Weekly Reflection"
-              />
-              <label for="graded2">In-class Writing 1: Weekly Reflection</label>
-            </li>
+          <ul class="mb-3" data-type="graded"></ul>
           </ul>
         </div>
       </div>
@@ -223,6 +144,8 @@
      <script src="../Scripts/font_slider.js"></script>
     <!-- JS logic script for logging a user out -->
     <script src="../Scripts/logout.js"></script>
+    <!-- JS logic script for populating assignments -->
+    <script src="../Scripts/landing.js"></script>
 
   </body>
 </html>
