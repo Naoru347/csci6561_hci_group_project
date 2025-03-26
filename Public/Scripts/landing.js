@@ -67,5 +67,51 @@ document.addEventListener("DOMContentLoaded", async () => {
       li.appendChild(label);
       list.appendChild(li);
     }
+
+    // 6. Add event listeners to show modal when a radio button is selected
+    // and ensure relevant data is stored in local storage
+    document.querySelectorAll('input[name="assignment"]').forEach(radio => {
+        radio.addEventListener("change", () => {
+        const assignmentId = radio.getAttribute("data-id");
+        const assignmentName = radio.getAttribute("data-name") || "—";
+        const prompt = radio.getAttribute("data-prompt") || "—";
+        const points = radio.getAttribute("data-points") || "—";
+        const mode = radio.getAttribute("data-mode") || "—";
+        const status = radio.value;
+
+        // Save selected assignment to localStorage
+        localStorage.setItem("selectedAssignment", JSON.stringify({
+            id: assignmentId,
+            name: assignmentName,
+            prompt,
+            points,
+            mode,
+            status
+        }));
+
+        // Populate modal content
+        document.getElementById("modalAssignmentName").textContent = assignmentName;
+        document.getElementById("modalAssignmentPrompt").textContent = prompt;
+        document.getElementById("modalAssignmentPoints").textContent = points;
+        document.getElementById("modalAssignmentMode").textContent = mode;
+
+         // Determine redirect target
+        let destinationPage = "task.html";
+        if (status === "submitted") {
+        destinationPage = "submission_report.html";
+        } else if (status === "graded") {
+        destinationPage = "graded_report.html";
+        }
+
+        // Update "Continue" link
+        const continueLink = document.getElementById("continueLink");
+        continueLink.href = `${destinationPage}?assignment=${assignmentId}`;
+
+        // Show modal
+        const assignmentModal = new bootstrap.Modal(document.getElementById("assignmentModal"));
+        assignmentModal.show();
+        });
+    });
+
   });
   
