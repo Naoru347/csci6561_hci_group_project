@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const nextBtn = document.getElementById("nextBtn");
+//   const nextBtn = document.getElementById("nextBtn");
   const modal = new bootstrap.Modal(document.getElementById("assignmentModal"));
   let selectedAssignment = null;
 
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("input[name='assignment']").forEach((radio) => {
       radio.addEventListener("change", function () {
           selectedAssignment = this;
-          nextBtn.disabled = false; // Enable Next button once selection is made
+        //   nextBtn.disabled = false; // Enable Next button once selection is made
       });
   });
 
