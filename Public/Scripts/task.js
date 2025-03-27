@@ -233,7 +233,23 @@ document.getElementById("btnSubmit").addEventListener("click", () => {
 
 // Submit is confirmed inside the confirmation modal
 document.getElementById("confirmSubmitBtn").addEventListener("click", () => {
-  console.log(textareaBuffer);
+  // Send the text of textareaBuffer to server
+  if (textareaBuffer && textareaBuffer.length > 1) {
+    console.log('TEXT TO SEND: ' + textareaBuffer);
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      body: textareaBuffer
+    };
+    fetch('http://localhost:3000/update', options)
+      .then(res => res.text())
+      .then(data => console.log('Success:', data))
+      .catch(error => console.log('Error: ', error));
+  } else {
+    console.log('NO TEXT TO SEND');
+  }
   
 
   exitFullscreen();
