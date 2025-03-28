@@ -256,6 +256,10 @@ document.getElementById("confirmSubmitBtn").addEventListener("click", () => {
   exitFullscreen();
 });
 
+// Back to landing page button logic
+document.getElementById("btnBackHome").addEventListener("click", () => {
+  window.location.href = "./landing.html";
+});
 // To prevent back button once this page is left.
 // If user leaves Full Screen w/o submitting, 
 // they are directed to Login where they can't use the back button to get back here.
