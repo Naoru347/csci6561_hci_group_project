@@ -1,0 +1,16 @@
+.accordion-button {
+    transition: background-color 0.3s ease;
+}
+
+.accordion-button:hover {
+    background-color: #e9ecef; /* Light gray for hover effect */
+}
+
+#fontSizeSlider {
+    width: 100% !important; /* Ensures the slider fills its container */
+}
+
+.w-33 {
+    width: 52%; /* Restricts the width to one-third of the screen */
+    min-width: 300px; /* Ensures a readable minimum width */
+}

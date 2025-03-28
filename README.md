@@ -119,6 +119,21 @@ Note for each section be prepared to:
 - Primary Owner: J. M. Paiz
 - Contributor: D. Stanchevici
 
+## Final List of Functionalities
+0. Data file structure/storage template (in progress - JMP)
+1. Functionning Login (in progress - DS)
+2. User-controlled body text size (completed - JMP; redesign - DS)
+3. Dynamic population of assignments and assignment information (in progress - JMP)
+4. Ability to view resources in-browser during composition (in progress - DS)
+5. Tabbed composition space (completed - DS)
+6. Submission report with ability for student comments (in progress - JMP)
+7. Grade report dynamically populates from save file (in progerss - JMP)
+8. Ability to save in-progress work (in progress - DS)
+9. Ability to load in-progress work (in progress - DS)
+10. WYSIWYG editor (completed - DS)
+11. Project documentation/management (in progress - JMP)
+
+
 ## References
 - Copenhagen Business School (2022). Scholarly composition. *Library of the Copenhagen Business School*. https://inframethodology.cbs.dk/?p=5065
 - Gessell, B. (2021).  Deliberate practice for academic writers: A three-step process to improve academic writing. *Writing is Thinking* https://writingisthinking.com/wp-content/uploads/2021/05/Deliberate-Practice-Part-3-Bryce-Gessell.pdf
@@ -127,3 +142,7 @@ Note for each section be prepared to:
 - Lidwell, W., Holden, K., & Butler, J. (2023). *Universal principles of design*. Rockport Publishers.
 - Nielsen, J. (1993). *Usability engineering*. Elsevier.
 - W3C. (2023). Web Content Accessibility Guidelines (WCAG) 2.2. Retrieved from https://www.w3.org/WAI/standards-guidelines/wcag/
+- W3Schools. (n.d.). Bootstrap 5 Tutorial. Retrieved from https://www.w3schools.com/bootstrap5/index.php
+- GeeksforGeeks. (n.d.). Bootstrap. Retrieved from https://www.geeksforgeeks.org/bootstrap/
+- Bootstrap. (n.d.). Introduction. Retrieved from https://getbootstrap.com/docs/5.2/getting-started/introduction/
+- TinyMCE. (n.d.). What is TinyMCE. *Tiny Docks*. Retrieved from: https://www.tiny.cloud/docs/tinymce/latest/introduction-to-tinymce/

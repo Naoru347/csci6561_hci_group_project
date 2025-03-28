@@ -1,0 +1,28 @@
+{
+  "name": "csci6561_hci_group_project",
+  "version": "1.0.0",
+  "description": "Our app, FOCUSWRITE, is a browser-based app that allows students to complete writing assignments with no or limited access to the Internet, local networks, or device-based resources. Teachers can use this app to assess students’ ability to write independently of generative AI tools. This app serves two groups of users, teachers and students. Our project focuses on only the students’ experience and interfaces.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naoru347/csci6561_hci_group_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naoru347/csci6561_hci_group_project/issues"
+  },
+  "homepage": "https://github.com/Naoru347/csci6561_hci_group_project#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
