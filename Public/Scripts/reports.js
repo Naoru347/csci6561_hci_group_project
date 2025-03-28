@@ -54,7 +54,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     accordion.innerHTML = "";
 
     (assignmentData.violations || []).forEach((v, idx) => {
+      // Check if a student comment exists and is not "NONE"
       const hasComment = v.studentComment && v.studentComment !== "NONE";
+      // Determine if assignment is graded (non-editable comments)
+      const isGraded = grading.status === "graded";
+      let commentSection = "";
+
+      if (isGraded) {
+        // For graded assignments, display static text.
+        commentSection = `
+          <div class="alert alert-info p-2">
+            <strong>Your Comment:</strong><br>
+            ${hasComment ? v.studentComment : "N/A"}
+          </div>
+        `;
+      } else {
+        // Not graded: if a comment exists, show it; otherwise, show the input form.
+        commentSection = hasComment ? `
+          <div class="alert alert-info p-2">
+            <strong>Your Comment:</strong><br>${v.studentComment}
+          </div>` : `
+          <label for="comment-${v.id}" class="form-label">Your Comment (optional):</label>
+          <textarea class="form-control mb-2" id="comment-${v.id}" rows="2" placeholder="Explain or clarify what happened..."></textarea>
+          <button class="btn btn-primary submit-comment" data-id="${v.id}">Submit Comment</button>
+        `;
+      }
+
       const html = `
         <div class="accordion-item">
           <h3 class="accordion-header" id="violation${idx}Header">
@@ -80,14 +105,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               <p>${v.description}</p>
               ${v.teacherNote ? `<div class="alert alert-secondary p-2"><strong>Teacher’s note:</strong><br>${v.teacherNote}</div>` : ""}
               <div id="comment-block-${v.id}">
-                ${hasComment ? `
-                  <div class="alert alert-info p-2">
-                    <strong>Your Comment:</strong><br>${v.studentComment}
-                  </div>` : `
-                  <label for="comment-${v.id}" class="form-label">Your Comment (optional):</label>
-                  <textarea class="form-control mb-2" id="comment-${v.id}" rows="2" placeholder="Explain or clarify what happened..."></textarea>
-                  <button class="btn btn-primary submit-comment" data-id="${v.id}">Submit Comment</button>
-                `}
+                ${commentSection}
               </div>
             </div>
           </div>
@@ -96,60 +114,62 @@ document.addEventListener("DOMContentLoaded", async () => {
       accordion.insertAdjacentHTML("beforeend", html);
     });
 
-    // Modal elements for confirmation
-    const confirmModalEl = document.getElementById("confirmModal");
-    const confirmModal = new bootstrap.Modal(confirmModalEl);
-    const confirmCommentTextEl = document.getElementById("confirmCommentText");
-    let pendingPayload = null;
+    // Only attach comment submission logic if assignment is not graded
+    if (grading.status !== "graded") {
+      // Modal elements for confirmation
+      const confirmModalEl = document.getElementById("confirmModal");
+      const confirmModal = new bootstrap.Modal(confirmModalEl);
+      const confirmCommentTextEl = document.getElementById("confirmCommentText");
+      let pendingPayload = null;
 
-    // Attach event listener for comment submission buttons to trigger modal
-    document.querySelectorAll("button.submit-comment").forEach((button) => {
-      button.addEventListener("click", () => {
-        const violationId = button.dataset.id;
-        const textarea = document.getElementById(`comment-${violationId}`);
-        const comment = textarea.value.trim();
+      // Attach event listener for comment submission buttons to trigger modal
+      document.querySelectorAll("button.submit-comment").forEach((button) => {
+        button.addEventListener("click", () => {
+          const violationId = button.dataset.id;
+          const textarea = document.getElementById(`comment-${violationId}`);
+          const comment = textarea.value.trim();
 
-        if (!comment) {
-          alert("Please enter a comment before submitting.");
-          return;
-        }
+          if (!comment) {
+            alert("Please enter a comment before submitting.");
+            return;
+          }
 
-        pendingPayload = {
-          email: user.email,
-          assignmentId: assignment.id,
-          violationId,
-          studentComment: comment,
-        };
+          pendingPayload = {
+            email: user.email,
+            assignmentId: assignment.id,
+            violationId,
+            studentComment: comment,
+          };
 
-        confirmCommentTextEl.textContent = comment;
-        confirmModal.show();
-      });
-    });
-
-    // Handle confirm button in modal to actually submit the comment
-    document.getElementById("confirmButton").addEventListener("click", async () => {
-      if (!pendingPayload) return;
-      try {
-        const response = await fetch("/api/violation-comment", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(pendingPayload),
+          confirmCommentTextEl.textContent = comment;
+          confirmModal.show();
         });
+      });
 
-        if (response.ok) {
-          const commentBlock = document.getElementById(`comment-block-${pendingPayload.violationId}`);
-          commentBlock.innerHTML = `<div class="alert alert-info p-2"><strong>Your Comment:</strong><br>${pendingPayload.studentComment}</div>`;
-          confirmModal.hide();
-          pendingPayload = null;
-        } else {
-          throw new Error("Failed to save comment.");
+      // Handle confirm button in modal to actually submit the comment
+      document.getElementById("confirmButton").addEventListener("click", async () => {
+        if (!pendingPayload) return;
+        try {
+          const response = await fetch("/api/violation-comment", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(pendingPayload),
+          });
+
+          if (response.ok) {
+            const commentBlock = document.getElementById(`comment-block-${pendingPayload.violationId}`);
+            commentBlock.innerHTML = `<div class="alert alert-info p-2"><strong>Your Comment:</strong><br>${pendingPayload.studentComment}</div>`;
+            confirmModal.hide();
+            pendingPayload = null;
+          } else {
+            throw new Error("Failed to save comment.");
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Error saving comment.");
         }
-      } catch (err) {
-        console.error(err);
-        alert("Error saving comment.");
-      }
-    });
-  
+      });
+    }
   } catch (err) {
     console.error("Error loading report data:", err);
     alert("Unable to load report details.");

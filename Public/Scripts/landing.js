@@ -97,11 +97,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
          // Determine redirect target
         let destinationPage = "task.html";
-        if (status === "submitted") {
+        if (status === "submitted" || status === "in-review" || status === "flagged" || status === "graded") {
         destinationPage = "submission_report.html";
-        } else if (status === "graded") {
-        destinationPage = "graded_report.html";
-        }
+        } 
 
         // Update "Continue" link
         const continueLink = document.getElementById("continueLink");
