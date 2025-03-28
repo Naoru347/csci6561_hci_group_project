@@ -29,50 +29,25 @@
     </header>
 
     <main class="container my-5">
-      <!-- Centered Accordion with Limited Width -->
-      <div class="d-flex justify-content-center mt-4">
-        <div class="accordion w-33" id="fontSizeAccordion">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFontSize">
-                    <button 
-                        class="accordion-button collapsed" 
-                        type="button" 
-                        data-bs-toggle="collapse" 
-                        data-bs-target="#collapseFontSize" 
-                        aria-expanded="false" 
-                        aria-controls="collapseFontSize">
-                        <h4>Adjust Body Font Size</h4>
-                    </button>
-                </h2>
-                <div 
-                    id="collapseFontSize" 
-                    class="accordion-collapse collapse" 
-                    aria-labelledby="headingFontSize" 
-                    data-bs-parent="#fontSizeAccordion">
-                    <div class="accordion-body text-center">
-                        <div class="row justify-content-center align-items-center">
-                            <div class="col-auto w-5 text-end">
-                                <label for="fontSizeSlider" class="form-label">Font Size:</label>
-                            </div>
-                            <div class="col-auto w-75">
-                                <input 
-                                    type="range" 
-                                    id="fontSizeSlider" 
-                                    min="12" 
-                                    max="24" 
-                                    value="16" 
-                                    class="form-range"
-                                />
-                            </div>
-                            <div class="col-auto">
-                                <span id="fontSizeValue" class="ms-2">16px</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Slider for font size adjustment -->
+    <div class="row justify-content-center align-items-center mt-3">
+      <div class="col-auto w-25 text-end">
+          <label for="fontSizeSlider" class="form-label">Font Size:</label>
       </div>
+      <div class="col-auto w-25">
+          <input 
+              type="range" 
+              id="fontSizeSlider" 
+              min="12" 
+              max="24" 
+              value="16" 
+              class="form-range"
+          />
+      </div>
+      <div class="col-auto w-25">
+          <span id="fontSizeValue" class="ms-2">16px</span>
+      </div>
+    </div>
 
     <!-- Main Container -->
     <div class="container my-5">
