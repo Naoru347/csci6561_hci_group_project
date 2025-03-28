@@ -4,12 +4,45 @@ const pFullscreenWarning = document.getElementById("fullscreenWarning");
 const confirmSubmitModal = new bootstrap.Modal(document.getElementById("confirmSubmitModal"));
 const textareaInput = document.getElementById("textareaInput");
 const logoutButton = document.getElementById("logoutButton");
+const userNameDisplay = document.getElementById("userNameDisplay");
+const assignmentNameInConfirmationBlock = document.getElementById("assignmentNameInConfirmationBlock");
+const assignmentNameInEditor = document.getElementById("assignmentNameInEditor");
 
-// Save the typed text in this buffer.
-// Upload it periodically to the json storage file; I guess there could be 
-// an unsubmitted field.
-// On submit, uplod to the same file but in a submitted areaa.
-let textareaBuffer;
+// These are for collecting info to send to database.json
+let textareaBuffer = 'None';
+let user;
+let assignment;
+let violoations = [];
+let pendingPayload = {};
+
+let confirmSubmitClicked = false; // This is necessary to determine if leaving fullscreen is a violation
+
+// Get user and assingment info from localStorage and their names to page
+document.addEventListener("DOMContentLoaded", async () => { 
+
+  // User was stored in localStorage on login.js
+  const storedUser = localStorage.getItem("loggedInUser");
+  if (!storedUser) console.log("No user logged in.");
+  try {
+    user = JSON.parse(storedUser);
+    userNameDisplay.innerText = `Hello, ${user.fullName}!`;
+  } catch (err) {
+    console.error("Failed to parse loggedInUser:", err);
+    return alert("Session data corrupted.");
+  }
+
+  //Assignment was stored localStorage on landing.js
+  const storedAssignment = localStorage.getItem("selectedAssignment");
+  if (!storedAssignment) console.log("No assignment selected logged in.");
+  try {
+    assignment = JSON.parse(storedAssignment);
+    console.log(assignment);
+    assignmentNameInConfirmationBlock.innerText = assignment.name;
+  } catch (err) {
+    console.error("Failed to parse storedAssigment:", err);
+    return alert("Session data corrupted.");
+  }  
+});
 
 // User confirms that they want to start assignment
 document.getElementById("btnBegin").addEventListener("click", () => {
@@ -18,7 +51,7 @@ document.getElementById("btnBegin").addEventListener("click", () => {
   logoutButton.classList.add("d-none");
   divTextAndLinksBlock.classList.remove("d-none");
   pFullscreenWarning.classList.remove("d-none");
-
+  userNameDisplay.classList.add("d-none");
 
   // Switch to full screen.
   let elem = document.documentElement; // This selects the entire HTML document              
@@ -30,7 +63,10 @@ document.getElementById("btnBegin").addEventListener("click", () => {
       elem.webkitRequestFullscreen();
   } else if (elem.msRequestFullscreen) { // IE/Edge
       elem.msRequestFullscreen();
-  }
+  } 
+
+  // Add assignment name to the Editor's head
+  assignmentNameInEditor.innerText = assignment.name;
 
   // Add link to Assignment Prompt, depending on the name of the file with the prompt.
   // This name should come from preceding page.
@@ -194,25 +230,38 @@ document.addEventListener("webkitfullscreenchange", onFullscreenChange);
 document.addEventListener("mozfullscreenchange", onFullscreenChange);
 document.addEventListener("MSFullscreenChange", onFullscreenChange);
 
-function onFullscreenChange(event) {
+async function onFullscreenChange(event) {
     console.log("Fullscreen change event fired");
     if (document.fullscreenElement) {
         console.log("Entered fullscreen mode");
     } else {
         console.log("Exited fullscreen mode");
-
-        // Commented out for development.
-        //window.open("./login.html", "_self");
+        console.log("confirmSubmitClicked " + confirmSubmitClicked )
+        if ( !confirmSubmitClicked ) {
+          const violation = {
+            id: "violation3",
+            type: "Fullscreen left without submission",
+            timestamp: new Date().toISOString(),
+            description: "An attempt was made to leave full screen without submission.",
+            teacherNote: "Please remember that leaving full screen without clicking Submit is not allowed.",
+            studentComment: "NONE"
+          };
+          violoations.push(violation);
+        }
+        await saveToLocalStorage();
+        await sendToDb();
+        // Submit current text with a violoation and then navigate to login
+        window.location.href = "index.html";
     }
 }
 
-// Save type text automatically via the global editor saved in tinymce.init (in the hmtl file)
+// Save typed text automatically via the global editor saved in tinymce.init (in the hmtl file)
 // The editorInitialized event is created in tiny.init and dispatched to document.
 document.addEventListener('editorInitialized', function () {
   // Ensure the editor is initialized
   if (window.myEditor) {
       console.log('Editor initialized');
-      // Add an event listener for the 'change' event
+      // Add an event listener for the 'input' event
       window.myEditor.on('input', function () {
           // Log the current content of the editor to the console
           //console.log(window.myEditor.getContent());
@@ -221,10 +270,15 @@ document.addEventListener('editorInitialized', function () {
           // getContent() w/o parameters saves the text and the html tags
           // To save text only, use getContent({format: "text"})
           textareaBuffer = window.myEditor.getContent();
+
       });
   } else {
       console.error('Editor not initialized');
   }
+});
+
+document.getElementById("continueLink").addEventListener("click", () => {
+  confirmSubmitModal.hide();
 });
 
 // Submit button gets confirmation modal
@@ -233,28 +287,57 @@ document.getElementById("btnSubmit").addEventListener("click", () => {
 });
 
 // Submit is confirmed inside the confirmation modal
-document.getElementById("confirmSubmitBtn").addEventListener("click", () => {
-  // Send the text of textareaBuffer to server
-  if (textareaBuffer && textareaBuffer.length > 1) {
-    console.log('TEXT TO SEND: ' + textareaBuffer);
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain'
-      },
-      body: textareaBuffer
-    };
-    fetch('http://localhost:3000/update', options)
-      .then(res => res.text())
-      .then(data => console.log('Success:', data))
-      .catch(error => console.log('Error: ', error));
-  } else {
-    console.log('NO TEXT TO SEND');
-  }
-  
-
+document.getElementById("confirmSubmitBtn").addEventListener("click", async () => {
+  confirmSubmitClicked = true; // Make sure exiting fullscreen with submit doesn't generate a violation
   exitFullscreen();
+
+  await saveToLocalStorage();
+  await sendToDb();
+
+  window.location.href = "submission_report.html";
 });
+
+async function saveToLocalStorage() {
+  localStorage.setItem("selectedAssignment", JSON.stringify({
+    id: assignment.id,
+    name: assignment.name,
+    prompt: assignment.prompt,
+    points: assignment.points,
+    mode: "Unlocked Composition",
+    status: "submitted"
+  }));
+};
+
+async function sendToDb() {
+  // Send the text of textareaBuffer to server
+  pendingPayload = {
+    email: user.email,
+    submitted: confirmSubmitClicked,
+    assignmentId: assignment.id,
+    submittedAt: new Date().toISOString(),
+    points: assignment.points,
+    finalText: textareaBuffer,
+    violoations: violoations
+  }
+
+  if (!pendingPayload) return;
+  try {
+    const response = await fetch("/api/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(pendingPayload),
+    });
+
+    if (response.ok) {
+      console.log('Submitted to database.json')
+    } else {
+      throw new Error("Failed to save comment.");
+    }
+  } catch (err) {
+    console.error(err);
+    //alert("Error submitting assignment.");
+  }
+}
 
 // Back to landing page button logic
 document.getElementById("btnBackHome").addEventListener("click", () => {
@@ -281,13 +364,31 @@ function exitFullscreen() {
   } 
 }
 
+
 // List to whether the mouse is clicked inside or outside the window.
 // Note: When inside the tinymce editor, the mouse is registered as being outside the window
 window.addEventListener('blur', function() {
+
   console.log('Window lost focus');
+  const violation = {
+    id: "violation1",
+    type: "Window focus lost",
+    timestamp: new Date().toISOString(),
+    description: "The system detected that you clicked outside of the locked browser window.",
+    teacherNote: "Please remember that clicking outside the lockdown area is not allowed.",
+    studentComment: "NONE"
+  };
+  violoations.push(violation);
+  console.log(violoations);
+
 });
 
 window.addEventListener('focus', function() {
   console.log('Window gained focus');
+  textAreaClicked = false;
 });
+
+
+
+
 

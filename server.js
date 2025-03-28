@@ -51,3 +51,42 @@ app.post("/api/violation-comment", (req, res) => {
   });
 });
 
+// POST Submission
+app.post("/api/submit", (req, res) => {
+  const { email, assignmentId, submittedAt, finalText, submitted, violoations, points } = req.body;
+  console.log( `Received: ${email}, ${assignmentId}, ${submittedAt}, ${finalText}, ${violoations}`)
+
+  fs.readFile("./Public/Data/database.json", "utf8", (err, rawData) => {
+    if (err) {
+      return res.status(500).send('Error reading file');
+    }
+
+    const db = JSON.parse(rawData);
+    const user = db.users[email];
+    if (!user) return res.status(404).send("User not found");
+    const assignments = user.assignments;
+    if (!assignments) return res.status(404).send("Assignments not found");
+    const assignment = assignments[assignmentId];
+    if (!assignment) return res.status(404).send("Assignment not found");
+    
+    assignment.status = 'submitted';
+    assignment.submitted = submitted;
+    assignment.submittedAt = submittedAt;
+    assignment.finalText = finalText;
+    assignment.grading = {
+      status: "in-review",
+      score: null, 
+      maxPoints: points,
+      finalGrade: null,
+      teacherFeedback: null
+    };
+    assignment.violations = violoations;
+
+    fs.writeFile("./Public/Data/database.json", JSON.stringify(db, null, 2), err => {
+      if (err) return res.status(500).send("Failed to update");
+      res.status(200).send("Status saved");
+    });
+
+  });
+});
+
