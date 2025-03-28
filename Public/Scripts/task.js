@@ -3,6 +3,7 @@ const divTextAndLinksBlock = document.getElementById("divTextAndLinksBlock");
 const pFullscreenWarning = document.getElementById("fullscreenWarning");
 const confirmSubmitModal = new bootstrap.Modal(document.getElementById("confirmSubmitModal"));
 const textareaInput = document.getElementById("textareaInput");
+const logoutButton = document.getElementById("logoutButton");
 
 // Save the typed text in this buffer.
 // Upload it periodically to the json storage file; I guess there could be 
@@ -14,7 +15,7 @@ let textareaBuffer;
 document.getElementById("btnBegin").addEventListener("click", () => {
   // Change display (visibility) to hide confirmation and display textbox and links.
   divConfirmationBlock.classList.add("d-none");
-  btnLogout.classList.add("d-none");
+  logoutButton.classList.add("d-none");
   divTextAndLinksBlock.classList.remove("d-none");
   pFullscreenWarning.classList.remove("d-none");
 
@@ -233,7 +234,23 @@ document.getElementById("btnSubmit").addEventListener("click", () => {
 
 // Submit is confirmed inside the confirmation modal
 document.getElementById("confirmSubmitBtn").addEventListener("click", () => {
-  console.log(textareaBuffer);
+  // Send the text of textareaBuffer to server
+  if (textareaBuffer && textareaBuffer.length > 1) {
+    console.log('TEXT TO SEND: ' + textareaBuffer);
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      body: textareaBuffer
+    };
+    fetch('http://localhost:3000/update', options)
+      .then(res => res.text())
+      .then(data => console.log('Success:', data))
+      .catch(error => console.log('Error: ', error));
+  } else {
+    console.log('NO TEXT TO SEND');
+  }
   
 
   exitFullscreen();
