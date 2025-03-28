@@ -13,7 +13,7 @@
   <body>
     <header>
       <h4 id="fullscreenWarning" class="text-danger text-center mt-3 ms-3 d-none">
-        WARNING: If you click ESC or try to leave fullscreen mode in any other way without clicking Submit, your current draft will be submitted automatically and you won't be able to resume the assignment.
+        WARNING: If you click ESC or try to leave fullscreen mode in any other way without clicking Submit, <br> your current draft will be submitted automatically and you won't be able to resume the assignment.
       </h4>
       <div class="p-5 bg-primary text-white text-center">
         <h1>FocusWrite</h1>
@@ -21,6 +21,7 @@
           Complete your assignment here.
         </p>
         <!-- Logout Button (absolute top-right) -->
+         <p id="userNameDisplay" class="position-absolute top-0 start-0 m-3">User's name</p>
         <a href="#" id="logoutButton" class="btn btn-danger position-absolute top-0 end-0 m-3">
           Logout
       </a>
@@ -50,10 +51,10 @@
     <!-- Prompt to Confirm Beginning of Assignment -->
      <div id="divConfirmationBlock" class="container mt-3">
       <div class="row">
-        <div class="col col-6 offset-3">
+        <div class="col col-7 offset-3">
           <div class="card mb-4">
             <div class="card-header">
-              <h2 class="card-title m-0">Ready to Begin the Assignment?</h2>
+              <h2 class="card-title m-0">Ready to begin <span id="assignmentNameInConfirmationBlock">Assignment</span>?</h2>
             </div>
             <div class="card-body">
               <!-- Box for instructions -->
@@ -81,7 +82,7 @@
             <div class="col">
               <div class="card">
                 <div class="card-header">
-                  <h2 class="card-title m-0">Assignment Title</h2>
+                  <h2 id="assignmentNameInEditor" class="card-title m-0">Assignment Title</h2>
                 </div>
                 <div class="card-body bg-light">
                   <form method="post">
@@ -202,6 +203,19 @@
           window.myEditor = editor;
           // Dispatch a custom event when the editor is initialized
           document.dispatchEvent(new Event('editorInitialized'));
+
+          // Add click event listener
+          editor.on('click', function () {
+              console.log('Editor was clicked');
+
+              // Dispatch a custom event
+              const event = new CustomEvent('editorClicked', {
+                  detail: { message: 'Editor was clicked' }
+              });
+              document.dispatchEvent(event);
+          });
+
+
         },
         menubar: false,
         plugins: 'advlist autolink lists link charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
