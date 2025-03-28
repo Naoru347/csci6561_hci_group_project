@@ -102,6 +102,29 @@
     </div>
   </main>
 
+    <!-- Confirmation Modal for Comment Submission -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmModalLabel">Confirm Comment Submission</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-danger fw-bold">
+              Warning: Once you submit your comment, you will not be able to modify, delete, or add further comments.
+            </p>
+            <p><strong>Your Comment:</strong></p>
+            <p id="confirmCommentText"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="backButton" data-bs-dismiss="modal">Back</button>
+            <button type="button" class="btn btn-primary" id="confirmButton">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>  
+
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../Scripts/font_slider.js"></script>
