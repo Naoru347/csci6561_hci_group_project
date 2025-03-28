@@ -3,6 +3,7 @@ const divTextAndLinksBlock = document.getElementById("divTextAndLinksBlock");
 const pFullscreenWarning = document.getElementById("fullscreenWarning");
 const confirmSubmitModal = new bootstrap.Modal(document.getElementById("confirmSubmitModal"));
 const textareaInput = document.getElementById("textareaInput");
+const logoutButton = document.getElementById("logoutButton");
 
 // Save the typed text in this buffer.
 // Upload it periodically to the json storage file; I guess there could be 
@@ -14,7 +15,7 @@ let textareaBuffer;
 document.getElementById("btnBegin").addEventListener("click", () => {
   // Change display (visibility) to hide confirmation and display textbox and links.
   divConfirmationBlock.classList.add("d-none");
-  btnLogout.classList.add("d-none");
+  logoutButton.classList.add("d-none");
   divTextAndLinksBlock.classList.remove("d-none");
   pFullscreenWarning.classList.remove("d-none");
 

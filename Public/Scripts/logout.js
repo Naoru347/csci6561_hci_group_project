@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const logoutButton = document.getElementById('logoutButton');
+    const logoutButton = document.getElementById('logoutButton'); 
 
     logoutButton.addEventListener('click', function(event) {
         // Prevent the default link behavior (if any)
