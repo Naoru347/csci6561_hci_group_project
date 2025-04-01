@@ -12,7 +12,7 @@ const assignmentNameInEditor = document.getElementById("assignmentNameInEditor")
 let textareaBuffer = 'None';
 let user;
 let assignment;
-let violoations = [];
+let violations = [];
 let pendingPayload = {};
 
 let confirmSubmitClicked = false; // This is necessary to determine if leaving fullscreen is a violation
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return alert("Session data corrupted.");
   }
 
-  //Assignment was stored localStorage on landing.js
+  //Assignment was stored to localStorage on landing.js
   const storedAssignment = localStorage.getItem("selectedAssignment");
   if (!storedAssignment) console.log("No assignment selected logged in.");
   try {
@@ -246,12 +246,13 @@ async function onFullscreenChange(event) {
             teacherNote: "Please remember that leaving full screen without clicking Submit is not allowed.",
             studentComment: "NONE"
           };
-          violoations.push(violation);
+          violations.push(violation);
+          await saveToLocalStorage();
+          await sendToDb();
+          alert("Assignment submitted with violations");
+          // Submit current text with a violoation and then navigate to landing.html
+          window.location.href = "./landing.html";
         }
-        await saveToLocalStorage();
-        await sendToDb();
-        // Submit current text with a violoation and then navigate to login
-        window.location.href = "index.html";
     }
 }
 
@@ -289,13 +290,14 @@ document.getElementById("btnSubmit").addEventListener("click", () => {
 // Submit is confirmed inside the confirmation modal
 document.getElementById("confirmSubmitBtn").addEventListener("click", async () => {
   confirmSubmitClicked = true; // Make sure exiting fullscreen with submit doesn't generate a violation
-  exitFullscreen();
-
   await saveToLocalStorage();
   await sendToDb();
-
-  window.location.href = "submission_report.html";
+  //exitFullscreen(); // navigating to another page switches out of fullscreen
+  alert("Assignment submitted successfully");
+  window.location.href = "./landing.html";
+  
 });
+
 
 async function saveToLocalStorage() {
   localStorage.setItem("selectedAssignment", JSON.stringify({
@@ -317,7 +319,7 @@ async function sendToDb() {
     submittedAt: new Date().toISOString(),
     points: assignment.points,
     finalText: textareaBuffer,
-    violoations: violoations
+    violations: violations
   }
 
   if (!pendingPayload) return;
@@ -378,8 +380,8 @@ window.addEventListener('blur', function() {
     teacherNote: "Please remember that clicking outside the lockdown area is not allowed.",
     studentComment: "NONE"
   };
-  violoations.push(violation);
-  console.log(violoations);
+  violations.push(violation);
+  console.log(violations);
 
 });
 
