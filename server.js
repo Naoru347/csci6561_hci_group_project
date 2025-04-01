@@ -53,8 +53,8 @@ app.post("/api/violation-comment", (req, res) => {
 
 // POST Submission
 app.post("/api/submit", (req, res) => {
-  const { email, assignmentId, submittedAt, finalText, submitted, violoations, points } = req.body;
-  console.log( `Received: ${email}, ${assignmentId}, ${submittedAt}, ${finalText}, ${violoations}`)
+  const { email, assignmentId, submittedAt, finalText, submitted, violations, points } = req.body;
+  console.log( `Received: ${email}, ${assignmentId}, ${submittedAt}, ${finalText}, ${violations}`)
 
   fs.readFile("./Public/Data/database.json", "utf8", (err, rawData) => {
     if (err) {
@@ -80,7 +80,7 @@ app.post("/api/submit", (req, res) => {
       finalGrade: null,
       teacherFeedback: null
     };
-    assignment.violations = violoations;
+    assignment.violations = violations;
 
     fs.writeFile("./Public/Data/database.json", JSON.stringify(db, null, 2), err => {
       if (err) return res.status(500).send("Failed to update");

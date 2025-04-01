@@ -12,7 +12,7 @@ const assignmentNameInEditor = document.getElementById("assignmentNameInEditor")
 let textareaBuffer = 'None';
 let user;
 let assignment;
-let violoations = [];
+let violations = [];
 let pendingPayload = {};
 
 let confirmSubmitClicked = false; // This is necessary to determine if leaving fullscreen is a violation
@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     return alert("Session data corrupted.");
   }
 
-  //Assignment was stored localStorage on landing.js
+  //Assignment was stored to localStorage on landing.js
   const storedAssignment = localStorage.getItem("selectedAssignment");
   if (!storedAssignment) console.log("No assignment selected logged in.");
   try {
     assignment = JSON.parse(storedAssignment);
-    console.log(assignment);
+    //console.log(assignment);
     assignmentNameInConfirmationBlock.innerText = assignment.name;
   } catch (err) {
     console.error("Failed to parse storedAssigment:", err);
@@ -108,7 +108,7 @@ function createLinks(resources, elementID) {
 function addListenersToLinks() {
   const resourceLinks = document.querySelectorAll('.resource-link');
   resourceLinks.forEach(link => {
-    console.log(link.id);
+    //console.log(link.id);
     link.addEventListener('click', () => {
       let modalBody;
       let modalId = "modalPrompt" + link.id;
@@ -157,7 +157,7 @@ function getModalHTML(modalId, linkId, modalBody) {
 
 
 function getDictionaryModalBody() {
-  console.log("Entered getDcMdl")
+  //console.log("Entered getDcMdl")
   const modalBody = 
   `
     <input type="text" id="input" placeholder="Type a word">
@@ -242,16 +242,17 @@ async function onFullscreenChange(event) {
             id: "violation3",
             type: "Fullscreen left without submission",
             timestamp: new Date().toISOString(),
-            description: "An attempt was made to leave full screen without submission.",
-            teacherNote: "Please remember that leaving full screen without clicking Submit is not allowed.",
+            description: "Fullscreen mode was left without submission.",
+            teacherNote: "Please remember that leaving fullscreen mode without clicking Submit is not allowed.",
             studentComment: "NONE"
           };
-          violoations.push(violation);
+          violations.push(violation);
+          await saveToLocalStorage();
+          await sendToDb();
+          alert("Assignment saved without submission");
+          // Submit current text with a violoation and then navigate to landing.html
+          window.location.href = "./landing.html";
         }
-        await saveToLocalStorage();
-        await sendToDb();
-        // Submit current text with a violoation and then navigate to login
-        window.location.href = "index.html";
     }
 }
 
@@ -277,25 +278,26 @@ document.addEventListener('editorInitialized', function () {
   }
 });
 
-document.getElementById("continueLink").addEventListener("click", () => {
-  confirmSubmitModal.hide();
-});
-
 // Submit button gets confirmation modal
 document.getElementById("btnSubmit").addEventListener("click", () => {
   confirmSubmitModal.show();
 });
 
+document.getElementById("continueLink").addEventListener("click", () => {
+  confirmSubmitModal.hide();
+});
+
 // Submit is confirmed inside the confirmation modal
 document.getElementById("confirmSubmitBtn").addEventListener("click", async () => {
   confirmSubmitClicked = true; // Make sure exiting fullscreen with submit doesn't generate a violation
-  exitFullscreen();
-
   await saveToLocalStorage();
   await sendToDb();
-
-  window.location.href = "submission_report.html";
+  //exitFullscreen(); // navigating to another page switches out of fullscreen
+  alert("Assignment submitted");
+  window.location.href = "./landing.html";
+  
 });
+
 
 async function saveToLocalStorage() {
   localStorage.setItem("selectedAssignment", JSON.stringify({
@@ -317,7 +319,7 @@ async function sendToDb() {
     submittedAt: new Date().toISOString(),
     points: assignment.points,
     finalText: textareaBuffer,
-    violoations: violoations
+    violations: violations
   }
 
   if (!pendingPayload) return;
@@ -365,27 +367,53 @@ function exitFullscreen() {
 }
 
 
+// Listen to whether TinyMCE editor has bee clicked or left.
+// If TinyMCE editor is clicked, window loses focus, but the user has not not commited a violation.
+// NOTE: These custom events are dispatched from the TinyMCE script on task.html.
+let insideEditor = false;
+document.addEventListener('clickInsideEditor', function (){
+  insideEditor = true;
+  console.log("insideEditor: " + insideEditor);
+})
+
+document.addEventListener('clickOutsideEditor', function (){
+  insideEditor = false;
+  console.log("insideEditor: " + insideEditor);
+})
+
+// Function to create a delay
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 // List to whether the mouse is clicked inside or outside the window.
 // Note: When inside the tinymce editor, the mouse is registered as being outside the window
-window.addEventListener('blur', function() {
-
+window.addEventListener('blur', async function() {
   console.log('Window lost focus');
-  const violation = {
-    id: "violation1",
-    type: "Window focus lost",
-    timestamp: new Date().toISOString(),
-    description: "The system detected that you clicked outside of the locked browser window.",
-    teacherNote: "Please remember that clicking outside the lockdown area is not allowed.",
-    studentComment: "NONE"
-  };
-  violoations.push(violation);
-  console.log(violoations);
+
+  await delay(500);
+
+  console.log("As windwon lost focus and after delay, insideEditor = " + insideEditor);
+
+  if (!insideEditor) {
+    const violation = {
+      id: "violation1",
+      type: "Window focus lost",
+      timestamp: new Date().toISOString(),
+      description: "The system detected that you clicked outside of the locked browser window.",
+      teacherNote: "Please remember that clicking outside the lockdown area is not allowed.",
+      studentComment: "NONE"
+    };
+    violations.push(violation);
+    console.log(violations);
+  }  
 
 });
 
 window.addEventListener('focus', function() {
   console.log('Window gained focus');
-  textAreaClicked = false;
+  insideEditor = false;
+  console.log("insideEditor: " + insideEditor);
 });
 
 

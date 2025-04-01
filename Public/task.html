@@ -12,7 +12,7 @@
   </head>
   <body>
     <header>
-      <h4 id="fullscreenWarning" class="text-danger text-center mt-3 ms-3 d-none">
+      <h4 id="fullscreenWarning" class="text-danger text-center mt-3 ms-3 p-5 d-none">
         WARNING: If you click ESC or try to leave fullscreen mode in any other way without clicking Submit, <br> your current draft will be submitted automatically and you won't be able to resume the assignment.
       </h4>
       <div class="p-5 bg-primary text-white text-center">
@@ -204,16 +204,28 @@
           // Dispatch a custom event when the editor is initialized
           document.dispatchEvent(new Event('editorInitialized'));
 
-          // Add click event listener
+          // Dispatch click event listener
           editor.on('click', function () {
-              console.log('Editor was clicked');
+              //console.log('Editor was clicked');
 
               // Dispatch a custom event
-              const event = new CustomEvent('editorClicked', {
+              const event = new CustomEvent('clickInsideEditor', {
                   detail: { message: 'Editor was clicked' }
               });
               document.dispatchEvent(event);
           });
+
+          // Dispatch blur event listener
+          editor.on('blur', function () {
+              //console.log('Editor was left');
+
+              // Dispatch a custom event
+              const event = new CustomEvent('clickOutsideEditor', {
+                  detail: { message: 'Editor was left' }
+              });
+              document.dispatchEvent(event);
+          });
+
 
 
         },
