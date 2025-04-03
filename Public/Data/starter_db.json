@@ -1,0 +1,205 @@
+{
+    "users": {
+      "testuser@example.com": {
+        "email": "testuser@example.com",
+        "password": "hashedpassword123",
+        "role": "student",
+        "fullName": "Test User",
+        "createdAt": "2025-03-14T12:00:00Z",
+        "lastLogin": "2025-03-14T12:00:00Z",
+        "assignments": {
+          "assignment1": {
+            "status": "graded",
+            "submitted": true,
+            "submittedAt": "2025-03-12T10:45:00Z",
+            "finalText": "Final version of the submission...",
+            "grading": {
+              "status": "graded",
+              "score": 134.25,
+              "maxPoints": 150,
+              "finalGrade": "B+",
+              "teacherFeedback": "Great work on structuring your argument! Be careful with APA citations."
+            },
+            "violations": [
+              {
+                "id": "violation1",
+                "type": "Window focus lost",
+                "timestamp": "2025-03-12T14:05:30Z",
+                "description": "The system detected that you clicked outside of the locked browser window.",
+                "studentComment": ""
+              },
+              {
+                "id": "violation2",
+                "type": "Attempted to open new tab",
+                "timestamp": "2025-03-12T14:10:11Z",
+                "description": "An attempt was made to open a new browser tab during the locked session.",
+                "teacherNote": "Please remember that opening external tabs or windows is not allowed during this exam.",
+                "studentComment": "I didn't do nothing, bro! No cap, on god. You're doing too much, fr fr."
+              }
+            ]
+          },
+          "assignment2": {
+            "status": "submitted",
+            "submitted": true,
+            "submittedAt": "2025-03-18T11:30:00Z",
+            "finalText": "A detailed response to the essay prompt with proper citations...",
+            "grading": {
+              "status": "in-review",
+              "score": null,
+              "maxPoints": 100,
+              "finalGrade": null,
+              "teacherFeedback": null
+            },
+            "violations": [
+              {
+                "id": "violation1",
+                "type": "Window focus lost",
+                "timestamp": "2025-03-12T14:05:30Z",
+                "description": "The system detected that you clicked outside of the locked browser window.",
+                "studentComment": ""
+              },
+              {
+                "id": "violation2",
+                "type": "Attempted to open new tab",
+                "timestamp": "2025-03-12T14:10:11Z",
+                "description": "An attempt was made to open a new browser tab during the locked session.",
+                "teacherNote": "Please remember that opening external tabs or windows is not allowed during this exam.",
+                "studentComment": "I didn't do nothing, bro! No cap, on god. You're doing too much, fr fr."
+              }
+            ]
+          },
+          "assignment3": {
+            "status": "graded",
+            "submitted": true,
+            "submittedAt": "2025-03-20T09:15:00Z",
+            "finalText": "A detailed analysis of the assigned literary work...",
+            "grading": {
+              "status": "graded",
+              "score": 200,
+              "maxPoints": 230,
+              "finalGrade": "B+",
+              "teacherFeedback": "Your literary analysis presents a thoughtful and well-structured interpretation of the text, particularly in how you connect the protagonist’s internal conflict with the broader themes of isolation and identity. I was especially impressed by your close reading of key passages and your attention to literary devices such as symbolism and foreshadowing. However, there are moments where your argument would benefit from clearer topic sentences and more consistent transitions between paragraphs. Be sure to also support your interpretations with textual evidence throughout, even in sections where your insights seem intuitive. Overall, this is a strong and promising paper with room for refinement in organization and depth of analysis."
+            },
+            "violations": [
+              {
+                "id": "violation1",
+                "type": "Window focus lost",
+                "timestamp": "2025-03-12T14:05:30Z",
+                "description": "The system detected that you clicked outside of the locked browser window.",
+                "teacherNote": "This kind of activity is flagged for security. Please stay within the test environment at all times.",
+                "studentComment": "I accidentally clicked the edge of my browser trying to scroll down. It wasn’t intentional, and I came right back to the test."
+              },
+              {
+                "id": "violation2",
+                "type": "Attempted to open new tab",
+                "timestamp": "2025-03-12T14:10:11Z",
+                "description": "An attempt was made to open a new browser tab during the locked session.",
+                "teacherNote": "Please remember that opening new tabs during a protected session is considered a violation of exam policy.",
+                "studentComment": "I was trying to check the time and forgot the exam window was locked. I didn’t mean to break any rules."
+              },
+              {
+                "id": "violation3",
+                "type": "Clipboard activity detected",
+                "timestamp": "2025-03-12T14:12:45Z",
+                "description": "Suspicious copy/paste behavior was logged from the system clipboard.",
+                "teacherNote": "Copying and pasting text during the exam raises concerns about academic integrity. Please write responses directly.",
+                "studentComment": "I copied a sentence to reorganize it later in my draft. I wasn’t pasting in anything from outside the exam."
+              },
+              {
+                "id": "violation4",
+                "type": "Screen resize attempt",
+                "timestamp": "2025-03-12T14:15:02Z",
+                "description": "The system detected an attempt to resize or minimize the exam window.",
+                "teacherNote": "Resizing the window may indicate an attempt to obscure or bypass monitoring tools. This is not permitted.",
+                "studentComment": "I was just adjusting the window because part of the text box wasn’t visible. I wasn’t trying to hide anything."
+              },
+              {
+                "id": "violation5",
+                "type": "Inactivity timeout warning",
+                "timestamp": "2025-03-12T14:22:17Z",
+                "description": "The session was idle for an extended period and was close to being timed out.",
+                "teacherNote": "Long periods of inactivity can interrupt your exam and are monitored for fairness.",
+                "studentComment": "I apologize for the inactivity during the exam. I had to step away briefly to use the restroom and didn’t realize that I had been away from my computer for longer than expected. It wasn’t my intention to interrupt the session or cause any concern, and I returned to the exam environment as quickly as I could."
+              }
+            ]
+          },
+          "assignment4": {
+            "status": "available"
+          },
+          "assignment5": {
+            "status": "available"
+          }
+        }
+      }
+    },
+    "assignments": {
+      "assignment1": {
+        "name": "Research Paper Draft",
+        "prompt": "Write a research paper draft following academic conventions.",
+        "points": 150,
+        "mode": "Protected Composition",
+        "resources": {
+          "uploadedFiles": [
+            "Research_Guidelines.pdf",
+            "APA_Citation_Examples.pdf"
+          ],
+          "externalLinks": [
+            {
+              "title": "Academic Writing Guide",
+              "url": "https://writingcenter.example.com"
+            }
+          ]
+        }
+      },
+      "assignment2": {
+        "name": "Critical Response Essay",
+        "prompt": "Analyze and respond to the main argument of the assigned reading.",
+        "points": 100,
+        "mode": "Unlocked Composition",
+        "resources": {
+          "uploadedFiles": [
+            "Assigned_Reading.pdf",
+            "Response_Guidelines.pdf"
+          ],
+          "externalLinks": []
+        }
+      },
+      "assignment3": {
+        "name": "Literary Analysis",
+        "prompt": "Examine a literary work and discuss its themes and structure.",
+        "points": 250,
+        "mode": "Protected Composition",
+        "resources": {
+          "uploadedFiles": [],
+          "externalLinks": []
+        }
+      },
+      "assignment4": {
+        "name": "Annotated Bibliography",
+        "prompt": "Compile and summarize five sources relevant to your research topic.",
+        "points": 50,
+        "mode": "Unlocked Composition",
+        "resources": {
+          "uploadedFiles": [
+            "Bibliography_Guide.pdf"
+          ],
+          "externalLinks": [
+            {
+              "title": "Citation Guide",
+              "url": "https://citation.example.com"
+            }
+          ]
+        }
+      },
+      "assignment5": {
+        "name": "Final Reflection",
+        "prompt": "Reflect on your progress throughout the course and key learnings.",
+        "points": 50,
+        "mode": "Protected Composition",
+        "resources": {
+          "uploadedFiles": [],
+          "externalLinks": []
+        }
+      }
+    }
+  }
