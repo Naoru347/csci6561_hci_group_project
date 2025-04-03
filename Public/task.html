@@ -12,14 +12,18 @@
   </head>
   <body>
     <header>
-      <h4 id="fullscreenWarning" class="text-danger text-center mt-3 ms-3 p-5 d-none">
-        WARNING: If you click ESC or try to leave fullscreen mode in any other way without clicking Submit, <br> your current draft will be submitted automatically and you won't be able to resume the assignment.
-      </h4>
+      <div id="fullscreenWarning" class="text-danger text-center mt-3 ms-3 p-5 d-none">
+        <h4 >
+          WARNING
+        </h4>
+        <p>
+          If you press ESC or click the minimize button, the assignment will be submitted with a violation.
+        </p>
+      </div>
+
+      
       <div class="p-5 bg-primary text-white text-center">
         <h1>FocusWrite</h1>
-        <p>
-          Complete your assignment here.
-        </p>
         <!-- Logout Button (absolute top-right) -->
          <p id="userNameDisplay" class="position-absolute top-0 start-0 m-3">User's name</p>
         <a href="#" id="logoutButton" class="btn btn-danger position-absolute top-0 end-0 m-3">
@@ -29,7 +33,7 @@
     </header>
 
     <!-- Slider for font size adjustment -->
-    <div class="row justify-content-center align-items-center mt-3">
+    <div class="row justify-content-center align-items-center mt-3 ms-5 mb-3">
       <div class="col-auto w-25 text-end">
           <label for="fontSizeSlider" class="form-label">Font Size:</label>
       </div>
@@ -49,7 +53,7 @@
   </div>
     
     <!-- Prompt to Confirm Beginning of Assignment -->
-     <div id="divConfirmationBlock" class="container mt-3">
+     <div id="divConfirmationBlock" class="container mt-5">
       <div class="row">
         <div class="col col-7 offset-3">
           <div class="card mb-4">
