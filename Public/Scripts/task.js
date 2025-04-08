@@ -4,7 +4,7 @@ const pFullscreenWarning = document.getElementById("fullscreenWarning");
 const confirmSubmitModal = new bootstrap.Modal(document.getElementById("confirmSubmitModal"));
 const textareaInput = document.getElementById("textareaInput");
 const logoutButton = document.getElementById("logoutButton");
-const userNameDisplay = document.getElementById("userNameDisplay");
+const welcomeEl = document.getElementById("welcomeMessage");
 const assignmentNameInConfirmationBlock = document.getElementById("assignmentNameInConfirmationBlock");
 const assignmentNameInEditor = document.getElementById("assignmentNameInEditor");
 
@@ -25,7 +25,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!storedUser) console.log("No user logged in.");
   try {
     user = JSON.parse(storedUser);
-    userNameDisplay.innerText = `Hello, ${user.fullName}!`;
+    //userNameDisplay.innerText = `Hello, ${user.fullName}!`;
+    welcomeEl.innerHTML = `Logged in as ${user.fullName}`;
   } catch (err) {
     console.error("Failed to parse loggedInUser:", err);
     return alert("Session data corrupted.");
