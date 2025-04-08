@@ -59,6 +59,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const accordion = document.getElementById("violationAccordion");
     accordion.innerHTML = "";
 
+    if (!assignmentData.violations || assignmentData.violations.length === 0) {
+      accordion.innerHTML = `
+        <div class="alert alert-success text-center">
+          ✅ No violations were detected for this assignment.
+        </div>
+      `;
+    }    
+    
     (assignmentData.violations || []).forEach((v, idx) => {
       // Check if a student comment exists and is not "NONE"
       const hasComment = v.studentComment && v.studentComment !== "NONE";
@@ -87,7 +95,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       const html = `
-        <div class="accordion-item">
+        <div class="accordion-item violation-card">
           <h3 class="accordion-header" id="violation${idx}Header">
             <button
               class="accordion-button ${idx === 0 ? "" : "collapsed"}"

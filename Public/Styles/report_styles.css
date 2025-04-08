@@ -1,0 +1,27 @@
+  .card-header {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.report-card {
+    border-width: 1px;
+  }
+
+  .custom-accordion {
+    --bs-accordion-border-color: #343a40;
+    --bs-accordion-border-width: 2px;
+    --bs-accordion-border-radius: 0.5rem;
+    --bs-accordion-inner-border-radius: 0.5rem;
+    --bs-accordion-bg: #fff;
+    --bs-accordion-btn-bg: #f8f9fa;
+    --bs-accordion-btn-color: #000;
+    --bs-accordion-btn-padding-y: 0.75rem;
+    --bs-accordion-btn-padding-x: 1rem;
+    /* --bs-accordion-body-padding-y: 1rem;
+    --bs-accordion-body-padding-x: 1rem; */
+    --bs-accordion-active-bg: #e2e6ea;
+  }
+  
+  
+  
