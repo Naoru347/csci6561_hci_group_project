@@ -7,6 +7,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
+  const welcomeEl = document.getElementById("welcomeMessage");
+  if (welcomeEl && user.fullName) {
+    welcomeEl.textContent = `Logged in as ${user.fullName}`;
+  }
+
+
   try {
     const res = await fetch("/api/database");
     const data = await res.json();

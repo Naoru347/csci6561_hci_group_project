@@ -2,15 +2,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 1. Grab the user from localStorage
     const storedUser = localStorage.getItem("loggedInUser");
     if (!storedUser) return alert("No user logged in.");
-  
-    let userEmail;
+    
+    let userEmail, fullName;
     try {
       const parsedUser = JSON.parse(storedUser);
       userEmail = parsedUser.email;
+      fullName = parsedUser.fullName || "User";
     } catch (err) {
       console.error("Failed to parse loggedInUser:", err);
       return alert("Session data corrupted.");
     }
+    
+    // Display welcome message
+    const welcomeEl = document.getElementById("welcomeMessage");
+    if (welcomeEl) {
+      welcomeEl.textContent = `Logged in as ${fullName}`;
+    }
+    
   
     // 2. Load the database
     let data;

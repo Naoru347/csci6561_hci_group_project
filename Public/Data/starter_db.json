@@ -26,7 +26,7 @@
                 "type": "Window focus lost",
                 "timestamp": "2025-03-12T14:05:30Z",
                 "description": "The system detected that you clicked outside of the locked browser window.",
-                "studentComment": ""
+                "studentComment": "NONE"
               },
               {
                 "id": "violation2",
@@ -125,6 +125,81 @@
           },
           "assignment4": {
             "status": "available"
+          },
+          "assignment5": {
+            "status": "available"
+          }
+        }
+      },
+      "exampleuser@example.com": {
+        "email": "exampleuser@example.com",
+        "password": "hashedpassword456",
+        "role": "student",
+        "fullName": "Diana Troi",
+        "createdAt": "2025-03-14T12:00:00Z",
+        "lastLogin": "2025-03-14T12:00:00Z",
+        "assignments": {
+          "assignment1": {
+            "status": "available"
+          },
+          "assignment2": {
+            "status": "available"
+          },
+          "assignment3": {
+            "status": "available"
+          },
+          "assignment4": {
+            "status": "available"
+          },
+          "assignment5": {
+            "status": "available"
+          }
+        }
+      },
+      "sampleuser@example.com": {
+        "email": "sampleuser@example.com",
+        "password": "password",
+        "role": "student",
+        "fullName": "Rey Skywalker",
+        "createdAt": "2025-03-10T08:55:00Z",
+        "lastLogin": "2025-03-30T16:05:00Z",
+        "assignments": {
+          "assignment2": {
+            "status": "graded",
+            "submitted": true,
+            "submittedAt": "2025-03-22T10:00:00Z",
+            "finalText": "A critical response essay on the rhetorical devices used in the reading...",
+            "grading": {
+              "status": "graded",
+              "score": 90,
+              "maxPoints": 100,
+              "finalGrade": "A-",
+              "teacherFeedback": "Excellent use of evidence and solid organization. Watch out for overuse of passive voice."
+            },
+            "violations": [
+              {
+                "id": "violation1",
+                "type": "Window focus lost",
+                "timestamp": "2025-03-22T10:15:00Z",
+                "description": "The window lost focus for more than 10 seconds.",
+                "teacherNote": "Please remain focused in the exam window.",
+                "studentComment": "I had to adjust my second monitor setup—won't happen again."
+              }
+            ]
+          },
+          "assignment3": {
+            "status": "submitted",
+            "submitted": true,
+            "submittedAt": "2025-03-27T12:20:00Z",
+            "finalText": "Analysis of the themes of identity and displacement in the assigned novel...",
+            "grading": {
+              "status": "in-review",
+              "score": null,
+              "maxPoints": 250,
+              "finalGrade": null,
+              "teacherFeedback": null
+            },
+            "violations": []
           },
           "assignment5": {
             "status": "available"
