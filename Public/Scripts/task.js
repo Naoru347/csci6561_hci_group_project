@@ -52,7 +52,7 @@ document.getElementById("btnBegin").addEventListener("click", () => {
   logoutButton.classList.add("d-none");
   divTextAndLinksBlock.classList.remove("d-none");
   pFullscreenWarning.classList.remove("d-none");
-  userNameDisplay.classList.add("d-none");
+  // userNameDisplay.classList.add("d-none");
 
   // Switch to full screen.
   let elem = document.documentElement; // This selects the entire HTML document              
