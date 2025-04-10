@@ -205,15 +205,6 @@
           "status": "available"
         }
       }
-    },
-    "newuser@example.com": {
-      "email": "newuser@example.com",
-      "password": "password123",
-      "role": "student",
-      "fullName": "Lee Adama",
-      "createdAt": "2025-03-14T12:00:00Z",
-      "lastLogin": "2025-03-14T12:00:00Z",
-      "assignments":{}
     }
   },
   "assignments": {
