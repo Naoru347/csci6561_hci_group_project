@@ -166,7 +166,7 @@
     <!-- This container is for displaying modals with additional resources -->
     <div id="modalContainer"></div>
 
-    <!-- This modal is for warning about leaving fullscreen without submitting -->
+    <!-- This modal asks to confirm wish to submit and leave the fullscreen -->
     <div class="modal fade modal-lg" id="confirmSubmitModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -189,7 +189,29 @@
       </div>
     </div>  
 
-    
+     <!-- This modal notifies that b/c fullscreen mode has been left w/o Submission, the current text is saved with a violation and the user is redirected to landing -->
+     <div class="modal fade modal-lg" id="exitedFullscreenModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h5 class="modal-title">Fullscreen Exited Without Submission</h5>
+            <button type="button" class="btn-close exitFullscreenClose" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <!-- Modal Body -->
+          <div class="modal-body">
+            <p>You have exited fullscreen mode without submission. Your current assignment will be saved with a violation.</p>
+          </div>
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <button id="confirmExitFullscreenNotification" type="button" class="btn btn btn-primary exitFullscreenClose" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>  
+
+
+
     <!-- Scripts -->
 
     <!-- Bootstrap Script -->

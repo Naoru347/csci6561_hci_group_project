@@ -2,11 +2,13 @@ const divConfirmationBlock = document.getElementById("divConfirmationBlock");
 const divTextAndLinksBlock = document.getElementById("divTextAndLinksBlock");
 const pFullscreenWarning = document.getElementById("fullscreenWarning");
 const confirmSubmitModal = new bootstrap.Modal(document.getElementById("confirmSubmitModal"));
+const exitedFullscreenModal = new bootstrap.Modal(document.getElementById("exitedFullscreenModal"));
 const textareaInput = document.getElementById("textareaInput");
 const logoutButton = document.getElementById("logoutButton");
 const welcomeEl = document.getElementById("welcomeMessage");
 const assignmentNameInConfirmationBlock = document.getElementById("assignmentNameInConfirmationBlock");
 const assignmentNameInEditor = document.getElementById("assignmentNameInEditor");
+const exitFullscreenClose = document.querySelectorAll('.exitFullscreenClose'); // These two buttons are inside exitedFullscreenModal
 
 // These are for collecting info to send to database.json
 let textareaBuffer = 'None';
@@ -55,16 +57,7 @@ document.getElementById("btnBegin").addEventListener("click", () => {
   welcomeEl.classList.add("d-none");
 
   // Switch to full screen.
-  let elem = document.documentElement; // This selects the entire HTML document              
-  if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-  } else if (elem.mozRequestFullScreen) { // Firefox
-      elem.mozRequestFullScreen();
-  } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, and Opera
-      elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { // IE/Edge
-      elem.msRequestFullscreen();
-  } 
+  enterFullscreen();
 
   // Add assignment name to the Editor's head
   assignmentNameInEditor.innerText = assignment.name;
@@ -223,7 +216,7 @@ function addDictionaryScript() {
 }
 
 
-// Listen for attempts to switch out of full screen.
+// In different browsers, listen for attempts to switch out of full screen.
 // In Chrome on Mac, this works with esc button, but not with Chrome's enter/exit full screen button.
 // In Safari, it works fine.
 document.addEventListener("fullscreenchange", onFullscreenChange);
@@ -233,7 +226,7 @@ document.addEventListener("MSFullscreenChange", onFullscreenChange);
 
 async function onFullscreenChange(event) {
     console.log("Fullscreen change event fired");
-    if (document.fullscreenElement) {
+    if (document.fullscreenElement || document.webkitfullscreenchange || document.mozfullscreenchange || document.MSFullscreenChange) {
         console.log("Entered fullscreen mode");
     } else {
         console.log("Exited fullscreen mode");
@@ -250,12 +243,23 @@ async function onFullscreenChange(event) {
           violations.push(violation);
           await saveToLocalStorage();
           await sendToDb();
-          alert("Assignment saved without submission");
+          exitedFullscreenModal.show();
+          //alert("Assignment saved without submission");
           // Submit current text with a violoation and then navigate to landing.html
-          window.location.href = "./landing.html";
+          //window.location.href = "./landing.html";
         }
     }
 }
+
+// On closing the exitFullscreenModal, redirect to landing.html
+exitFullscreenClose.forEach(button => {
+  button.addEventListener("click", () => {
+    window.location.href = "./landing.html";
+  })
+})
+  
+  
+
 
 // Save typed text automatically via the global editor saved in tinymce.init (in the hmtl file)
 // The editorInitialized event is created in tiny.init and dispatched to document.
@@ -354,6 +358,18 @@ function noBack() {
     window.history.forward();
 }
 
+function enterFullscreen() {
+  let elem = document.documentElement; // This selects the entire HTML document              
+  if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { // Firefox
+      elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+      elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { // IE/Edge
+      elem.msRequestFullscreen();
+  } 
+}
 
 function exitFullscreen() {
   if (document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen) {
