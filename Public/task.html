@@ -195,16 +195,16 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h5 class="modal-title">Fullscreen Exited Without Submission</h5>
-            <button type="button" class="btn-close exitFullscreenClose" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title">Exited Fullscreen</h5>
           </div>
           <!-- Modal Body -->
           <div class="modal-body">
-            <p>You have exited fullscreen mode without submission. Your current assignment will be saved with a violation.</p>
+            <p>Are you sure you want to leave without submitting the assignment? If you click yes, your assignment will be saved with a violation.</p>
           </div>
           <!-- Modal Footer -->
           <div class="modal-footer">
-            <button id="confirmExitFullscreenNotification" type="button" class="btn btn btn-primary exitFullscreenClose" data-bs-dismiss="modal">Close</button>
+            <a href="#" id="backToFullscreen" class="btn btn-outline-danger" data-bs-dismiss="modal">No, Go Back to Assignment.</a>
+            <button id="leaveWithoutSubmission" type="button" class="btn btn btn-primary" data-bs-dismiss="modal">Yes, save and leave without submission.</button>
           </div>
         </div>
       </div>
