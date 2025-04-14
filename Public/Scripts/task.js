@@ -8,7 +8,6 @@ const logoutButton = document.getElementById("logoutButton");
 const welcomeEl = document.getElementById("welcomeMessage");
 const assignmentNameInConfirmationBlock = document.getElementById("assignmentNameInConfirmationBlock");
 const assignmentNameInEditor = document.getElementById("assignmentNameInEditor");
-const exitFullscreenClose = document.querySelectorAll('.exitFullscreenClose'); // These two buttons are inside exitedFullscreenModal
 
 // These are for collecting info to send to database.json
 let textareaBuffer = 'None';
@@ -232,31 +231,33 @@ async function onFullscreenChange(event) {
         console.log("Exited fullscreen mode");
         console.log("confirmSubmitClicked " + confirmSubmitClicked )
         if ( !confirmSubmitClicked ) {
-          const violation = {
-            id: "violation3",
-            type: "Fullscreen left without submission",
-            timestamp: new Date().toISOString(),
-            description: "Fullscreen mode was left without submission.",
-            teacherNote: "Please remember that leaving fullscreen mode without clicking Submit is not allowed.",
-            studentComment: "NONE"
-          };
-          violations.push(violation);
-          await saveToLocalStorage();
-          await sendToDb();
           exitedFullscreenModal.show();
-          //alert("Assignment saved without submission");
-          // Submit current text with a violoation and then navigate to landing.html
-          //window.location.href = "./landing.html";
         }
     }
 }
 
-// On closing the exitFullscreenModal, redirect to landing.html
-exitFullscreenClose.forEach(button => {
-  button.addEventListener("click", () => {
-    window.location.href = "./landing.html";
-  })
-})
+// if No is chosen, re-enter fullscreen
+document.getElementById("backToFullscreen").addEventListener("click", () => {
+  enterFullscreen();
+});
+// Inside exitedFullscreenModal, if Yes, is chosen, record violation, submit current assignment, and redirect to landing.html
+document.getElementById("leaveWithoutSubmission").addEventListener("click", async () => {
+  const violation = {
+    id: "violation3",
+    type: "Fullscreen left without submission",
+    timestamp: new Date().toISOString(),
+    description: "Fullscreen mode was left without submission.",
+    teacherNote: "Please remember that leaving fullscreen mode without clicking Submit is not allowed.",
+    studentComment: "NONE"
+  };
+  violations.push(violation);
+  await saveToLocalStorage();
+  await sendToDb();
+  
+  alert("Assignment saved without submission");
+  // Submit current text with a violoation and then navigate to landing.html
+  window.location.href = "./landing.html";
+});
   
   
 
