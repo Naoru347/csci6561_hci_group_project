@@ -2,7 +2,8 @@ const divConfirmationBlock = document.getElementById("divConfirmationBlock");
 const divTextAndLinksBlock = document.getElementById("divTextAndLinksBlock");
 const pFullscreenWarning = document.getElementById("fullscreenWarning");
 const confirmSubmitModal = new bootstrap.Modal(document.getElementById("confirmSubmitModal"));
-const exitedFullscreenModal = new bootstrap.Modal(document.getElementById("exitedFullscreenModal"));
+const exitedFullscreenModalElement = document.getElementById("exitedFullscreenModal"); // I need this DOM element to listen to whether it is out of focus (blur)
+const exitedFullscreenModal = new bootstrap.Modal(exitedFullscreenModalElement); 
 const textareaInput = document.getElementById("textareaInput");
 const logoutButton = document.getElementById("logoutButton");
 const welcomeEl = document.getElementById("welcomeMessage");
@@ -64,7 +65,7 @@ document.getElementById("btnBegin").addEventListener("click", () => {
   // Add link to Assignment Prompt, depending on the name of the file with the prompt.
   // This name should come from preceding page.
   // For now I'm hardcoding it.
-  const promptFile = ["LiteratureReviewPrompt.pdf"];
+  const promptFile = ["Annotated_Bibliography.pdf"];
   createLinks(promptFile, "promptLink");
 
   // Build list of links to Uploaded files.
@@ -236,12 +237,22 @@ async function onFullscreenChange(event) {
     }
 }
 
-// if No is chosen, re-enter fullscreen
+// Inside exitedFullscreenModal, if No is chosen, re-enter fullscreen
 document.getElementById("backToFullscreen").addEventListener("click", () => {
+  backToFullscreenClicked = true;
   enterFullscreen();
 });
 // Inside exitedFullscreenModal, if Yes, is chosen, record violation, submit current assignment, and redirect to landing.html
 document.getElementById("leaveWithoutSubmission").addEventListener("click", async () => {
+  submitWithViolation();
+});
+// In case user click outside modal, show exitedFullscreenModal again (until user choses yes or no)
+exitedFullscreenModalElement.addEventListener('blur', async () => {
+  console.log("exitedFullscreenModalElement lost focus");
+  exitedFullscreenModal.show();
+});
+
+async function submitWithViolation() {
   const violation = {
     id: "violation3",
     type: "Fullscreen left without submission",
@@ -254,11 +265,10 @@ document.getElementById("leaveWithoutSubmission").addEventListener("click", asyn
   await saveToLocalStorage();
   await sendToDb();
   
-  alert("Assignment saved without submission");
+  alert("Assignment saved with a violation");
   // Submit current text with a violoation and then navigate to landing.html
   window.location.href = "./landing.html";
-});
-  
+}  
   
 
 
