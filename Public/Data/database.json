@@ -124,7 +124,27 @@
           ]
         },
         "assignment4": {
-          "status": "available"
+          "status": "submitted",
+          "submitted": false,
+          "submittedAt": "2025-04-15T13:38:57.094Z",
+          "finalText": "None",
+          "grading": {
+            "status": "in-review",
+            "score": null,
+            "maxPoints": "50",
+            "finalGrade": null,
+            "teacherFeedback": null
+          },
+          "violations": [
+            {
+              "id": "violation3",
+              "type": "Fullscreen left without submission",
+              "timestamp": "2025-04-15T13:38:57.093Z",
+              "description": "Fullscreen mode was left without submission.",
+              "teacherNote": "Please remember that leaving fullscreen mode without clicking Submit is not allowed.",
+              "studentComment": "NONE"
+            }
+          ]
         },
         "assignment5": {
           "status": "available"
