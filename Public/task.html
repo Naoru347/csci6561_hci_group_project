@@ -9,6 +9,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
       crossorigin="anonymous"
     />
+
   </head>
   <body>
     <header>
@@ -182,8 +183,28 @@
           </div>
           <!-- Modal Footer -->
           <div class="modal-footer">
-            <a href="#" id="continueLink" class="btn btn-outline-danger">No, Go Back to Assignment</a>
-            <button id="confirmSubmitBtn" type="button" class="btn btn btn-primary" data-bs-dismiss="modal">Yes, Submit and Leave</button>
+            <a href="#" id="continueLink" class="btn btn-outline-danger" data-bs-dismiss="modal">No, Go Back to Assignment</a>
+            <button id="confirmSubmitBtn" type="button" class="btn btn btn-primary" data-bs-dismiss="modal">Yes, Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>  
+
+    <!-- This modal confirms correct submission -->
+    <div class="modal fade modal-lg" id="confirmCorrectSubmissionModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmation</h5>
+          </div>
+          <!-- Modal Body -->
+          <div class="modal-body">
+            <p>Your assignment has been submitted successfully.</p>
+          </div>
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <button  id="goToAssignmentsAfterSubmit" type="button" class="btn btn btn-primary" data-bs-dismiss="modal">Close and Go to Assignments</button>
           </div>
         </div>
       </div>
@@ -209,8 +230,6 @@
         </div>
       </div>
     </div>  
-
-
 
     <!-- Scripts -->
 

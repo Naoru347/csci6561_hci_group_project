@@ -265,7 +265,7 @@ async function submitWithViolation() {
   await saveToLocalStorage();
   await sendToDb();
   
-  alert("Assignment saved with a violation");
+  //alert("Assignment saved with a violation");
   // Submit current text with a violoation and then navigate to landing.html
   window.location.href = "./landing.html";
 }  
@@ -299,6 +299,7 @@ document.getElementById("btnSubmit").addEventListener("click", () => {
   confirmSubmitModal.show();
 });
 
+// Back to assignment button clicked inside confirmation modal
 document.getElementById("continueLink").addEventListener("click", () => {
   confirmSubmitModal.hide();
 });
@@ -308,10 +309,19 @@ document.getElementById("confirmSubmitBtn").addEventListener("click", async () =
   confirmSubmitClicked = true; // Make sure exiting fullscreen with submit doesn't generate a violation
   await saveToLocalStorage();
   await sendToDb();
-  //exitFullscreen(); // navigating to another page switches out of fullscreen
-  alert("Assignment submitted");
-  window.location.href = "./landing.html";
+
+  // I'm replacing alert with modal; without one of them there is not enough time to save to DB
+  const confirmCorrectSubmissionModal = new bootstrap.Modal(document.getElementById("confirmCorrectSubmissionModal"));
+  confirmCorrectSubmissionModal.show();
+  document.getElementById("goToAssignmentsAfterSubmit").addEventListener("click", () => {
+    window.location.href = "./landing.html";
+  });
   
+  
+  //alert("Assignment submitted"); // This alert is needed so that the saving to DB has enought time (despite await)
+  
+  // The delay is needed for saving to DB (despite await?). Not very graceful: shows broken link page for a while
+  //setTimeout(() => {window.location.href = "./landing.html";}, 50 );
 });
 
 
