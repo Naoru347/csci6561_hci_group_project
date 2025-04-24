@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     assignment = JSON.parse(storedAssignment);
     //console.log(assignment);
-    assignmentNameInConfirmationBlock.innerText = assignment.name;
+    assignmentNameInConfirmationBlock.innerText = "the " + assignment.name.toLowerCase();
   } catch (err) {
     console.error("Failed to parse storedAssigment:", err);
     return alert("Session data corrupted.");
