@@ -454,6 +454,14 @@ window.addEventListener('focus', function() {
   console.log("insideEditor: " + insideEditor);
 });
 
+// One more way to measure whether tab is left
+document.addEventListener("visibilitychange", (event) => {
+  if (document.visibilityState == "visible") {
+    console.log("tab is active");
+  } else {
+    console.log("tab is inactive");
+  }
+});
 
 
 
