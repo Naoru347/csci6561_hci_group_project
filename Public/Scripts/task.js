@@ -4,7 +4,7 @@ const pFullscreenWarning = document.getElementById("fullscreenWarning");
 const confirmSubmitModal = new bootstrap.Modal(document.getElementById("confirmSubmitModal"));
 const exitedFullscreenModalElement = document.getElementById("exitedFullscreenModal"); // I need this DOM element to listen to whether it is out of focus (blur)
 const exitedFullscreenModal = new bootstrap.Modal(exitedFullscreenModalElement); 
-const textareaInput = document.getElementById("textareaInput");
+//const textareaInput = document.getElementById("textareaInput");
 const logoutButton = document.getElementById("logoutButton");
 const welcomeEl = document.getElementById("welcomeMessage");
 const assignmentNameInConfirmationBlock = document.getElementById("assignmentNameInConfirmationBlock");
@@ -239,7 +239,7 @@ async function onFullscreenChange(event) {
 
 // Inside exitedFullscreenModal, if No is chosen, re-enter fullscreen
 document.getElementById("backToFullscreen").addEventListener("click", () => {
-  backToFullscreenClicked = true;
+  // backToFullscreenClicked = true;
   enterFullscreen();
 });
 // Inside exitedFullscreenModal, if Yes, is chosen, record violation, submit current assignment, and redirect to landing.html
@@ -255,10 +255,10 @@ exitedFullscreenModalElement.addEventListener('blur', async () => {
 async function submitWithViolation() {
   const violation = {
     id: "violation3",
-    type: "Fullscreen left without submission",
+    type: "Fullscreen exited before submission",
     timestamp: new Date().toISOString(),
-    description: "Fullscreen mode was left without submission.",
-    teacherNote: "Please remember that leaving fullscreen mode without clicking Submit is not allowed.",
+    description: "Fullscreen mode was left before submission.",
+    teacherNote: "Please remember that exiting fullscreen mode before clicking Submit is not allowed.",
     studentComment: "NONE"
   };
   violations.push(violation);
