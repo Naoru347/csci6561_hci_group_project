@@ -4,7 +4,7 @@ const pFullscreenWarning = document.getElementById("fullscreenWarning");
 const confirmSubmitModal = new bootstrap.Modal(document.getElementById("confirmSubmitModal"));
 const exitedFullscreenModalElement = document.getElementById("exitedFullscreenModal"); // I need this DOM element to listen to whether it is out of focus (blur)
 const exitedFullscreenModal = new bootstrap.Modal(exitedFullscreenModalElement); 
-const textareaInput = document.getElementById("textareaInput");
+//const textareaInput = document.getElementById("textareaInput");
 const logoutButton = document.getElementById("logoutButton");
 const welcomeEl = document.getElementById("welcomeMessage");
 const assignmentNameInConfirmationBlock = document.getElementById("assignmentNameInConfirmationBlock");
@@ -239,7 +239,7 @@ async function onFullscreenChange(event) {
 
 // Inside exitedFullscreenModal, if No is chosen, re-enter fullscreen
 document.getElementById("backToFullscreen").addEventListener("click", () => {
-  backToFullscreenClicked = true;
+  // backToFullscreenClicked = true;
   enterFullscreen();
 });
 // Inside exitedFullscreenModal, if Yes, is chosen, record violation, submit current assignment, and redirect to landing.html
@@ -255,17 +255,17 @@ exitedFullscreenModalElement.addEventListener('blur', async () => {
 async function submitWithViolation() {
   const violation = {
     id: "violation3",
-    type: "Fullscreen left without submission",
+    type: "Fullscreen exited before submission",
     timestamp: new Date().toISOString(),
-    description: "Fullscreen mode was left without submission.",
-    teacherNote: "Please remember that leaving fullscreen mode without clicking Submit is not allowed.",
+    description: "Fullscreen mode was left before submission.",
+    teacherNote: "Please remember that exiting fullscreen mode before clicking Submit is not allowed.",
     studentComment: "NONE"
   };
   violations.push(violation);
   await saveToLocalStorage();
   await sendToDb();
   
-  alert("Assignment saved with a violation");
+  //alert("Assignment saved with a violation");
   // Submit current text with a violoation and then navigate to landing.html
   window.location.href = "./landing.html";
 }  
@@ -299,6 +299,7 @@ document.getElementById("btnSubmit").addEventListener("click", () => {
   confirmSubmitModal.show();
 });
 
+// Back to assignment button clicked inside confirmation modal
 document.getElementById("continueLink").addEventListener("click", () => {
   confirmSubmitModal.hide();
 });
@@ -308,10 +309,19 @@ document.getElementById("confirmSubmitBtn").addEventListener("click", async () =
   confirmSubmitClicked = true; // Make sure exiting fullscreen with submit doesn't generate a violation
   await saveToLocalStorage();
   await sendToDb();
-  //exitFullscreen(); // navigating to another page switches out of fullscreen
-  alert("Assignment submitted");
-  window.location.href = "./landing.html";
+
+  // I'm replacing alert with modal; without one of them there is not enough time to save to DB
+  const confirmCorrectSubmissionModal = new bootstrap.Modal(document.getElementById("confirmCorrectSubmissionModal"));
+  confirmCorrectSubmissionModal.show();
+  document.getElementById("goToAssignmentsAfterSubmit").addEventListener("click", () => {
+    window.location.href = "./landing.html";
+  });
   
+  
+  //alert("Assignment submitted"); // This alert is needed so that the saving to DB has enought time (despite await)
+  
+  // The delay is needed for saving to DB (despite await?). Not very graceful: shows broken link page for a while
+  //setTimeout(() => {window.location.href = "./landing.html";}, 50 );
 });
 
 
