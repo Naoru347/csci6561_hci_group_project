@@ -275,6 +275,23 @@
           "uploadedFiles": [],
           "externalLinks": []
         }
-      }
+      },
+      "assignment6": {
+    "name": "Final Project",
+    "prompt": "Create a multimedia presentation on a topic of your choice.",
+    "points": 200,
+    "mode": "Unlocked Composition",
+    "resources": {
+      "uploadedFiles": [
+        "Presentation_Tips.pdf"
+      ],
+      "externalLinks": [
+        {
+          "title": "Multimedia Tools",
+          "url": "https://tools.example.com"
+        }
+      ]
+    }
+  }
     }
   }
