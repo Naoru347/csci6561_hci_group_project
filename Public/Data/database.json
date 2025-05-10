@@ -124,7 +124,27 @@
           ]
         },
         "assignment4": {
-          "status": "available"
+          "status": "submitted",
+          "submitted": true,
+          "submittedAt": "2025-05-06T16:43:31.879Z",
+          "finalText": "<p><strong>Type and edit your text here.</strong></p>\n<p><strong>--Expertise</strong></p>",
+          "grading": {
+            "status": "in-review",
+            "score": null,
+            "maxPoints": "50",
+            "finalGrade": null,
+            "teacherFeedback": null
+          },
+          "violations": [
+            {
+              "id": "violation1",
+              "type": "Window focus lost",
+              "timestamp": "2025-05-06T16:39:43.759Z",
+              "description": "The system detected that you clicked outside of the locked browser window.",
+              "teacherNote": "Please remember that clicking outside the lockdown area is not allowed.",
+              "studentComment": "I was trying to access the course website."
+            }
+          ]
         },
         "assignment5": {
           "status": "available"
@@ -277,21 +297,21 @@
       }
     },
     "assignment6": {
-  "name": "Final Project",
-  "prompt": "Create a multimedia presentation on a topic of your choice.",
-  "points": 200,
-  "mode": "Unlocked Composition",
-  "resources": {
-    "uploadedFiles": [
-      "Presentation_Tips.pdf"
-    ],
-    "externalLinks": [
-      {
-        "title": "Multimedia Tools",
-        "url": "https://tools.example.com"
+      "name": "Final Project",
+      "prompt": "Create a multimedia presentation on a topic of your choice.",
+      "points": 200,
+      "mode": "Unlocked Composition",
+      "resources": {
+        "uploadedFiles": [
+          "Presentation_Tips.pdf"
+        ],
+        "externalLinks": [
+          {
+            "title": "Multimedia Tools",
+            "url": "https://tools.example.com"
+          }
+        ]
       }
-    ]
-  }
-}
+    }
   }
 }
